@@ -1,0 +1,307 @@
+/* ═══════════════════════════════════════════════
+   ETERNA ARTISAN — AI Art Studio
+   Global Design System
+   ═══════════════════════════════════════════════ */
+
+:root {
+  /* Core palette — dark luxury base (unchanged) */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-card: #141414;
+  --bg-elevated: #1a1a1a;
+  --bg-input: #0f0f0f;
+
+  /* Gold system — primary accent (preserved from ETERNA) */
+  --gold: #c9a84c;
+  --gold-light: #d4b96a;
+  --gold-dark: #a88a3a;
+  --gold-muted: rgba(201, 168, 76, 0.12);
+  --gold-border: rgba(201, 168, 76, 0.25);
+  --gold-glow: rgba(201, 168, 76, 0.08);
+
+  /* ─── ARTISAN Vivid Colors ──────────────────── */
+  /* Electric Blue — technology, AI, precision */
+  --vivid-blue: #3b82f6;
+  --vivid-blue-light: #60a5fa;
+  --vivid-blue-muted: rgba(59, 130, 246, 0.12);
+  --vivid-blue-glow: rgba(59, 130, 246, 0.08);
+
+  /* Magenta — creativity, art, passion */
+  --vivid-magenta: #e040a0;
+  --vivid-magenta-light: #f472b6;
+  --vivid-magenta-muted: rgba(224, 64, 160, 0.12);
+
+  /* Emerald — growth, nature, harmony */
+  --vivid-emerald: #34d399;
+  --vivid-emerald-light: #6ee7b7;
+  --vivid-emerald-muted: rgba(52, 211, 153, 0.12);
+
+  /* Coral — warmth, energy, vibrancy */
+  --vivid-coral: #f97066;
+  --vivid-coral-light: #fca5a1;
+  --vivid-coral-muted: rgba(249, 112, 102, 0.12);
+
+  /* Amber — radiance, light, premium */
+  --vivid-amber: #fbbf24;
+  --vivid-amber-muted: rgba(251, 191, 36, 0.12);
+
+  /* Gradient accents — for hero, buttons, highlights */
+  --gradient-art: linear-gradient(135deg, var(--vivid-blue), var(--vivid-magenta));
+  --gradient-warm: linear-gradient(135deg, var(--vivid-coral), var(--vivid-amber));
+  --gradient-nature: linear-gradient(135deg, var(--vivid-emerald), var(--vivid-blue));
+  --gradient-creative: linear-gradient(135deg, var(--vivid-magenta), var(--vivid-coral));
+
+  /* Text hierarchy */
+  --text-primary: #f0ece4;
+  --text-secondary: #a09888;
+  --text-muted: #5a5248;
+  --text-inverse: #0a0a0a;
+
+  /* Functional */
+  --success: #34d399;
+  --error: #f97066;
+  --border: rgba(201, 168, 76, 0.15);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+
+  /* Typography */
+  --font-heading: 'Cormorant Garamond', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+  --font-body: 'Inter', 'Segoe UI', -apple-system, sans-serif;
+  --font-script: 'Playfair Display', 'Georgia', serif;
+
+  /* Spacing & shapes */
+  --card-radius: 2px;
+  --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+  --radius-sm: 2px;
+  --radius-md: 4px;
+}
+
+/* ─── Reset ─────────────────────────────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  line-height: 1.6;
+  color: var(--text-primary);
+  overflow-x: hidden;
+  background: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: var(--font-body);
+}
+
+/* ─── Button System ─────────────────────────── */
+.btn-gold {
+  display: inline-block;
+  padding: 14px 36px;
+  background: var(--gold);
+  color: var(--text-inverse);
+  border: 1px solid var(--gold);
+  border-radius: 0;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-gold:hover {
+  background: var(--gold-light);
+  border-color: var(--gold-light);
+}
+
+.btn-outline {
+  display: inline-block;
+  padding: 14px 36px;
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  border-radius: 0;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-outline:hover {
+  background: var(--gold-muted);
+}
+
+.btn-gold-large {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 16px 40px;
+  background: var(--gold);
+  color: var(--text-inverse);
+  border: 1px solid var(--gold);
+  border-radius: 0;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-gold-large:hover {
+  background: var(--gold-light);
+  border-color: var(--gold-light);
+}
+
+/* Legacy support — map old classes */
+.btn-primary {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: var(--gold);
+  color: var(--text-inverse);
+}
+.btn-primary:hover {
+  background: var(--gold-light);
+}
+
+.btn-secondary {
+  padding: 12px 30px;
+  border: 1px solid var(--gold-border);
+  border-radius: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: transparent;
+  color: var(--gold);
+}
+.btn-secondary:hover {
+  background: var(--gold-muted);
+}
+
+/* ─── Typography ────────────────────────────── */
+.section-title {
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 3rem;
+}
+
+/* ─── Animations ────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideIn {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes fadeInUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Scrollbar ─────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}
+
+/* ─── Button Ripple Effect ─────────────────── */
+.btn-gold,
+.btn-outline,
+.btn-gold-large {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gold::after,
+.btn-outline::after,
+.btn-gold-large::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+.btn-gold:active::after,
+.btn-outline:active::after,
+.btn-gold-large:active::after {
+  animation: btn-ripple 0.6s ease-out;
+}
+
+@keyframes btn-ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.4;
+  }
+  100% {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}

@@ -1,0 +1,41 @@
+/* ═══════════════════════════════════════════════
+   ETERNA — Floating Gold Leaves
+   Gentle leaf shapes that orbit the hero section
+   and dissolve through the heading text.
+   ═══════════════════════════════════════════════ */
+
+.hero-leaves {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero-leaf {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--gold);
+  will-change: transform, opacity;
+  pointer-events: none;
+  filter: blur(0.2px);
+}
+
+.hero-leaf-svg {
+  display: block;
+}
+
+/* Hide on mobile */
+@media (max-width: 768px) {
+  .hero-leaves {
+    display: none;
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-leaves {
+    display: none;
+  }
+}

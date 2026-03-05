@@ -1,0 +1,190 @@
+/* ─── About Section ──────────────────────────── */
+.about {
+  padding: 100px 0;
+  background: var(--bg-primary);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* ─── Left Column — Quote Panel ──────────────── */
+.about-quote-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-quote-inner {
+  position: relative;
+  padding: 48px 36px;
+  text-align: center;
+}
+
+/* ─── Corner Brackets ────────────────────────── */
+.about-corner {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+}
+
+.about-corner-tl {
+  top: 0;
+  left: 0;
+  border-top: 1px solid var(--gold-border);
+  border-left: 1px solid var(--gold-border);
+}
+
+.about-corner-tr {
+  top: 0;
+  right: 0;
+  border-top: 1px solid var(--gold-border);
+  border-right: 1px solid var(--gold-border);
+}
+
+.about-corner-bl {
+  bottom: 0;
+  left: 0;
+  border-bottom: 1px solid var(--gold-border);
+  border-left: 1px solid var(--gold-border);
+}
+
+.about-corner-br {
+  bottom: 0;
+  right: 0;
+  border-bottom: 1px solid var(--gold-border);
+  border-right: 1px solid var(--gold-border);
+}
+
+/* ─── Decorative Quote Mark ──────────────────── */
+.about-quote-mark {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 6rem;
+  line-height: 1;
+  color: var(--gold);
+  opacity: 0.3;
+  margin-bottom: 8px;
+}
+
+.about-quote-text {
+  font-family: var(--font-script);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--gold);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.about-quote-established {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--gold);
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+}
+
+/* ─── Right Column — Content ─────────────────── */
+.about-content {
+  max-width: 560px;
+}
+
+.about-label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--gold);
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.about-heading {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.06em;
+  margin-bottom: 2rem;
+}
+
+.about-paragraph {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+}
+
+/* ─── Value Pillars ──────────────────────────── */
+.about-pillars {
+  display: flex;
+  gap: 36px;
+  margin-top: 2rem;
+}
+
+.about-pillar {
+  flex: 1;
+}
+
+.about-pillar-bar {
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--gold);
+  margin-bottom: 14px;
+}
+
+.about-pillar-title {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.about-pillar-desc {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ─── Mobile ─────────────────────────────────── */
+@media (max-width: 900px) {
+  .about {
+    padding: 72px 0;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .about-quote-inner {
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .about-content {
+    max-width: 100%;
+  }
+
+  .about-heading {
+    font-size: 2rem;
+  }
+
+  .about-pillars {
+    flex-direction: column;
+    gap: 24px;
+  }
+}

@@ -1,0 +1,48 @@
+.frame-size-selector h3 {
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+.size-options {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+
+.size-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 1rem 0.5rem;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.size-card:hover {
+  border-color: var(--primary-start);
+}
+
+.size-card.selected {
+  border-color: var(--primary-start);
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.08));
+}
+
+.size-label {
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.size-price {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+@media (max-width: 480px) {
+  .size-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

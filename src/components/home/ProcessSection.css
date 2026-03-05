@@ -1,0 +1,181 @@
+/* ─── Process Section ────────────────────────── */
+.process {
+  padding: 100px 0;
+  background: var(--bg-secondary);
+}
+
+/* ─── Header ─────────────────────────────────── */
+.process-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.process-label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--gold);
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.process-heading {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.75rem;
+}
+
+.process-subtitle {
+  font-family: var(--font-script);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+/* ─── Timeline — Desktop ─────────────────────── */
+.process-timeline {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.process-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  padding: 0 16px;
+}
+
+/* ─── Connecting Line (Desktop) ──────────────── */
+.process-connector {
+  position: absolute;
+  top: 24px;
+  left: calc(50% + 24px);
+  width: calc(100% - 48px);
+  height: 1px;
+  background: var(--gold-border);
+}
+
+/* ─── Circle ─────────────────────────────────── */
+.process-circle {
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  background: var(--bg-secondary);
+}
+
+.process-number {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--gold);
+  line-height: 1;
+}
+
+/* ─── Step Body ──────────────────────────────── */
+.process-step-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ─── Icon ───────────────────────────────────── */
+.process-icon {
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+/* ─── Step Text ──────────────────────────────── */
+.process-step-title {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.process-step-desc {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 180px;
+}
+
+/* ─── Mobile — Vertical Layout ───────────────── */
+@media (max-width: 900px) {
+  .process {
+    padding: 72px 0;
+  }
+
+  .process-heading {
+    font-size: 2rem;
+  }
+
+  .process-timeline {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    max-width: 400px;
+    margin: 0 auto;
+    padding-left: 0;
+  }
+
+  .process-step {
+    flex-direction: row;
+    text-align: left;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 0 0 40px 0;
+  }
+
+  /* Vertical connecting line on the left side */
+  .process-connector {
+    position: absolute;
+    top: 48px;
+    left: 24px;
+    width: 1px;
+    height: calc(100% - 48px);
+    transform: translateX(-50%);
+  }
+
+  .process-circle {
+    flex-shrink: 0;
+    margin-bottom: 0;
+  }
+
+  .process-step-body {
+    align-items: flex-start;
+  }
+
+  .process-icon {
+    display: none;
+  }
+
+  .process-step-desc {
+    max-width: 100%;
+  }
+
+  .process-step-title {
+    margin-bottom: 4px;
+  }
+}

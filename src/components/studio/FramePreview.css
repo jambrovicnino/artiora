@@ -1,0 +1,42 @@
+/* ═══════════════════════════════════════════════
+   ETERNA — Frame Preview (Canvas-based)
+   ═══════════════════════════════════════════════ */
+
+.frame-preview-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.frame-preview-outer {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  justify-content: center;
+  transition: all 0.4s ease;
+}
+
+/* Drop shadow za 3D učinek okvirja */
+.frame-preview-outer.has-frame {
+  filter: drop-shadow(0 6px 24px rgba(0, 0, 0, 0.55))
+          drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* Canvas element — responsive skaliranje */
+.frame-preview-canvas-el {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0;
+}
+
+/* Velikostni napis */
+.frame-preview-size {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-align: center;
+}

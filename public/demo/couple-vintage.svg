@@ -1,0 +1,15 @@
+<svg width="400" height="500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="artisanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a68a5f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d4af7a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#artisanGrad)"/>
+  <text x="50%" y="45%" font-family="Georgia, serif" font-size="24" fill="#2d1f13" text-anchor="middle">
+    AI Artisan
+  </text>
+  <text x="50%" y="55%" font-family="Georgia, serif" font-size="16" fill="#3d2817" text-anchor="middle">
+    Custom Edits
+  </text>
+</svg>

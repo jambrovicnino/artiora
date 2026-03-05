@@ -1,0 +1,13 @@
+.paypal-checkout {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  padding: 2rem;
+}
+
+.paypal-checkout h3 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}

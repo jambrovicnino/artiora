@@ -1,0 +1,108 @@
+/* ─── Eterna Service Card ────────────────────── */
+.eterna-card {
+  position: relative;
+  background: var(--bg-card);
+  padding: 40px 28px 32px;
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+.eterna-card:hover {
+  background: var(--bg-elevated);
+}
+
+/* ─── Corner Decorations ─────────────────────── */
+.card-corner {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+}
+
+/* Top-left: two gold lines forming an L */
+.card-corner-tl {
+  top: 0;
+  left: 0;
+  border-top: 1px solid var(--gold-border);
+  border-left: 1px solid var(--gold-border);
+}
+
+.card-corner-tr {
+  top: 0;
+  right: 0;
+  border-top: 1px solid var(--gold-border);
+  border-right: 1px solid var(--gold-border);
+}
+
+.card-corner-bl {
+  bottom: 0;
+  left: 0;
+  border-bottom: 1px solid var(--gold-border);
+  border-left: 1px solid var(--gold-border);
+}
+
+.card-corner-br {
+  bottom: 0;
+  right: 0;
+  border-bottom: 1px solid var(--gold-border);
+  border-right: 1px solid var(--gold-border);
+}
+
+/* ─── Card Body ──────────────────────────────── */
+.card-body {
+  position: relative;
+}
+
+.card-numeral {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: var(--gold);
+  opacity: 0.6;
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.card-title-bar {
+  width: 3px;
+  height: 18px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+.card-description {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ─── Mobile ────────────────────────────────── */
+@media (max-width: 768px) {
+  .eterna-card {
+    padding: 32px 24px 28px;
+  }
+
+  .card-numeral {
+    font-size: 1.8rem;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+}

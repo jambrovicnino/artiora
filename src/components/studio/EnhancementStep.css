@@ -1,0 +1,149 @@
+/* ─── Enhancement Step ───────────────────────── */
+.enhancement-step {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 48px;
+  align-items: start;
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ─── Preview ────────────────────────────────── */
+.enhancement-preview {
+  position: sticky;
+  top: 100px;
+}
+
+/* Slider fills the grid column in studio */
+.enhancement-preview .ba-container {
+  width: 100%;
+}
+
+.enhancement-preview .ba-before {
+  width: 100%;
+  height: auto;
+  max-height: none;
+}
+
+.enhancement-placeholder {
+  aspect-ratio: 4/3;
+  background: var(--bg-card);
+  border: 1px dashed var(--gold-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+}
+
+/* ─── Controls ───────────────────────────────── */
+.enhancement-controls {
+  padding: 8px 0;
+}
+
+.enhancement-heading {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.enhancement-description {
+  font-family: var(--font-script);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+/* ─── Enhancement Options ────────────────────── */
+.enhancement-options {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.enhancement-option {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  padding: 20px;
+  transition: all 0.3s;
+}
+
+.enhancement-option.selected {
+  border-color: var(--gold-border);
+  background: var(--bg-elevated);
+}
+
+.option-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.option-title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.option-check {
+  color: var(--gold);
+}
+
+.option-description {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.option-btn {
+  width: 100%;
+  padding: 12px 24px;
+  font-size: 0.7rem;
+}
+
+.option-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ─── Continue Button ────────────────────────── */
+.continue-btn {
+  margin-top: 8px;
+}
+
+.continue-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.continue-arrow {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+/* ─── Mobile ────────────────────────────────── */
+@media (max-width: 900px) {
+  .enhancement-step {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .enhancement-preview {
+    position: static;
+  }
+}

@@ -1,0 +1,312 @@
+/* ═══════════════════════════════════════════════
+   ETERNA — Galerija / Kolaž Section
+   ═══════════════════════════════════════════════ */
+
+.gallery {
+  position: relative;
+  padding: 100px 0 80px;
+  background: var(--bg-primary);
+  overflow: hidden;
+}
+
+/* ─── Radial glow behind collage ────────────── */
+.gallery-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 900px;
+  height: 600px;
+  transform: translate(-50%, -45%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(201, 168, 76, 0.06) 0%,
+    rgba(201, 168, 76, 0.02) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Header ─────────────────────────────────── */
+.gallery-header {
+  text-align: center;
+  margin-bottom: 56px;
+  position: relative;
+  z-index: 1;
+}
+
+.gallery-label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.gallery-heading {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+
+.gallery-subtitle {
+  font-family: var(--font-script);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+/* ═══════════════════════════════════════════════
+   COLLAGE LAYOUT
+   3 items: left (before) | center hero (product) | right (wedding)
+   Center is larger, sides are slightly smaller & offset vertically
+   ═══════════════════════════════════════════════ */
+
+.gallery-collage {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 1fr;
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: start;
+  z-index: 1;
+}
+
+/* ─── Individual collage item ────────────────── */
+.collage-item {
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              z-index 0s 0.2s;
+  z-index: 1;
+}
+
+.collage-item:hover {
+  z-index: 10;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              z-index 0s;
+}
+
+/* Side items are offset down for staggered collage feel */
+.collage-left {
+  margin-top: 40px;
+}
+
+.collage-center {
+  margin-top: 0;
+}
+
+.collage-right {
+  margin-top: 60px;
+}
+
+/* ─── Image wrapper with overflow clip ──────── */
+.collage-image-wrap {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  background: var(--bg-card);
+  cursor: pointer;
+}
+
+/* Center item gets a subtle gold border */
+.collage-center .collage-image-wrap {
+  border-color: rgba(201, 168, 76, 0.3);
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.4),
+    0 0 80px rgba(201, 168, 76, 0.05);
+}
+
+/* ─── The image: zoom on hover ──────────────── */
+.collage-image {
+  width: 100%;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.collage-item:hover .collage-image {
+  transform: scale(1.08);
+}
+
+/* Left & right items: portrait aspect */
+.collage-left .collage-image-wrap,
+.collage-right .collage-image-wrap {
+  aspect-ratio: 3 / 4;
+}
+
+.collage-left .collage-image,
+.collage-right .collage-image {
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Center item: let framed image show naturally */
+.collage-center .collage-image-wrap {
+  aspect-ratio: auto;
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+/* ─── Badge (label above image) ─────────────── */
+.collage-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  background: rgba(10, 10, 10, 0.75);
+  backdrop-filter: blur(8px);
+  padding: 5px 12px;
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  z-index: 2;
+}
+
+.collage-center .collage-badge {
+  background: rgba(201, 168, 76, 0.9);
+  color: var(--text-inverse, #0a0a0a);
+  border-color: var(--gold);
+}
+
+/* ─── Caption below image ────────────────────── */
+.collage-caption {
+  padding: 16px 4px 0;
+  text-align: center;
+}
+
+.collage-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+.collage-desc {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+/* ─── Flow indicators (arrows between items) ── */
+.collage-flow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.4rem;
+  color: var(--gold);
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.collage-flow-1 {
+  left: calc(33.3% - 8px);
+}
+
+.collage-flow-2 {
+  right: calc(33.3% - 8px);
+}
+
+/* ─── More Link ──────────────────────────────── */
+.gallery-more {
+  text-align: center;
+  margin-top: 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.gallery-more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold-border);
+  padding: 12px 32px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.gallery-more-link:hover {
+  background: var(--gold-muted);
+  border-color: var(--gold);
+}
+
+.gallery-more-arrow {
+  font-size: 1.1rem;
+  transition: transform 0.3s;
+}
+
+.gallery-more-link:hover .gallery-more-arrow {
+  transform: translateX(4px);
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+  .gallery-collage {
+    grid-template-columns: 1fr 1.2fr 1fr;
+    gap: 20px;
+  }
+
+  .collage-left { margin-top: 24px; }
+  .collage-right { margin-top: 36px; }
+
+  .collage-flow { display: none; }
+}
+
+@media (max-width: 700px) {
+  .gallery {
+    padding: 72px 0 60px;
+  }
+
+  .gallery-heading {
+    font-size: 2rem;
+  }
+
+  .gallery-collage {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    gap: 40px;
+  }
+
+  .collage-left,
+  .collage-center,
+  .collage-right {
+    margin-top: 0;
+  }
+
+  /* On mobile, reorder: product first, then before, then wedding */
+  .collage-center { order: -1; }
+
+  .collage-flow { display: none; }
+}
+
+@media (max-width: 500px) {
+  .gallery-heading {
+    font-size: 1.8rem;
+  }
+
+  .gallery-collage {
+    max-width: 340px;
+  }
+}

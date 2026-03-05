@@ -1,0 +1,310 @@
+/* ─── Navbar ─────────────────────────────────── */
+.navbar {
+  background: var(--bg-primary);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ─── Logo ──────────────────────────────────── */
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logo-diamond {
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid var(--gold);
+  transform: rotate(45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  margin: 6px 10px 6px 6px;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.6s ease;
+  animation: logo-glow 4s ease-in-out infinite;
+}
+
+/* 3D cube shadow — single clean offset diamond */
+.logo-diamond::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  background: transparent;
+  border: 1px solid rgba(201,168,76,0.18);
+  transform: translate(4px, 4px);
+  z-index: -1;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+              border-color 0.6s ease,
+              box-shadow 0.6s ease;
+  box-shadow: 3px 3px 14px rgba(201,168,76,0.08);
+}
+
+/* Second depth layer — subtle, smaller offset */
+.logo-diamond::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border: 1px solid rgba(201,168,76,0.08);
+  transform: translate(8px, 8px);
+  z-index: -2;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+              opacity 0.6s ease;
+}
+
+.logo-group:hover .logo-diamond {
+  transform: rotate(45deg) scale(1.08);
+  box-shadow: 0 0 18px rgba(201,168,76,0.25), inset 0 0 8px rgba(201,168,76,0.1);
+}
+
+.logo-group:hover .logo-diamond::before {
+  transform: translate(5px, 5px);
+  border-color: rgba(201,168,76,0.3);
+  box-shadow: 4px 4px 18px rgba(201,168,76,0.15);
+}
+
+.logo-group:hover .logo-diamond::after {
+  transform: translate(10px, 10px);
+  border-color: rgba(201,168,76,0.14);
+}
+
+/* Inner square frame for depth */
+.diamond-frame {
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(201,168,76,0.3);
+  pointer-events: none;
+  transition: border-color 0.6s ease;
+}
+
+.logo-group:hover .diamond-frame {
+  border-color: rgba(201,168,76,0.55);
+}
+
+.diamond-inner {
+  transform: rotate(-45deg);
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0;
+  line-height: 1;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* Subtle breathing glow */
+@keyframes logo-glow {
+  0%, 100% { box-shadow: 0 0 6px rgba(201,168,76,0.08); }
+  50% { box-shadow: 0 0 12px rgba(201,168,76,0.16); }
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.logo-brand {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+}
+
+.logo-tagline {
+  font-family: var(--font-body);
+  font-size: 0.55rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+
+/* ─── Navigation Links ─────────────────────── */
+.nav-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-link {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.3s;
+  white-space: nowrap;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--gold);
+}
+
+/* ─── Navbar Right (cart + hamburger) ──────── */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* ─── Cart Icon ─────────────────────────────── */
+.cart-icon-link {
+  position: relative;
+  color: var(--gold);
+  transition: color 0.3s;
+  padding: 6px;
+}
+
+.cart-icon-link:hover {
+  color: var(--gold-light);
+}
+
+.cart-icon-svg {
+  display: block;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -2px;
+  right: -6px;
+  background: var(--gold);
+  color: var(--text-inverse);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* ─── Hamburger Button ─────────────────────── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  width: 32px;
+  height: 32px;
+}
+
+.hamburger-line {
+  display: block;
+  width: 20px;
+  height: 1.5px;
+  background: var(--gold);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+/* Animated X when open */
+.hamburger.open .hamburger-line:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+.hamburger.open .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open .hamburger-line:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* ─── Mobile ────────────────────────────────── */
+@media (max-width: 768px) {
+  .logo-brand {
+    font-size: 1rem;
+    letter-spacing: 0.25em;
+  }
+
+  .logo-tagline {
+    font-size: 0.5rem;
+  }
+
+  .logo-diamond {
+    width: 30px;
+    height: 30px;
+  }
+
+  .diamond-inner {
+    font-size: 0.8rem;
+  }
+
+  /* Show hamburger on mobile */
+  .hamburger {
+    display: flex;
+  }
+
+  /* Mobile dropdown menu */
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--gold);
+    padding: 1.5rem 2rem;
+    gap: 1.2rem;
+    align-items: center;
+    z-index: 999;
+    animation: slideDown 0.3s ease;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-link {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    padding: 0.4rem 0;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

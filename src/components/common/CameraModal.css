@@ -1,0 +1,198 @@
+/* ─── Camera Modal ────────────────────────────── */
+.camera-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: cameraFadeIn 0.3s ease;
+}
+
+@keyframes cameraFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ─── Close Button ───────────────────────────── */
+.camera-close {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  z-index: 10001;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1.5px solid var(--gold-border);
+  border-radius: 50%;
+  color: var(--gold);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.camera-close:hover {
+  background: var(--gold-muted);
+  border-color: var(--gold);
+}
+
+.camera-close svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ─── Content Layout ─────────────────────────── */
+.camera-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+  max-width: 720px;
+  padding: 24px;
+}
+
+/* ─── Video Stream ───────────────────────────── */
+.camera-video-wrapper {
+  position: relative;
+  width: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1.5px solid var(--gold-border);
+  background: var(--bg-secondary);
+}
+
+.camera-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+}
+
+/* ─── Capture Button ─────────────────────────── */
+.camera-capture-btn {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 4px solid rgba(201, 168, 76, 0.4);
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  animation: capturePulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.camera-capture-btn::after {
+  content: '';
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--text-primary);
+  display: block;
+}
+
+.camera-capture-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 24px var(--gold-glow), 0 0 48px var(--gold-glow);
+}
+
+.camera-capture-btn:active {
+  transform: scale(0.95);
+}
+
+@keyframes capturePulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(201, 168, 76, 0);
+  }
+}
+
+/* ─── Loading State ──────────────────────────── */
+.camera-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-height: 300px;
+}
+
+.camera-loading-text {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.1em;
+}
+
+.camera-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--gold-border);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: cameraSpin 0.8s linear infinite;
+}
+
+@keyframes cameraSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Error State ───────────────────────────── */
+.camera-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  min-height: 300px;
+  text-align: center;
+}
+
+.camera-error-text {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  max-width: 320px;
+  line-height: 1.6;
+}
+
+/* ─── Hidden Canvas ──────────────────────────── */
+.camera-canvas {
+  display: none;
+}
+
+/* ─── Mobile Responsive ──────────────────────── */
+@media (max-width: 768px) {
+  .camera-content {
+    max-width: 100%;
+    padding: 16px;
+    gap: 24px;
+  }
+
+  .camera-close {
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .camera-capture-btn {
+    width: 64px;
+    height: 64px;
+  }
+
+  .camera-capture-btn::after {
+    width: 48px;
+    height: 48px;
+  }
+}

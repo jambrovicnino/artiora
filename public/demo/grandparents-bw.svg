@@ -1,0 +1,9 @@
+<svg width="400" height="500" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="500" fill="#666"/>
+  <text x="50%" y="45%" font-family="Georgia, serif" font-size="24" fill="#ddd" text-anchor="middle">
+    Timeless Grain
+  </text>
+  <text x="50%" y="55%" font-family="Georgia, serif" font-size="16" fill="#aaa" text-anchor="middle">
+    B&amp;W Portrait
+  </text>
+</svg>

@@ -1,0 +1,9 @@
+<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#666"/>
+  <text x="50%" y="45%" font-family="Georgia, serif" font-size="28" fill="#ddd" text-anchor="middle">
+    Black &amp; White Family Photo
+  </text>
+  <text x="50%" y="55%" font-family="Georgia, serif" font-size="18" fill="#aaa" text-anchor="middle">
+    (Replace with your B&amp;W image)
+  </text>
+</svg>

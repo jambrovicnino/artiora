@@ -1,0 +1,194 @@
+/* ─── Testimonials Section ───────────────────── */
+.testimonials {
+  padding: 100px 0;
+  background: var(--bg-primary);
+}
+
+/* ─── Header ─────────────────────────────────── */
+.testimonials-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.testimonials-label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.testimonials-heading {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+
+.testimonials-subtitle {
+  font-family: var(--font-script);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+/* ─── Grid ───────────────────────────────────── */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ─── Card ───────────────────────────────────── */
+.testimonial-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-top: 2px solid var(--gold);
+  padding: 32px 28px;
+  transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+  background: var(--bg-elevated);
+  border-color: var(--gold-border);
+  border-top-color: var(--gold);
+}
+
+/* ─── L-shaped Corner Decorations ────────────── */
+.testimonial-card::before,
+.testimonial-card::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+}
+
+/* Top-left corner */
+.testimonial-card::before {
+  top: 8px;
+  left: 8px;
+  border-top: 1px solid var(--gold-border);
+  border-left: 1px solid var(--gold-border);
+}
+
+/* Bottom-right corner */
+.testimonial-card::after {
+  bottom: 8px;
+  right: 8px;
+  border-bottom: 1px solid var(--gold-border);
+  border-right: 1px solid var(--gold-border);
+}
+
+/* ─── Quote Mark ─────────────────────────────── */
+.testimonial-quote-mark {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  color: var(--gold);
+  opacity: 0.3;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+/* ─── Quote Text ─────────────────────────────── */
+.testimonial-quote {
+  font-family: var(--font-script);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+/* ─── Stars ──────────────────────────────────── */
+.testimonial-stars {
+  color: var(--gold);
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+
+/* ─── Divider ────────────────────────────────── */
+.testimonial-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  margin-bottom: 20px;
+}
+
+/* ─── Author ─────────────────────────────────── */
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.testimonial-avatar {
+  width: 40px;
+  height: 40px;
+  background: var(--gold);
+  color: var(--text-inverse);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.testimonial-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.testimonial-name {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.testimonial-service {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* ─── Tablet & Mobile ────────────────────────── */
+@media (max-width: 900px) {
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    gap: 16px;
+  }
+
+  .testimonials-heading {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .testimonials {
+    padding: 72px 0;
+  }
+
+  .testimonials-heading {
+    font-size: 1.8rem;
+  }
+
+  .testimonial-card {
+    padding: 28px 22px;
+  }
+}

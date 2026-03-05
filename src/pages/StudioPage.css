@@ -1,0 +1,47 @@
+/* ─── Studio Page ────────────────────────────── */
+.studio-page {
+  background: var(--bg-primary);
+  min-height: calc(100vh - 72px);
+  padding: 0 0 60px;
+}
+
+.studio-page .container {
+  max-width: 1200px;
+}
+
+.studio-content {
+  animation: fadeIn 0.4s ease;
+}
+
+/* ─── Empty state ────────────────────────────── */
+.studio-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  min-height: 60vh;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 1rem;
+}
+
+/* ─── Back button ────────────────────────────── */
+.studio-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 32px;
+  padding: 8px 0;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.studio-back:hover {
+  color: var(--gold);
+}

@@ -1,0 +1,125 @@
+/* ═══════════════════════════════════════════════
+   ETERNA — Process Page
+   ═══════════════════════════════════════════════ */
+
+/* ─── Detailed Steps Section ───────────────────── */
+.process-detailed {
+  padding: 5rem 0;
+  background: var(--bg-primary);
+}
+
+.process-detailed-heading {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.process-detail-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.process-detail-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  padding: 2.5rem;
+  position: relative;
+}
+
+.process-detail-icon {
+  margin-bottom: 1rem;
+}
+
+.process-detail-number {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--gold-muted);
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  line-height: 1;
+  opacity: 0.5;
+}
+
+.process-detail-title {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  margin-bottom: 1rem;
+}
+
+.process-detail-desc {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* ─── Guarantee Section ────────────────────────── */
+.process-guarantee {
+  padding: 4rem 0 5rem;
+  background: var(--bg-primary);
+}
+
+.guarantee-card {
+  max-width: 650px;
+  margin: 0 auto;
+  text-align: center;
+  background: var(--bg-card);
+  border: 1px solid var(--gold-border);
+  padding: 3.5rem 3rem;
+}
+
+.guarantee-icon {
+  margin-bottom: 1.5rem;
+}
+
+.guarantee-heading {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  margin-bottom: 1rem;
+}
+
+.guarantee-text {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* ─── Responsive ───────────────────────────────── */
+@media (max-width: 768px) {
+  .process-detail-cards {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .process-detailed {
+    padding: 3rem 0;
+  }
+
+  .process-detail-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .process-detail-number {
+    font-size: 2rem;
+    top: 1rem;
+    right: 1.5rem;
+  }
+
+  .guarantee-card {
+    padding: 2.5rem 1.5rem;
+  }
+}

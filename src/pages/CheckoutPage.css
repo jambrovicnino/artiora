@@ -1,0 +1,42 @@
+.checkout-page {
+  padding: 3rem 0 5rem;
+  min-height: 60vh;
+}
+
+.checkout-page h1 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.1em;
+  margin-bottom: 2rem;
+}
+
+.checkout-empty {
+  text-align: center;
+  padding-top: 6rem;
+}
+
+.checkout-empty h2 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.checkout-empty p {
+  color: var(--text-secondary);
+}
+
+.checkout-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .checkout-layout {
+    grid-template-columns: 1fr;
+  }
+}

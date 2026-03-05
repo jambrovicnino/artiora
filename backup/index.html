@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Photo Restoration & Framing</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">Heritage Frames</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Restore Your Memories</h1>
+                <p class="hero-subtitle">Transform your old photos into stunning premium framed portraits</p>
+                <a href="#services" class="cta-button">Get Started</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Premium Services</h2>
+            <p class="section-subtitle">Choose the perfect restoration option for your cherished memories</p>
+            
+            <div class="services-grid">
+                <!-- Black & White Upscale -->
+                <div class="service-card">
+                    <div class="service-icon">📸</div>
+                    <h3>Black & White Upscale</h3>
+                    <p>Preserve the classic elegance of your vintage photos with professional upscaling and enhancement</p>
+                    <ul class="service-features">
+                        <li>AI-powered resolution enhancement</li>
+                        <li>Noise reduction & sharpening</li>
+                        <li>Scratch & damage repair</li>
+                    </ul>
+                    <div class="service-price">From $79</div>
+                    <button class="select-service-btn" data-service="bw-upscale">Select Service</button>
+                </div>
+
+                <!-- Colorful Upscale -->
+                <div class="service-card featured">
+                    <div class="badge">Most Popular</div>
+                    <div class="service-icon">🎨</div>
+                    <h3>Color Photo Upscale</h3>
+                    <p>Enhance your color photos to museum-quality resolution with vibrant color restoration</p>
+                    <ul class="service-features">
+                        <li>4K resolution upscaling</li>
+                        <li>Color enhancement & correction</li>
+                        <li>Detail recovery</li>
+                    </ul>
+                    <div class="service-price">From $89</div>
+                    <button class="select-service-btn" data-service="color-upscale">Select Service</button>
+                </div>
+
+                <!-- Colorize -->
+                <div class="service-card">
+                    <div class="service-icon">🌈</div>
+                    <h3>Photo Colorization</h3>
+                    <p>Bring black and white photos to life with historically accurate AI colorization</p>
+                    <ul class="service-features">
+                        <li>AI-powered colorization</li>
+                        <li>Realistic color mapping</li>
+                        <li>Period-accurate tones</li>
+                    </ul>
+                    <div class="service-price">From $99</div>
+                    <button class="select-service-btn" data-service="colorize">Select Service</button>
+                </div>
+
+                <!-- Color Correction -->
+                <div class="service-card">
+                    <div class="service-icon">✨</div>
+                    <h3>Color Correction</h3>
+                    <p>Professional color grading to restore faded colors and fix discoloration</p>
+                    <ul class="service-features">
+                        <li>Fade & discoloration repair</li>
+                        <li>White balance correction</li>
+                        <li>Contrast optimization</li>
+                    </ul>
+                    <div class="service-price">From $69</div>
+                    <button class="select-service-btn" data-service="color-correction">Select Service</button>
+                </div>
+
+                <!-- Custom AI Edit -->
+                <div class="service-card premium">
+                    <div class="badge premium-badge">Premium</div>
+                    <div class="service-icon">🤖</div>
+                    <h3>Custom AI Edit</h3>
+                    <p>Our signature service combining all enhancements with custom artistic touches</p>
+                    <ul class="service-features">
+                        <li>Complete AI restoration</li>
+                        <li>Custom artistic editing</li>
+                        <li>Background enhancement</li>
+                        <li>Priority processing</li>
+                    </ul>
+                    <div class="service-price">From $149</div>
+                    <button class="select-service-btn" data-service="custom-ai">Select Service</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upload Modal -->
+    <div id="uploadModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Upload Your Photo</h2>
+            <p class="selected-service-name"></p>
+            
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">📤</div>
+                <p>Drag and drop your photo here</p>
+                <p class="upload-subtitle">or</p>
+                <input type="file" id="fileInput" accept="image/*" hidden>
+                <button class="upload-btn" onclick="document.getElementById('fileInput').click()">Browse Files</button>
+                <p class="upload-note">Supported formats: JPG, PNG, TIFF (Max 50MB)</p>
+            </div>
+
+            <div class="preview-area" id="previewArea" style="display: none;">
+                <img id="previewImage" src="" alt="Preview">
+                <div class="preview-actions">
+                    <button class="btn-secondary" id="changePhoto">Change Photo</button>
+                    <button class="btn-primary" id="continueBtn">Continue to Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Choose Your Service</h3>
+                    <p>Select the restoration option that best fits your photo</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Upload Your Photo</h3>
+                    <p>Securely upload your digital photo or mail us your physical copy</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>AI Enhancement</h3>
+                    <p>Our advanced AI and expert team restore your image to perfection</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Premium Framing</h3>
+                    <p>Your restored portrait arrives in a museum-quality frame</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p>📧 info@heritageframes.com</p>
+                    <p>📞 +1 (555) 123-4567</p>
+                    <p>📍 123 Memory Lane, Heritage City</p>
+                </div>
+                <form class="contact-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit" class="btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Heritage Frames. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

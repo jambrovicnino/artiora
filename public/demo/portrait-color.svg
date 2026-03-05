@@ -1,0 +1,15 @@
+<svg width="400" height="500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="breathGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#c19a6b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b7355;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#breathGrad)"/>
+  <text x="50%" y="45%" font-family="Georgia, serif" font-size="24" fill="#f5f5dc" text-anchor="middle">
+    Breath of Life
+  </text>
+  <text x="50%" y="55%" font-family="Georgia, serif" font-size="16" fill="#f5f5dc" text-anchor="middle">
+    Colorized Portrait
+  </text>
+</svg>

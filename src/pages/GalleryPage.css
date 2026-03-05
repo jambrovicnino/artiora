@@ -1,0 +1,267 @@
+/* ═══════════════════════════════════════════════
+   ETERNA — Gallery Page
+   ═══════════════════════════════════════════════ */
+
+/* ─── Page Hero (scoped to gallery for independence) ── */
+.gallery-page .page-hero {
+  text-align: center;
+  padding: 6rem 0 4rem;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--gold-border);
+}
+
+/* ─── Showcase Section ─────────────────────────── */
+.gallery-showcase {
+  padding: 5rem 0;
+  background: var(--bg-primary);
+}
+
+.gallery-showcase .container {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.gallery-showcase-alt {
+  background: var(--bg-secondary);
+}
+
+.showcase-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.showcase-label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+
+.showcase-title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.showcase-description {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.showcase-slider-wrapper {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid var(--gold-border);
+  background: var(--bg-card);
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* ─── Framed Result Card ───────────────────────── */
+.showcase-framed {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+.showcase-framed-card {
+  background: var(--bg-card);
+  border: 1px solid var(--gold-border);
+  max-width: 500px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+}
+
+.showcase-framed-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.showcase-framed-info {
+  padding: 1.5rem 2rem;
+  text-align: center;
+}
+
+.showcase-framed-badge {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bg-primary);
+  background: var(--gold);
+  padding: 4px 12px;
+  margin-bottom: 0.75rem;
+}
+
+.showcase-framed-title {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  margin-bottom: 0.5rem;
+}
+
+.showcase-framed-detail {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* ─── Grid Section ─────────────────────────────── */
+.gallery-grid-section {
+  padding: 5rem 0;
+  background: var(--bg-primary);
+}
+
+.gallery-grid-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.gallery-grid-heading {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.gallery-grid-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.gallery-page-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.gallery-page-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+}
+
+.gallery-page-image-container {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.gallery-page-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(30%) brightness(0.7);
+  transition: filter 0.3s ease;
+}
+
+.gallery-page-card:hover .gallery-page-image {
+  filter: grayscale(0%) brightness(0.85);
+}
+
+.gallery-page-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--bg-primary);
+  background: var(--gold);
+  padding: 4px 10px;
+  z-index: 2;
+}
+
+.gallery-page-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, transparent 100%);
+  padding: 3rem 1.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.gallery-page-overlay-title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+}
+
+.gallery-page-overlay-size {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.gallery-page-overlay-enhancement {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ─── Responsive ───────────────────────────────── */
+@media (max-width: 768px) {
+  .gallery-showcase {
+    padding: 3rem 0;
+  }
+
+  .showcase-title {
+    font-size: 1.6rem;
+  }
+
+  .showcase-slider-wrapper {
+    padding: 0.5rem;
+  }
+
+  .gallery-page-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .gallery-grid-section {
+    padding: 3rem 0;
+  }
+
+  .showcase-framed-card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-page-grid {
+    grid-template-columns: 1fr;
+  }
+}

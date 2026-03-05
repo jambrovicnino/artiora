@@ -1,0 +1,128 @@
+/* ═══════════════════════════════════════════════
+   ETERNA — About Page
+   ═══════════════════════════════════════════════ */
+
+/* ─── Page Hero Banner ─────────────────────────── */
+.page-hero {
+  text-align: center;
+  padding: 6rem 0 4rem;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--gold-border);
+}
+
+.page-hero-label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.page-hero-heading {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.page-hero-subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* ─── Extended About Section ───────────────────── */
+.about-extended {
+  padding: 5rem 0;
+  background: var(--bg-primary);
+}
+
+.about-mission {
+  max-width: 700px;
+  margin: 0 auto 4rem;
+  text-align: center;
+}
+
+.about-mission .section-heading {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+}
+
+.about-text {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+/* ─── Values Grid ──────────────────────────────── */
+.about-values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.about-value-card {
+  background: var(--bg-card);
+  padding: 2.5rem 2rem;
+  border: 1px solid var(--border-subtle);
+  border-top: 2px solid var(--gold);
+  text-align: center;
+}
+
+.about-value-icon {
+  margin-bottom: 1.5rem;
+}
+
+.about-value-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  margin-bottom: 0.75rem;
+}
+
+.about-value-card p {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ─── Responsive ───────────────────────────────── */
+@media (max-width: 768px) {
+  .page-hero {
+    padding: 4rem 0 3rem;
+  }
+
+  .page-hero-heading {
+    font-size: 2.2rem;
+  }
+
+  .about-values-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .about-extended {
+    padding: 3rem 0;
+  }
+
+  .about-mission {
+    margin-bottom: 2.5rem;
+  }
+}
