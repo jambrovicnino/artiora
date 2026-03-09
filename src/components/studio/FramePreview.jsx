@@ -65,7 +65,9 @@ function drawFrame(ctx, photoImg, stripImg, cW, cH, fW, tintColor) {
 
   // ─── 2. Fotografija v sredini ───
   // Crop-to-fill (object-fit: cover ekvivalent)
+  // Rahlo razširjena za 2px čez rob okvirja → zapolni anti-aliasing vrzeli
   const imgRatio = photoImg.width / photoImg.height;
+  const photoOverlap = 2;
   const boxRatio = photoW / photoH;
   let sx = 0, sy = 0, sw = photoImg.width, sh = photoImg.height;
   if (imgRatio > boxRatio) {
@@ -75,7 +77,9 @@ function drawFrame(ctx, photoImg, stripImg, cW, cH, fW, tintColor) {
     sh = photoImg.width / boxRatio;
     sy = (photoImg.height - sh) / 2;
   }
-  ctx.drawImage(photoImg, sx, sy, sw, sh, photoX, photoY, photoW, photoH);
+  ctx.drawImage(photoImg, sx, sy, sw, sh,
+    photoX - photoOverlap, photoY - photoOverlap,
+    photoW + photoOverlap * 2, photoH + photoOverlap * 2);
 
   // ─── 3. Priprava horizontalne strip teksture ───
   // Originalna strip je vertikalna; ustvarimo rotirano verzijo za top/bottom
@@ -172,170 +176,115 @@ function drawFrame(ctx, photoImg, stripImg, cW, cH, fW, tintColor) {
     ctx.restore();
   }
 
-  // ─── 8. 3D BEVEL — svetloba zgoraj-levo, senca spodaj-desno ───
-  const bevelW = Math.max(2, fW * 0.06);
+  // ─── 8. Temen rabbet trak — zapolni vrzel med okvirjem in sliko ───
+  const rabbetW = Math.max(3, fW * 0.08);
+  ctx.fillStyle = '#0a0908';
+  // Zgornji rabbet
+  ctx.fillRect(photoX - 1, photoY - 1, photoW + 2, rabbetW + 1);
+  // Spodnji rabbet
+  ctx.fillRect(photoX - 1, photoY + photoH - rabbetW, photoW + 2, rabbetW + 1);
+  // Levi rabbet
+  ctx.fillRect(photoX - 1, photoY - 1, rabbetW + 1, photoH + 2);
+  // Desni rabbet
+  ctx.fillRect(photoX + photoW - rabbetW, photoY - 1, rabbetW + 1, photoH + 2);
 
-  // Zunanji rob — svetel highlight na vrhu in levi
+  // ─── 9. 3D BEVEL — subtilen, brez belih vrzeli ───
+  const bevelW = Math.max(2, fW * 0.05);
+
+  // Zunanji rob — svetel highlight na vrhu in levi (zelo subtilen)
   ctx.save();
-  ctx.globalAlpha = 0.25;
+  ctx.globalAlpha = 0.12;
   ctx.strokeStyle = '#ffffff';
   ctx.lineWidth = bevelW;
-  // Zgornji zunanji rob
   ctx.beginPath();
   ctx.moveTo(bevelW / 2, bevelW / 2);
-  ctx.lineTo(cW - bevelW / 2, bevelW / 2);
+  ctx.lineTo(cW - bevelW, bevelW / 2);
   ctx.stroke();
-  // Levi zunanji rob
   ctx.beginPath();
   ctx.moveTo(bevelW / 2, bevelW / 2);
-  ctx.lineTo(bevelW / 2, cH - bevelW / 2);
+  ctx.lineTo(bevelW / 2, cH - bevelW);
   ctx.stroke();
   ctx.restore();
 
   // Zunanji rob — temna senca na dnu in desni
   ctx.save();
-  ctx.globalAlpha = 0.4;
+  ctx.globalAlpha = 0.3;
   ctx.strokeStyle = '#000000';
   ctx.lineWidth = bevelW;
-  // Spodnji zunanji rob
   ctx.beginPath();
-  ctx.moveTo(bevelW / 2, cH - bevelW / 2);
+  ctx.moveTo(bevelW, cH - bevelW / 2);
   ctx.lineTo(cW - bevelW / 2, cH - bevelW / 2);
   ctx.stroke();
-  // Desni zunanji rob
   ctx.beginPath();
-  ctx.moveTo(cW - bevelW / 2, bevelW / 2);
+  ctx.moveTo(cW - bevelW / 2, bevelW);
   ctx.lineTo(cW - bevelW / 2, cH - bevelW / 2);
   ctx.stroke();
   ctx.restore();
 
-  // Notranji rob — obratno (senca na vrhu, svetloba na dnu = konkaven rebate)
-  const innerBevel = Math.max(1.5, fW * 0.04);
+  // Notranji rob — samo temna senca (brez belih linij!)
+  const innerBevel = Math.max(2, fW * 0.05);
   ctx.save();
-  ctx.globalAlpha = 0.35;
+  ctx.globalAlpha = 0.5;
   ctx.strokeStyle = '#000000';
   ctx.lineWidth = innerBevel;
-  // Zgornji notranji rob (senca)
-  ctx.beginPath();
-  ctx.moveTo(photoX, photoY);
-  ctx.lineTo(photoX + photoW, photoY);
-  ctx.stroke();
-  // Levi notranji rob (senca)
-  ctx.beginPath();
-  ctx.moveTo(photoX, photoY);
-  ctx.lineTo(photoX, photoY + photoH);
-  ctx.stroke();
+  // Vsi 4 notranji robovi temni — simulira globino utora
+  ctx.strokeRect(
+    photoX + innerBevel / 2, photoY + innerBevel / 2,
+    photoW - innerBevel, photoH - innerBevel
+  );
   ctx.restore();
 
+  // ─── 10. Miter šivi — samo temne črte ───
   ctx.save();
-  ctx.globalAlpha = 0.15;
-  ctx.strokeStyle = '#ffffff';
-  ctx.lineWidth = innerBevel;
-  // Spodnji notranji rob (svetloba)
-  ctx.beginPath();
-  ctx.moveTo(photoX, photoY + photoH);
-  ctx.lineTo(photoX + photoW, photoY + photoH);
-  ctx.stroke();
-  // Desni notranji rob (svetloba)
-  ctx.beginPath();
-  ctx.moveTo(photoX + photoW, photoY);
-  ctx.lineTo(photoX + photoW, photoY + photoH);
-  ctx.stroke();
-  ctx.restore();
-
-  // ─── 9. Miter šivi — dvojna črta za realističen stik ───
-  ctx.save();
-  // Temna miter črta
-  ctx.strokeStyle = tintColor || '#1a1610';
+  ctx.strokeStyle = tintColor || '#0a0908';
   ctx.lineWidth = 2;
-  ctx.globalAlpha = 0.6;
+  ctx.globalAlpha = 0.7;
 
   const miterLines = [
-    [0, 0, fW, fW],         // zgornji levi
-    [cW, 0, cW - fW, fW],   // zgornji desni
-    [0, cH, fW, cH - fW],   // spodnji levi
-    [cW, cH, cW - fW, cH - fW], // spodnji desni
+    [0, 0, fW, fW],
+    [cW, 0, cW - fW, fW],
+    [0, cH, fW, cH - fW],
+    [cW, cH, cW - fW, cH - fW],
   ];
-
   miterLines.forEach(([x1, y1, x2, y2]) => {
     ctx.beginPath();
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
     ctx.stroke();
   });
-
-  // Svetla miter črta (offset za 3D efekt)
-  ctx.strokeStyle = '#ffffff';
-  ctx.lineWidth = 1;
-  ctx.globalAlpha = 0.12;
-
-  miterLines.forEach(([x1, y1, x2, y2]) => {
-    ctx.beginPath();
-    ctx.moveTo(x1 + 1.5, y1 + 1.5);
-    ctx.lineTo(x2 + 1, y2 + 1);
-    ctx.stroke();
-  });
   ctx.restore();
 
-  // ─── 10. Notranja senca (globina okvirja — rabbet) ───
-  const shadowSize = Math.max(8, fW * 0.2);
+  // ─── 11. Notranja senca (globina okvirja) ───
+  const shadowSize = Math.max(8, fW * 0.22);
 
   // Zgornja notranja senca (najmočnejša)
   const topGrad = ctx.createLinearGradient(photoX, photoY, photoX, photoY + shadowSize);
-  topGrad.addColorStop(0, 'rgba(0,0,0,0.65)');
-  topGrad.addColorStop(0.4, 'rgba(0,0,0,0.25)');
+  topGrad.addColorStop(0, 'rgba(0,0,0,0.7)');
+  topGrad.addColorStop(0.3, 'rgba(0,0,0,0.3)');
   topGrad.addColorStop(1, 'rgba(0,0,0,0)');
   ctx.fillStyle = topGrad;
   ctx.fillRect(photoX, photoY, photoW, shadowSize);
 
   // Leva notranja senca
   const leftGrad = ctx.createLinearGradient(photoX, photoY, photoX + shadowSize, photoY);
-  leftGrad.addColorStop(0, 'rgba(0,0,0,0.55)');
-  leftGrad.addColorStop(0.4, 'rgba(0,0,0,0.2)');
+  leftGrad.addColorStop(0, 'rgba(0,0,0,0.6)');
+  leftGrad.addColorStop(0.3, 'rgba(0,0,0,0.25)');
   leftGrad.addColorStop(1, 'rgba(0,0,0,0)');
   ctx.fillStyle = leftGrad;
   ctx.fillRect(photoX, photoY, shadowSize, photoH);
 
   // Zgornji-levi kot — dodatna senca (najgloblje)
   const cornerSize = shadowSize * 0.7;
-  const cornerGrad = ctx.createRadialGradient(
-    photoX, photoY, 0,
-    photoX, photoY, cornerSize
-  );
-  cornerGrad.addColorStop(0, 'rgba(0,0,0,0.3)');
+  const cornerGrad = ctx.createRadialGradient(photoX, photoY, 0, photoX, photoY, cornerSize);
+  cornerGrad.addColorStop(0, 'rgba(0,0,0,0.35)');
   cornerGrad.addColorStop(1, 'rgba(0,0,0,0)');
   ctx.fillStyle = cornerGrad;
   ctx.fillRect(photoX, photoY, cornerSize, cornerSize);
 
-  // Desna svetloba (svetlejši rob — svetloba od desno-spodaj)
-  const rightGrad = ctx.createLinearGradient(
-    photoX + photoW, photoY,
-    photoX + photoW - shadowSize * 0.6, photoY
-  );
-  rightGrad.addColorStop(0, 'rgba(255,255,255,0.1)');
-  rightGrad.addColorStop(1, 'rgba(255,255,255,0)');
-  ctx.fillStyle = rightGrad;
-  ctx.fillRect(photoX + photoW - shadowSize * 0.6, photoY, shadowSize * 0.6, photoH);
-
-  // Spodnja svetloba
-  const bottomGrad = ctx.createLinearGradient(
-    photoX, photoY + photoH,
-    photoX, photoY + photoH - shadowSize * 0.6
-  );
-  bottomGrad.addColorStop(0, 'rgba(255,255,255,0.08)');
-  bottomGrad.addColorStop(1, 'rgba(255,255,255,0)');
-  ctx.fillStyle = bottomGrad;
-  ctx.fillRect(photoX, photoY + photoH - shadowSize * 0.6, photoW, shadowSize * 0.6);
-
-  // ─── 11. Zunanji rob (dvojni za 3D občutek) ───
-  // Temen zunanji rob
-  ctx.strokeStyle = tintColor ? `${tintColor}66` : 'rgba(0,0,0,0.6)';
-  ctx.lineWidth = 2;
+  // ─── 12. Zunanji rob — temen, brez svetlih linij ───
+  ctx.strokeStyle = tintColor ? `${tintColor}88` : 'rgba(0,0,0,0.55)';
+  ctx.lineWidth = 1.5;
   ctx.strokeRect(0.5, 0.5, cW - 1, cH - 1);
-  // Notranji svetel rob (za bevel)
-  ctx.strokeStyle = tintColor ? `${tintColor}22` : 'rgba(255,255,255,0.08)';
-  ctx.lineWidth = 1;
-  ctx.strokeRect(2, 2, cW - 4, cH - 4);
 }
 
 /**
