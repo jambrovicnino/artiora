@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { galleryItems, CATEGORIES } from '../data/galleryItems';
 import { frameStyles } from '../data/frameOptions';
 import CTASection from '../components/home/CTASection';
@@ -14,11 +14,40 @@ function getFrameName(frameId) {
 
 export default function GalleryPage() {
   const [activeCategory, setActiveCategory] = useState('vse');
+  const [lightboxIndex, setLightboxIndex] = useState(null);
 
   const filteredItems =
     activeCategory === 'vse'
       ? galleryItems
       : galleryItems.filter((item) => item.category === activeCategory);
+
+  const lightboxOpen = lightboxIndex !== null && filteredItems[lightboxIndex];
+
+  // Keyboard navigation
+  const handleKey = useCallback(
+    (e) => {
+      if (!lightboxOpen) return;
+      if (e.key === 'Escape') setLightboxIndex(null);
+      if (e.key === 'ArrowRight')
+        setLightboxIndex((i) => (i + 1) % filteredItems.length);
+      if (e.key === 'ArrowLeft')
+        setLightboxIndex((i) => (i - 1 + filteredItems.length) % filteredItems.length);
+    },
+    [lightboxOpen, filteredItems.length],
+  );
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKey);
+    return () => document.removeEventListener('keydown', handleKey);
+  }, [handleKey]);
+
+  // Lock body scroll when lightbox open
+  useEffect(() => {
+    document.body.style.overflow = lightboxOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [lightboxOpen]);
+
+  const currentItem = lightboxOpen ? filteredItems[lightboxIndex] : null;
 
   return (
     <div className="gallery-page">
@@ -60,8 +89,13 @@ export default function GalleryPage() {
           <div className="container">
             {filteredItems.length > 0 ? (
               <div className="gallery-page-grid">
-                {filteredItems.map((item) => (
-                  <div className="gallery-page-card" key={item.id}>
+                {filteredItems.map((item, index) => (
+                  <div
+                    className="gallery-page-card"
+                    key={item.id}
+                    onClick={() => setLightboxIndex(index)}
+                    style={{ cursor: 'zoom-in' }}
+                  >
                     <div className="gallery-page-image-container">
                       <img
                         className="gallery-page-image gallery-page-image--real"
@@ -106,6 +140,69 @@ export default function GalleryPage() {
       <ScrollReveal variant="fade-up">
         <CTASection />
       </ScrollReveal>
+
+      {/* ─── Lightbox Modal ─── */}
+      {lightboxOpen && currentItem && (
+        <div
+          className="gallery-lightbox-overlay"
+          onClick={() => setLightboxIndex(null)}
+        >
+          <div
+            className="gallery-lightbox-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="gallery-lightbox-close"
+              onClick={() => setLightboxIndex(null)}
+              aria-label="Zapri"
+            >
+              &times;
+            </button>
+
+            {/* Prev */}
+            <button
+              className="gallery-lightbox-nav gallery-lightbox-prev"
+              onClick={() =>
+                setLightboxIndex(
+                  (lightboxIndex - 1 + filteredItems.length) % filteredItems.length,
+                )
+              }
+              aria-label="Prejšnja"
+            >
+              ‹
+            </button>
+
+            <img
+              className="gallery-lightbox-image"
+              src={currentItem.src}
+              alt={currentItem.title}
+            />
+
+            {/* Next */}
+            <button
+              className="gallery-lightbox-nav gallery-lightbox-next"
+              onClick={() =>
+                setLightboxIndex((lightboxIndex + 1) % filteredItems.length)
+              }
+              aria-label="Naslednja"
+            >
+              ›
+            </button>
+
+            <div className="gallery-lightbox-caption">
+              <div className="gallery-lightbox-title">{currentItem.title}</div>
+              <div className="gallery-lightbox-meta">
+                {currentItem.style} · {currentItem.size}
+              </div>
+              {currentItem.frame && (
+                <div className="gallery-lightbox-frame">
+                  Okvir: {getFrameName(currentItem.frame)}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
