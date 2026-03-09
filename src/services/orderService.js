@@ -34,9 +34,9 @@ export async function processOrder({ customer, items, total, orderId }) {
   // Pripravi podatke izdelkov (brez velikih base64 stringov)
   const cleanItems = items.map((item) => ({
     enhancement: item.enhancement || 'Brez',
-    sizeLabel: item.frameSizeLabel || item.frameSize || 'N/A',
+    sizeLabel: (item.frameSizeLabel || item.frameSize || 'N/A').replace(/×/g, 'x'),
     size: item.frameSize,
-    productType: item.productType || 'print',
+    productType: item.productType || 'stretched',
     frameLabel: item.frameLabel || null,
     withImpasto: item.withImpasto || false,
     dedication: item.dedication || '',

@@ -14,6 +14,7 @@
 function loadImage(dataUrl) {
   return new Promise((resolve, reject) => {
     const img = new Image();
+    img.crossOrigin = 'anonymous'; // Prepreči tainted canvas pri cross-origin slikah
     img.onload = () => resolve(img);
     img.onerror = () => reject(new Error('Slike ni mogoče naložiti'));
     img.src = dataUrl;
@@ -32,18 +33,20 @@ function loadImage(dataUrl) {
  * @param {number} factor - Faktor povečave (privzeto 4)
  * @returns {Promise<{ imageDataUrl, model, factor, method, dimensions, warning }>}
  */
-export async function upscaleImage(imageDataUrl, factor = 4) {
+export async function upscaleImage(imageDataUrl, factor = 3) {
+  console.log(`[ETERNA] Upscale: nalagam sliko, factor=${factor}`);
   const img = await loadImage(imageDataUrl);
   const origW = img.naturalWidth;
   const origH = img.naturalHeight;
+  console.log(`[ETERNA] Upscale: original ${origW}×${origH}`);
 
   // Ciljne dimenzije
   const targetW = Math.round(origW * factor);
   const targetH = Math.round(origH * factor);
 
-  // Varnostna omejitev: max 8192px na najdaljši stranici
-  // (Canvas ima omejitve po brskalnikih)
-  const maxDim = 8192;
+  // Varnostna omejitev: max 6000px na najdaljši stranici
+  // (zmanjšano iz 8192 za boljšo stabilnost na vseh napravah)
+  const maxDim = 6000;
   let finalW = targetW;
   let finalH = targetH;
   let actualFactor = factor;

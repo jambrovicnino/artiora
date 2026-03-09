@@ -342,6 +342,12 @@
   display: inline-block;
 }
 
+.frame-category-budget {
+  color: #059669;
+  border-color: rgba(16, 185, 129, 0.25);
+  background: rgba(16, 185, 129, 0.06);
+}
+
 .frame-category-new-era {
   color: var(--primary);
   border-color: rgba(139, 92, 246, 0.25);

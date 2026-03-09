@@ -88,6 +88,7 @@ export function calculateImageQuality(imageWidth, imageHeight, sizeId) {
 export function getImageDimensions(dataUrl) {
   return new Promise((resolve, reject) => {
     const img = new Image();
+    img.crossOrigin = 'anonymous';
     img.onload = () => resolve({ width: img.naturalWidth, height: img.naturalHeight });
     img.onerror = () => reject(new Error('Slike ni mogoče naložiti'));
     img.src = dataUrl;

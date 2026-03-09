@@ -72,6 +72,7 @@ export const ART_STYLES = [
 function loadImageToCanvas(dataUrl, scale = 1) {
   return new Promise((resolve, reject) => {
     const img = new Image();
+    img.crossOrigin = 'anonymous';
     img.onload = () => {
       const canvas = document.createElement('canvas');
       canvas.width = Math.round(img.width * scale);

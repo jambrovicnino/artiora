@@ -21,7 +21,7 @@ export default function OrderSummary() {
                 <span className="order-item-name">{label}</span>
                 <span className="order-item-meta">
                   {item.frameSizeLabel}
-                  {item.productType === 'framed' ? ' · Z okvirjem' : item.productType === 'stretched' ? ' · S podokvirjem' : ''}
+                  {item.productType === 'framed' ? ' · Z okvirjem' : ' · Napeto platno'}
                 </span>
               </div>
               <span className="order-item-qty">x{item.quantity}</span>

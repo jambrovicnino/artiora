@@ -39,6 +39,9 @@ const PRINT_SIZES = {
   '50x70': { w: 5906, h: 8268 },
   '60x90': { w: 7087, h: 10630 },
   '76x102': { w: 8976, h: 12047 },
+  '80x120': { w: 9449, h: 14173 },
+  '100x100': { w: 11811, h: 11811 },
+  '100x150': { w: 11811, h: 17717 },
 };
 const BLEED_PX = 35; // 3mm pri 300 DPI
 
@@ -126,7 +129,7 @@ function buildAdminEmailHtml(order) {
       <td style="padding:8px;border-bottom:1px solid #eee">${item.enhancement || 'Brez'}</td>
       <td style="padding:8px;border-bottom:1px solid #eee">${item.sizeLabel || item.size}</td>
       <td style="padding:8px;border-bottom:1px solid #eee">
-        ${item.productType === 'framed' ? `Z okvirjem (${item.frameLabel})` : item.productType === 'stretched' ? 'S podokvirjem' : 'Samo tisk'}
+        ${item.productType === 'framed' ? `Z okvirjem (${item.frameLabel})` : 'Napeto platno'}
         ${item.withImpasto ? ' + Impasto' : ''}
         ${hangingNote}
       </td>
@@ -236,7 +239,7 @@ function buildAdminEmailHtml(order) {
               <div style="background:white;padding:14px;border-radius:8px;margin-bottom:12px;border:1px solid #fde68a">
                 <h4 style="margin:0 0 10px;font-size:13px;color:#333">Izdelek ${idx}: ${item.sizeLabel || item.size}</h4>
                 <table style="width:100%;border-collapse:collapse;font-size:12px;color:#555">
-                  <tr><td style="padding:3px 6px">Platno (25€/m², marža 60%):</td><td style="padding:3px 6px;text-align:right;font-weight:600">${cb.wholesaleCanvas.toFixed(2)} €</td></tr>
+                  <tr><td style="padding:3px 6px">Platno (nabava, mar\u017ea 60%):</td><td style="padding:3px 6px;text-align:right;font-weight:600">${cb.wholesaleCanvas.toFixed(2)} \u20ac</td></tr>
                   ${cb.wholesaleStretcher > 0 ? `<tr><td style="padding:3px 6px">Podokvir+napenjanje (marža ${cb.stretcherMarkup ? Math.round((cb.stretcherMarkup - 1) * 100) : 30}%):</td><td style="padding:3px 6px;text-align:right;font-weight:600">${cb.wholesaleStretcher.toFixed(2)} €</td></tr>` : ''}
                   ${cb.wholesaleFrame > 0 ? `
                   <tr><td style="padding:3px 6px">Okvir: ${cb.frameLabel || '—'}</td><td style="padding:3px 6px;text-align:right;font-weight:600">${cb.wholesaleFrame.toFixed(2)} €</td></tr>
@@ -265,7 +268,7 @@ function buildCustomerEmailHtml(order) {
   const itemList = order.items.map((item) => `
     <li style="padding:8px 0;border-bottom:1px solid #f0f0f0">
       <strong>${item.sizeLabel}</strong> —
-      ${item.productType === 'framed' ? `Z okvirjem (${item.frameLabel})` : item.productType === 'stretched' ? 'S podokvirjem' : 'Tisk na platno'}
+      ${item.productType === 'framed' ? `Z okvirjem (${item.frameLabel})` : 'Napeto platno'}
       ${item.withImpasto ? ' + Impasto gel' : ''}
       ${item.dedication ? ` — "${item.dedication}"` : ''}
       <br><span style="color:#8b5cf6;font-weight:600">${item.price} €</span>

@@ -50,7 +50,7 @@ export default function StudioPage() {
 
   // Product configuration state
   const [selectedSize, setSelectedSize] = useState('40x50');
-  const [productType, setProductType] = useState(PRODUCT_TYPES.PRINT);
+  const [productType, setProductType] = useState(PRODUCT_TYPES.STRETCHED);
   const [selectedFrame, setSelectedFrame] = useState('ne-vivid-violet');
   const [withImpasto, setWithImpasto] = useState(false);
   const [dedication, setDedication] = useState('');
@@ -118,7 +118,8 @@ export default function StudioPage() {
     setUpscaleInfo(null);
 
     try {
-      const result = await upscaleImage(currentImage, 4);
+      console.log(`[ETERNA] Upscale začetek — image type: ${typeof currentImage}, length: ${currentImage?.length || 0}, starts: ${currentImage?.substring(0, 30)}`);
+      const result = await upscaleImage(currentImage, 3);
 
       // Shrani upscaled sliko v ustrezno stanje
       if (mode === 'create') {
@@ -137,8 +138,8 @@ export default function StudioPage() {
 
       console.log(`[ETERNA] Upscale uspešen: ${result.model} (${result.method}), ${result.dimensions?.width}×${result.dimensions?.height}`);
     } catch (error) {
-      console.error('Napaka pri upscalingu:', error);
-      alert('Povečava resolucije ni uspela. Prosimo, poskusite znova ali izberite manjšo velikost.');
+      console.error('[ETERNA] Upscale napaka:', error.message, error);
+      alert(`Povečava resolucije ni uspela: ${error.message}. Poskusite znova ali izberite manjšo velikost.`);
     } finally {
       setIsUpscaling(false);
     }
@@ -208,7 +209,7 @@ export default function StudioPage() {
         withImpasto,
         dedication,
         // Interno za admina
-        hangingIncluded: productType !== PRODUCT_TYPES.PRINT ? HANGING_INCLUDED[selectedSize]?.name : null,
+        hangingIncluded: HANGING_INCLUDED[selectedSize]?.name || null,
         costBreakdown: calculateCostBreakdown(selectedSize, productType, frameId, withImpasto),
         price,
         printSpecs: getPrintSpecs(selectedSize),

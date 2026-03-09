@@ -329,25 +329,6 @@ function drawStretched(ctx, photoImg, cW, cH) {
   ctx.stroke();
 }
 
-/**
- * Izriši samo fotografijo brez okvirja.
- */
-function drawPhotoOnly(ctx, photoImg, cW, cH) {
-  ctx.clearRect(0, 0, cW, cH);
-
-  const imgRatio = photoImg.width / photoImg.height;
-  const boxRatio = cW / cH;
-  let sx = 0, sy = 0, sw = photoImg.width, sh = photoImg.height;
-  if (imgRatio > boxRatio) {
-    sw = photoImg.height * boxRatio;
-    sx = (photoImg.width - sw) / 2;
-  } else {
-    sh = photoImg.width / boxRatio;
-    sy = (photoImg.height - sh) / 2;
-  }
-  ctx.drawImage(photoImg, sx, sy, sw, sh, 0, 0, cW, cH);
-}
-
 // ═══════════════════════════════════════════════
 // KOMPONENTA
 // ═══════════════════════════════════════════════
@@ -357,7 +338,7 @@ export default function FramePreview({
   selectedSize,
   sizeId,
   withFrame,
-  productType, // 'print' | 'stretched' | 'framed'
+  productType, // 'stretched' | 'framed'
 }) {
   const canvasRef = useRef(null);
   const frame = frameStyles.find((f) => f.id === selectedFrame);
@@ -384,20 +365,16 @@ export default function FramePreview({
           loadImage(frame.stripImage),
         ]);
         drawFrame(ctx, photoImg, stripImg, canvasW, canvasH, frameW, frame.tint || null);
-      } else if (isStretched) {
+      } else {
         // Napeto platno na podokvirju (gallery wrap 3D)
         const photoImg = await loadImage(image);
         drawStretched(ctx, photoImg, canvasW, canvasH);
-      } else {
-        // Samo tisk — ravna slika
-        const photoImg = await loadImage(image);
-        drawPhotoOnly(ctx, photoImg, canvasW, canvasH);
       }
     } catch (err) {
       console.warn('FramePreview render error:', err);
       try {
         const photoImg = await loadImage(image);
-        drawPhotoOnly(ctx, photoImg, canvasW, canvasH);
+        drawStretched(ctx, photoImg, canvasW, canvasH);
       } catch (_) {
         // Cannot render at all
       }

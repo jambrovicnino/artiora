@@ -38,6 +38,7 @@ function compressForUpload(dataUrl, maxSize = 4096, quality = 0.90) {
     }
 
     const img = new Image();
+    img.crossOrigin = 'anonymous';
     img.onload = () => {
       let { width, height } = img;
 

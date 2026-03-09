@@ -1,17 +1,17 @@
 // ═══════════════════════════════════════════════
-// ETERNA — Cenovna Struktura (v5)
+// ETERNA — Cenovna Struktura (v6)
 // Vse maloprodajne cene vključujejo DDV (22%)
 //
-// 3 plasti izdelka:
-//   1. Samo tisk na platno (canvas print)
-//   2. Tisk + podokvirjanje + napenjanje (stretched)
-//   3. Umetnina z okvirjem (framed artwork)
+// 2 plasti izdelka:
+//   1. Napeto platno (stretched) — tisk + podokvir + napenjanje
+//   2. Umetnina z okvirjem (framed artwork)
 //
 // ─── Nabavne cene ───
-// Platno: 25 €/m² (dobavitelj, brez DDV)
-//   Cena za posamezno velikost = površina × 25€/m²
-// Podokvirjanje + napenjanje: dejanske cene dobavitelja
-//   (razlika med canvas print in stretched ceniki)
+// Platno: 30 €/m² (dobavitelj, brez DDV)
+//   Minimum 1m² — za velikosti pod 1m² je nabavna 30€ flat
+//   Nad 1m² se računa po površini (površina × 30€/m²)
+//   Fiksne cene so definirane v canvasSizes[].canvasCost
+// Podokvirjanje + napenjanje: 12.18 €/tm obsega
 // Dekorativni okvir: Vidal cenik (€/tm) × obseg
 // Delo (okvirjanje): 15 €
 //
@@ -40,7 +40,7 @@ const LABOR_MARKUP = 1.60;         // 60% na delo
 export const MARKUP = CANVAS_MARKUP;
 
 // ─── Nabavni stroški (EUR, brez DDV) ───
-const CANVAS_COST_PER_M2 = 25.00;     // Platno: 25 €/m²
+// Platno: fiksne cene v canvasSizes[].canvasCost (min 30€ za ≤1m²)
 const FRAMING_LABOR = 15.00;          // Ročno delo — samo pri okvirjanju
 
 // ─── Impasto gel — maloprodajni dodatek (z DDV) ───
@@ -51,8 +51,7 @@ const IMPASTO_LARGE = 50;  // ≥ 50×70 cm (50 × 70, 60 × 90, 76 × 102)
 // TIPI IZDELKOV
 // ═══════════════════════════════════════════════
 export const PRODUCT_TYPES = {
-  PRINT: 'print',           // Samo tisk na platno
-  STRETCHED: 'stretched',   // Tisk + podokvir + napenjanje
+  STRETCHED: 'stretched',   // Napeto platno (tisk + podokvir + napenjanje)
   FRAMED: 'framed',         // Umetnina z okvirjem
 };
 
@@ -65,7 +64,8 @@ export const canvasSizes = [
     label: '30 × 40 cm',
     displayName: 'Kabinet',
     dimensions: '30cm × 40cm',
-    stretchingCost: 17.05, // 32.05 - 15.00 (razlika med stretched in print)
+    canvasCost: 30.00,     // min 1m² = 30€
+    stretchingCost: 17.05, // 12.18 €/tm × 1.4m obsega
     printSpecs: {
       dpi: 300, colorSpace: 'CMYK', bleed: '3mm', format: 'TIFF',
       widthPx: 3543, heightPx: 4724,
@@ -76,7 +76,8 @@ export const canvasSizes = [
     label: '40 × 50 cm',
     displayName: 'Imperial',
     dimensions: '40cm × 50cm',
-    stretchingCost: 21.92, // 41.92 - 20.00
+    canvasCost: 30.00,
+    stretchingCost: 21.92,
     printSpecs: {
       dpi: 300, colorSpace: 'CMYK', bleed: '3mm', format: 'TIFF',
       widthPx: 4724, heightPx: 5906,
@@ -87,7 +88,8 @@ export const canvasSizes = [
     label: '45 × 60 cm',
     displayName: 'Salon',
     dimensions: '45cm × 60cm',
-    stretchingCost: 25.58, // 50.58 - 25.00
+    canvasCost: 30.00,
+    stretchingCost: 25.58,
     printSpecs: {
       dpi: 300, colorSpace: 'CMYK', bleed: '3mm', format: 'TIFF',
       widthPx: 5315, heightPx: 7087,
@@ -98,7 +100,8 @@ export const canvasSizes = [
     label: '50 × 70 cm',
     displayName: 'Razstava',
     dimensions: '50cm × 70cm',
-    stretchingCost: 29.23, // 59.23 - 30.00
+    canvasCost: 30.00,
+    stretchingCost: 29.23,
     printSpecs: {
       dpi: 300, colorSpace: 'CMYK', bleed: '3mm', format: 'TIFF',
       widthPx: 5906, heightPx: 8268,
@@ -109,7 +112,8 @@ export const canvasSizes = [
     label: '60 × 90 cm',
     displayName: 'Panorama',
     dimensions: '60cm × 90cm',
-    stretchingCost: 36.54, // 76.54 - 40.00
+    canvasCost: 30.00,
+    stretchingCost: 36.54,
     printSpecs: {
       dpi: 300, colorSpace: 'CMYK', bleed: '3mm', format: 'TIFF',
       widthPx: 7087, heightPx: 10630,
@@ -120,10 +124,48 @@ export const canvasSizes = [
     label: '76 × 102 cm',
     displayName: 'Galerija',
     dimensions: '76cm × 102cm',
-    stretchingCost: 43.36, // 93.36 - 50.00
+    canvasCost: 30.00,
+    stretchingCost: 43.36,
     printSpecs: {
       dpi: 300, colorSpace: 'CMYK', bleed: '3mm', format: 'TIFF',
       widthPx: 8976, heightPx: 12047,
+    },
+  },
+  // ─── Premium velikosti ───
+  {
+    id: '80x120',
+    label: '80 × 120 cm',
+    displayName: 'Panorama XL',
+    dimensions: '80cm × 120cm',
+    canvasCost: 30.00,     // 0.96m² → min 1m² = 30€
+    stretchingCost: 48.72, // 12.18 €/tm × 4.0m obsega
+    printSpecs: {
+      dpi: 300, colorSpace: 'CMYK', bleed: '3mm', format: 'TIFF',
+      widthPx: 9449, heightPx: 14173,
+    },
+  },
+  {
+    id: '100x100',
+    label: '100 × 100 cm',
+    displayName: 'Salon Kvadrat',
+    dimensions: '100cm × 100cm',
+    canvasCost: 30.00,     // 1.0m² × 30€ = 30€
+    stretchingCost: 48.72, // 12.18 €/tm × 4.0m obsega
+    printSpecs: {
+      dpi: 300, colorSpace: 'CMYK', bleed: '3mm', format: 'TIFF',
+      widthPx: 11811, heightPx: 11811,
+    },
+  },
+  {
+    id: '100x150',
+    label: '100 × 150 cm',
+    displayName: 'Monumentalno',
+    dimensions: '100cm × 150cm',
+    canvasCost: 45.00,     // 1.5m² × 30€ = 45€
+    stretchingCost: 60.90, // 12.18 €/tm × 5.0m obsega
+    printSpecs: {
+      dpi: 300, colorSpace: 'CMYK', bleed: '3mm', format: 'TIFF',
+      widthPx: 11811, heightPx: 17717,
     },
   },
 ];
@@ -525,6 +567,171 @@ export const frameStyles = [
       boxShadow: 'inset 0 0 14px rgba(0,0,0,0.35), 0 5px 24px rgba(0,0,0,0.45)',
     },
   },
+  // ═══════════════════════════════════════════════
+  // CENOVNO DOSTOPNI — ugodnejši okvirji
+  // Tanki profili, enostavni zaključki
+  // Cene pod €11/tm (najcenejši obstoječi K112 = €11.16)
+  // ═══════════════════════════════════════════════
+  {
+    id: 'slim-natur', category: 'cenovno-dostopni',
+    label: 'Slim Natur',
+    profile: 'Budget',
+    description: 'Tanek naravni les, 18 × 14 mm',
+    profileDimensions: '18 × 14 mm',
+    pricePerTm: 5.20,
+    stripImage: '/frames/strips/slim-natur.png',
+    borderWidth: 8,
+    cssStyle: {
+      borderWidth: '8px',
+      borderStyle: 'solid',
+      borderImage: 'linear-gradient(135deg, #c8b898 0%, #d4c8b0 25%, #e0d4bc 50%, #d4c8b0 75%, #c8b898 100%) 1',
+      boxShadow: 'inset 0 0 3px rgba(0,0,0,0.15), 0 1px 6px rgba(0,0,0,0.2)',
+    },
+  },
+  {
+    id: 'mini-modri', category: 'cenovno-dostopni',
+    label: 'Mini Modri',
+    profile: 'Budget',
+    description: 'Temno modra, raven tanek, 15 × 15 mm',
+    profileDimensions: '15 × 15 mm',
+    pricePerTm: 5.80,
+    stripImage: '/frames/strips/mini-barvni.png',
+    borderWidth: 7,
+    cssStyle: {
+      borderWidth: '7px',
+      borderStyle: 'solid',
+      borderImage: 'linear-gradient(135deg, #1a2744 0%, #243660 25%, #2a3d66 50%, #243660 75%, #1a2744 100%) 1',
+      boxShadow: 'inset 0 0 3px rgba(0,0,0,0.3), 0 1px 6px rgba(0,0,0,0.25)',
+    },
+  },
+  {
+    id: 'barvni-kocka', category: 'cenovno-dostopni',
+    label: 'Barvni Kocka',
+    profile: 'Budget',
+    description: 'Živo modra, kvadraten presek, 18 × 18 mm',
+    profileDimensions: '18 × 18 mm',
+    pricePerTm: 6.50,
+    stripImage: '/frames/strips/barvni-kocka.png',
+    borderWidth: 8,
+    cssStyle: {
+      borderWidth: '8px',
+      borderStyle: 'solid',
+      borderImage: 'linear-gradient(135deg, #1a5dc8 0%, #2570d8 25%, #3080e8 50%, #2570d8 75%, #1a5dc8 100%) 1',
+      boxShadow: 'inset 0 0 4px rgba(0,0,0,0.25), 0 2px 8px rgba(26,93,200,0.2)',
+    },
+  },
+  {
+    id: 'klasicni-les-budget', category: 'cenovno-dostopni',
+    label: 'Klasični Les',
+    profile: 'Budget',
+    description: 'Temni mahagonij, zaobljen, 22 × 18 mm',
+    profileDimensions: '22 × 18 mm',
+    pricePerTm: 6.90,
+    stripImage: '/frames/strips/klasicni-les.png',
+    borderWidth: 10,
+    cssStyle: {
+      borderWidth: '10px',
+      borderStyle: 'solid',
+      borderImage: 'linear-gradient(135deg, #3a1820 0%, #4d2530 25%, #5d2833 50%, #4d2530 75%, #3a1820 100%) 1',
+      boxShadow: 'inset 0 0 5px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.3)',
+    },
+  },
+  {
+    id: 'moderni-crni', category: 'cenovno-dostopni',
+    label: 'Moderni Črni',
+    profile: 'Budget',
+    description: 'Črn les, moderna tekstura, 25 × 14 mm',
+    profileDimensions: '25 × 14 mm',
+    pricePerTm: 7.40,
+    stripImage: '/frames/strips/moderni-crni.png',
+    borderWidth: 11,
+    cssStyle: {
+      borderWidth: '11px',
+      borderStyle: 'solid',
+      borderImage: 'linear-gradient(135deg, #1a1a1a 0%, #2a2a28 25%, #222220 50%, #2a2a28 75%, #1a1a1a 100%) 1',
+      boxShadow: 'inset 0 0 5px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.35)',
+    },
+  },
+  {
+    id: 'aluminij-satin', category: 'cenovno-dostopni',
+    label: 'Aluminij Satin',
+    profile: 'AL',
+    description: 'Bel saten aluminij, ultra tanek, 18 × 8 mm',
+    profileDimensions: '18 × 8 mm',
+    pricePerTm: 7.80,
+    stripImage: '/frames/strips/aluminij-satin.png',
+    borderWidth: 8,
+    cssStyle: {
+      borderWidth: '8px',
+      borderStyle: 'solid',
+      borderImage: 'linear-gradient(135deg, #e0dcd8 0%, #ece8e4 25%, #f4f0ec 50%, #ece8e4 75%, #e0dcd8 100%) 1',
+      boxShadow: 'inset 0 0 3px rgba(0,0,0,0.1), 0 1px 6px rgba(0,0,0,0.15)',
+    },
+  },
+  {
+    id: '1717-bordo', category: 'cenovno-dostopni',
+    label: '1717 Bordo',
+    profile: '1717',
+    description: 'Bordo rdeča, tanek ornament, 15 × 20 mm',
+    profileDimensions: '15 × 20 mm',
+    pricePerTm: 8.20,
+    stripImage: '/frames/strips/ozki-ornament-1717.png',
+    borderWidth: 7,
+    cssStyle: {
+      borderWidth: '7px',
+      borderStyle: 'solid',
+      borderImage: 'linear-gradient(135deg, #4a1418 0%, #6a2228 25%, #7a2a2a 50%, #6a2228 75%, #4a1418 100%) 1',
+      boxShadow: 'inset 0 0 4px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.3)',
+    },
+  },
+  {
+    id: '048-gladek', category: 'cenovno-dostopni',
+    label: '048 Gladek',
+    profile: '048',
+    description: 'Rjav les z zlatim detajlom, 28 × 15 mm',
+    profileDimensions: '28 × 15 mm',
+    pricePerTm: 8.50,
+    stripImage: '/frames/strips/ozki-gladek-048.png',
+    borderWidth: 13,
+    cssStyle: {
+      borderWidth: '13px',
+      borderStyle: 'solid',
+      borderImage: 'linear-gradient(135deg, #5a3a20 0%, #6a4a2a 20%, #8a6a3a 40%, #c09040 50%, #8a6a3a 60%, #6a4a2a 80%, #5a3a20 100%) 1',
+      boxShadow: 'inset 0 0 6px rgba(0,0,0,0.3), 0 2px 10px rgba(0,0,0,0.35)',
+    },
+  },
+  {
+    id: 'alu-srebrn', category: 'cenovno-dostopni',
+    label: 'Alu Srebrn',
+    profile: 'AL',
+    description: 'Srebrn aluminij, teksturiran, 20 × 10 mm',
+    profileDimensions: '20 × 10 mm',
+    pricePerTm: 8.90,
+    stripImage: '/frames/strips/alu-srebrn.png',
+    borderWidth: 9,
+    cssStyle: {
+      borderWidth: '9px',
+      borderStyle: 'solid',
+      borderImage: 'linear-gradient(135deg, #7a7a72 0%, #8a8a82 25%, #a0a098 50%, #8a8a82 75%, #7a7a72 100%) 1',
+      boxShadow: 'inset 0 0 4px rgba(0,0,0,0.2), 0 2px 8px rgba(0,0,0,0.25)',
+    },
+  },
+  {
+    id: 'siena-rustic', category: 'cenovno-dostopni',
+    label: 'Siena Rustic',
+    profile: 'Siena',
+    description: 'Zlato-rjav rustikalen les, 25 × 20 mm',
+    profileDimensions: '25 × 20 mm',
+    pricePerTm: 9.80,
+    stripImage: '/frames/strips/siena-rustic.png',
+    borderWidth: 11,
+    cssStyle: {
+      borderWidth: '11px',
+      borderStyle: 'solid',
+      borderImage: 'linear-gradient(135deg, #8a7040 0%, #a08850 25%, #b8a060 50%, #a08850 75%, #8a7040 100%) 1',
+      boxShadow: 'inset 0 0 5px rgba(0,0,0,0.25), 0 2px 10px rgba(0,0,0,0.3)',
+    },
+  },
 ];
 
 // ═══════════════════════════════════════════════
@@ -540,11 +747,10 @@ export function getPerimeter(sizeId) {
 // NABAVNE POMOŽNE FUNKCIJE
 // ═══════════════════════════════════════════════
 
-/** Nabavna cena platna iz površine (25€/m²) */
+/** Nabavna cena platna (fiksna po velikosti, min 30€ za ≤1m²) */
 export function getCanvasCost(sizeId) {
-  const [w, h] = sizeId.split('x').map(Number);
-  if (!w || !h) return 0;
-  return (w * h / 10000) * CANVAS_COST_PER_M2;
+  const size = canvasSizes.find((s) => s.id === sizeId);
+  return size?.canvasCost || 0;
 }
 
 /** Nabavna cena podokvirjanja in napenjanja (dejanske cene dobavitelja) */
@@ -562,30 +768,27 @@ export function getImpastoCost(sizeId) {
 }
 
 // ═══════════════════════════════════════════════
-// CENOVNA FUNKCIJA — 3 plasti + opcijski impasto
+// CENOVNA FUNKCIJA — 2 plasti + opcijski impasto
 //
-// productType: 'print' | 'stretched' | 'framed'
+// productType: 'stretched' | 'framed'
 // frameId: ID okvirja (samo pri 'framed')
 // withImpasto: boolean (opcijsko, samo pri 'framed')
 //
-// Formula: nabavna × 1.60 × 1.22 (+ impasto flat)
+// Formula: nabavna × marža × DDV (+ impasto flat)
 // ═══════════════════════════════════════════════
-export function getPrice(sizeId, productType = 'print', frameId = null, withImpasto = false) {
+export function getPrice(sizeId, productType = 'stretched', frameId = null, withImpasto = false) {
   const canvasCost = getCanvasCost(sizeId);
   if (!canvasCost) return 0;
 
   // Vsaka komponenta ima svojo maržo, DDV se doda na koncu
   let markedUp = 0;
 
-  if (productType === PRODUCT_TYPES.PRINT) {
-    // Plast 1: samo tisk na platno (60% marža)
-    markedUp = canvasCost * CANVAS_MARKUP;
-  } else if (productType === PRODUCT_TYPES.STRETCHED) {
-    // Plast 2: platno (60%) + podokvirjanje (30%)
+  if (productType === PRODUCT_TYPES.STRETCHED) {
+    // Plast 1: platno (60%) + podokvirjanje (30%)
     markedUp = canvasCost * CANVAS_MARKUP
              + getStretcherCost(sizeId) * STRETCHING_MARKUP;
   } else if (productType === PRODUCT_TYPES.FRAMED) {
-    // Plast 3: platno (60%) + podokvirjanje (30%) + okvir (60%) + delo (60%)
+    // Plast 2: platno (60%) + podokvirjanje (30%) + okvir (60%) + delo (60%)
     const frame = frameStyles.find((f) => f.id === frameId);
     if (!frame) return 0;
     const frameCost = frame.pricePerTm * getPerimeter(sizeId);
@@ -633,7 +836,7 @@ export function getPrintSpecs(sizeId) {
 // Vrne podroben izpis vseh stroškov izdelave
 // za prikaz v admin emailu ob naročilu.
 // ═══════════════════════════════════════════════
-export function calculateCostBreakdown(sizeId, productType = 'print', frameId = null, withImpasto = false) {
+export function calculateCostBreakdown(sizeId, productType = 'stretched', frameId = null, withImpasto = false) {
   const canvasCost = getCanvasCost(sizeId);
   if (!canvasCost) return null;
 
@@ -750,6 +953,27 @@ export const HANGING_INCLUDED = {
     contents: ['1× aluminijasti Z-bar (polna širina)', '2× D-obroč + jeklena žica (rezerva)', '4× Fischer vložek 8mm + vijaki', '1× libela nalepka'],
     maxWeight: '50 kg',
   },
+  '80x120': {
+    system: 'z-bar',
+    name: 'Z-bar profesionalni sistem',
+    icon: '📐',
+    contents: ['1× aluminijasti Z-bar (polna širina)', '2× D-obroč + jeklena žica (rezerva)', '4× Fischer vložek 8mm + vijaki', '1× libela nalepka'],
+    maxWeight: '50 kg',
+  },
+  '100x100': {
+    system: 'z-bar',
+    name: 'Z-bar profesionalni sistem',
+    icon: '📐',
+    contents: ['1× aluminijasti Z-bar (polna širina)', '2× D-obroč + jeklena žica (rezerva)', '4× Fischer vložek 8mm + vijaki', '1× libela nalepka'],
+    maxWeight: '50 kg',
+  },
+  '100x150': {
+    system: 'z-bar',
+    name: 'Dvojni Z-bar profesionalni sistem',
+    icon: '📐',
+    contents: ['2× aluminijasti Z-bar', '2× D-obroč + jeklena žica (rezerva)', '6× Fischer vložek 8mm + vijaki', '1× libela nalepka'],
+    maxWeight: '70 kg',
+  },
 };
 
 /**
@@ -762,7 +986,7 @@ export const HANGING_UPGRADES = [
     icon: '🏛',
     description: 'STAS Cliprail aluminijast tir (150 cm) + 2 jekleni vrvi + kljuki. Premikanje slik brez novih lukenj.',
     price: 45,
-    fits: ['30x40', '40x50', '45x60', '50x70', '60x90', '76x102'],
+    fits: ['30x40', '40x50', '45x60', '50x70', '60x90', '76x102', '80x120', '100x100', '100x150'],
   },
   {
     id: 'security',
@@ -770,7 +994,7 @@ export const HANGING_UPGRADES = [
     icon: '🔒',
     description: 'T-vijak z varnostnim ključem. Za pisarne, hotele, restavracije in javne prostore.',
     price: 15,
-    fits: ['30x40', '40x50', '45x60', '50x70', '60x90', '76x102'],
+    fits: ['30x40', '40x50', '45x60', '50x70', '60x90', '76x102', '80x120', '100x100', '100x150'],
   },
   {
     id: 'adhesive-kit',
@@ -811,6 +1035,15 @@ export const PICTURE_LEDGES = [
     length: 120,
     description: 'Lesena polica za naslanjanje 3–4 slik. Na voljo v beli, črni in naravni hrastovi barvi.',
     price: 49,
-    fits: ['30x40', '40x50', '45x60', '50x70', '60x90'],
+    fits: ['30x40', '40x50', '45x60', '50x70', '60x90', '76x102'],
+  },
+  {
+    id: 'ledge-160',
+    name: 'Polica 160 cm',
+    icon: '📏',
+    length: 160,
+    description: 'Lesena polica za naslanjanje velikih umetnin. Na voljo v beli, črni in naravni hrastovi barvi.',
+    price: 69,
+    fits: ['30x40', '40x50', '45x60', '50x70', '60x90', '76x102', '80x120', '100x100', '100x150'],
   },
 ];

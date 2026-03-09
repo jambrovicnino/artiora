@@ -26,6 +26,7 @@ export function compressImage(dataUrl, maxSize = 400, quality = 0.85) {
     }
 
     const img = new Image();
+    img.crossOrigin = 'anonymous';
     img.onload = () => {
       let { width, height } = img;
 

@@ -52,7 +52,7 @@ export default function FramingStep({
           </label>
           <div className="size-grid">
             {displaySizes.map((size) => {
-              const printPrice = getPrice(size.id, PRODUCT_TYPES.PRINT);
+              const stretchedPrice = getPrice(size.id, PRODUCT_TYPES.STRETCHED);
               const q = imageQuality?.[size.id];
               return (
                 <button
@@ -62,7 +62,7 @@ export default function FramingStep({
                 >
                   <span className="size-card-dims">{size.label}</span>
                   <span className="size-card-name">{size.displayName}</span>
-                  <span className="size-card-price">{printPrice} €</span>
+                  <span className="size-card-price">od {stretchedPrice} €</span>
                   {q && (
                     <span
                       className={`size-card-quality quality-${q.rating}`}
@@ -170,24 +170,7 @@ export default function FramingStep({
             IZDELEK
           </label>
           <div className="product-options">
-            {/* Samo tisk */}
-            <button
-              className={`product-option ${productType === PRODUCT_TYPES.PRINT ? 'selected' : ''}`}
-              onClick={() => {
-                setProductType(PRODUCT_TYPES.PRINT);
-                setWithImpasto(false);
-              }}
-            >
-              <div className="product-option-info">
-                <span className="product-option-name">Tisk na platno</span>
-                <span className="product-option-desc">Canvas print, zvit v rolo</span>
-              </div>
-              <span className="product-option-price">
-                {getPrice(selectedSize, PRODUCT_TYPES.PRINT)} €
-              </span>
-            </button>
-
-            {/* Tisk + podokvir */}
+            {/* Napeto platno */}
             <button
               className={`product-option ${productType === PRODUCT_TYPES.STRETCHED ? 'selected' : ''}`}
               onClick={() => {
@@ -196,7 +179,7 @@ export default function FramingStep({
               }}
             >
               <div className="product-option-info">
-                <span className="product-option-name">Tisk + podokvir</span>
+                <span className="product-option-name">Napeto platno</span>
                 <span className="product-option-desc">Napeto na leseni podokvir, pripravljeno za obešanje</span>
               </div>
               <span className="product-option-price">
@@ -227,6 +210,36 @@ export default function FramingStep({
               <span className="step-number">3</span>
               OKVIR
             </label>
+
+            {/* CENOVNO DOSTOPNI okvirji */}
+            <div className="frame-category">
+              <span className="frame-category-label frame-category-budget">CENOVNO DOSTOPNI</span>
+            </div>
+            <div className="frame-options">
+              {frameStyles.filter((f) => f.category === 'cenovno-dostopni').map((frame) => {
+                const framePrice = getPrice(selectedSize, PRODUCT_TYPES.FRAMED, frame.id, withImpasto);
+                return (
+                  <button
+                    key={frame.id}
+                    className={`frame-option ${selectedFrame === frame.id ? 'selected' : ''}`}
+                    onClick={() => setSelectedFrame(frame.id)}
+                    title={`${frame.label} — ${frame.profileDimensions}`}
+                  >
+                    <div className="frame-thumb">
+                      <img
+                        src={frame.stripImage}
+                        alt={frame.label}
+                        className="frame-thumb-img"
+                        loading="lazy"
+                      />
+                    </div>
+                    <span className="frame-option-label">{frame.label}</span>
+                    <span className="frame-option-price">{framePrice} €</span>
+                    <span className="frame-option-dims">{frame.profileDimensions}</span>
+                  </button>
+                );
+              })}
+            </div>
 
             {/* NEW ERA okvirji */}
             <div className="frame-category">
