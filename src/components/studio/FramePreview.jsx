@@ -10,21 +10,17 @@ import './FramePreview.css';
 // Koti so pravilni 45° miter stiki (trapezoidni
 // clipping pathi na Canvas elementu).
 //
-// Strip slike imajo na vrhu svetel prerez profila (backing).
-// prepareCleanStrip() ta del zamenja z barvo obraza letvice,
-// kar odpravi artefakte na kotih pri VSEH okvirjih.
+// ADAPTIVNA KOTNA KOREKCIJA:
+// Strip slike imajo na vrhu svetel prerez (backing).
+// Namesto agresivne zamenjave (ki uniči teksturo)
+// uporabimo adaptiven pristop — količina korekcije
+// je odvisna od kontrasta med backing-om in obrazom.
 // ═══════════════════════════════════════════════
 
-// Višina canvas elementa (piksli) — višja = bolj ostro
 const CANVAS_HEIGHT = 900;
-
-// Faktor za boljšo vidnost okvirja v predogledu
 const PREVIEW_SCALE = 2.2;
-
-// Razširitev clipping patha za preprečevanje vrzeli (anti-aliasing fix)
 const SEAM_OVERLAP = 1.5;
 
-/** Razmerje stranic iz sizeId (npr. "40x50" → 0.8) */
 function getAspectRatio(sizeId) {
   if (!sizeId) return 4 / 5;
   const parts = sizeId.split('x').map(Number);
@@ -32,7 +28,6 @@ function getAspectRatio(sizeId) {
   return parts[0] / parts[1];
 }
 
-/** Naloži sliko kot Promise */
 function loadImage(src) {
   return new Promise((resolve, reject) => {
     const img = new Image();
@@ -44,22 +39,37 @@ function loadImage(src) {
 }
 
 /**
- * Pripravi "čisto" strip teksturo brez svetlega ozadja (backing).
+ * Vzorči povprečno barvo ene vrstice strip slike.
+ * Vrne { r, g, b }.
+ */
+function sampleRow(sctx, w, h, pct) {
+  const row = Math.round(h * pct);
+  const data = sctx.getImageData(0, Math.min(row, h - 1), w, 1).data;
+  let r = 0, g = 0, b = 0, n = 0;
+  for (let i = 0; i < data.length; i += 4) {
+    r += data[i]; g += data[i + 1]; b += data[i + 2]; n++;
+  }
+  return { r: Math.round(r / n), g: Math.round(g / n), b: Math.round(b / n) };
+}
+
+/** Evklidska razdalja med dvema barvama (0–441) */
+function colorDist(a, b) {
+  return Math.sqrt((a.r - b.r) ** 2 + (a.g - b.g) ** 2 + (a.b - b.b) ** 2);
+}
+
+/**
+ * ADAPTIVNA priprava strip slike.
  *
- * Strip slike iz Vidal kataloga imajo tipično strukturo:
- *   TOP  (0–18%):  svetel prerez profila / backing (les/bež)
- *   FACE (18–88%): obraz letvice — to želimo prikazati
- *   BTM  (88–100%): senca / podrez
+ * Namesto agresivne zamenjave 20% vrha (ki uniči ornamente),
+ * najprej IZMERI kontrast med backing-om (vrh) in obrazom (sredina).
  *
- * Pri 45° miter stiku na canvas-u se prikaže le zgornjih ~5%
- * strip slike v kotnem trikotniku → svetel backing postane viden.
+ *  Visok kontrast (npr. črn okvir z bež backing-om):
+ *    → zamenjaj vrhnjih 10% z barvo obraza (backing je res moteč)
  *
- * Rešitev: vzorčimo PRAVO barvo obraza (povprečje treh vrstic
- * na 50%, 60%, 70% višine) in z njo zapolnimo zgornjih 20%
- * + spodnjih 12%, z gladkim prehodom v originalno teksturo.
+ *  Nizek kontrast (npr. zlat ornament z zlato-bež backing-om):
+ *    → zamenjaj le 3% (samo rob, ohrani ornamente)
  *
- * Rezultat: strip slike, ki na VSAKEM mestu kaže barvo obraza,
- * brez vidnih kotnih artefaktov.
+ * Rezultat: bogata tekstura JE ohranjena, kotni artefakti pa minimizirani.
  */
 function prepareCleanStrip(stripImg) {
   const w = stripImg.width;
@@ -68,65 +78,63 @@ function prepareCleanStrip(stripImg) {
   sc.width = w;
   sc.height = h;
   const sctx = sc.getContext('2d');
-
-  // Narišemo originalno strip sliko
   sctx.drawImage(stripImg, 0, 0);
 
-  // ─── Vzorčenje barve obraza (robustno povprečje) ───
-  // Vzamemo 3 celotne horizontalne vrstice iz srca obraza
-  // in povprečimo VSE piksle → zanesljiva barva obraza
-  let totalR = 0, totalG = 0, totalB = 0, count = 0;
-  for (const pct of [0.50, 0.60, 0.70]) {
-    const row = Math.round(h * pct);
-    const rowData = sctx.getImageData(0, row, w, 1).data;
-    for (let i = 0; i < rowData.length; i += 4) {
-      totalR += rowData[i];
-      totalG += rowData[i + 1];
-      totalB += rowData[i + 2];
-      count++;
-    }
-  }
-  const fR = Math.round(totalR / count);
-  const fG = Math.round(totalG / count);
-  const fB = Math.round(totalB / count);
+  // ─── Vzorčenje barv ───
+  const topColor = sampleRow(sctx, w, h, 0.03);   // zelo vrh (backing)
+  const faceColor = sampleRow(sctx, w, h, 0.55);   // sredina obraza
+  const face2 = sampleRow(sctx, w, h, 0.65);        // potrditev
+  // Robustno povprečje obraza
+  const fR = Math.round((faceColor.r + face2.r) / 2);
+  const fG = Math.round((faceColor.g + face2.g) / 2);
+  const fB = Math.round((faceColor.b + face2.b) / 2);
   const faceCSS = `rgb(${fR},${fG},${fB})`;
 
-  // ─── Zamenjava zgornjega backing-a (0–20%) ───
-  const backingEnd = Math.round(h * 0.20);
-  const blendH = Math.round(h * 0.08);
+  // ─── Kontrast med backing-om in obrazom ───
+  const contrast = colorDist(topColor, { r: fR, g: fG, b: fB });
 
-  // Solidna barva obraza čez backing
+  // ─── Adaptivna korekcija ───
+  // Visok kontrast (>120): backing je zelo drugačen od obraza → zamenjaj 10%
+  // Srednji kontrast (60-120): zmerna razlika → zamenjaj 5%
+  // Nizek kontrast (<60): backing je podoben obrazu → zamenjaj le 2%
+  let replaceTop, blendH;
+  if (contrast > 120) {
+    // Visok kontrast (npr. moderni-crni: črn okvir z bež backing-om)
+    replaceTop = Math.round(h * 0.10);
+    blendH = Math.round(h * 0.04);
+  } else if (contrast > 60) {
+    // Srednji kontrast
+    replaceTop = Math.round(h * 0.05);
+    blendH = Math.round(h * 0.03);
+  } else {
+    // Nizek kontrast (npr. 290-A: zlat ornament z zlato-bež vrh)
+    replaceTop = Math.round(h * 0.02);
+    blendH = Math.round(h * 0.02);
+  }
+
+  // Zamenjaj le vrh z barvo obraza
   sctx.fillStyle = faceCSS;
-  sctx.fillRect(0, 0, w, backingEnd);
+  sctx.fillRect(0, 0, w, replaceTop);
 
-  // Gladek prehod v originalno teksturo
-  const topGrad = sctx.createLinearGradient(0, backingEnd, 0, backingEnd + blendH);
-  topGrad.addColorStop(0, faceCSS);
-  topGrad.addColorStop(1, `rgba(${fR},${fG},${fB},0)`);
-  sctx.fillStyle = topGrad;
-  sctx.fillRect(0, backingEnd, w, blendH);
+  // Gladek prehod
+  if (blendH > 0) {
+    const grad = sctx.createLinearGradient(0, replaceTop, 0, replaceTop + blendH);
+    grad.addColorStop(0, faceCSS);
+    grad.addColorStop(1, `rgba(${fR},${fG},${fB},0)`);
+    sctx.fillStyle = grad;
+    sctx.fillRect(0, replaceTop, w, blendH);
+  }
 
-  // ─── Zamenjava spodnje sence/podreza (88–100%) ───
-  const bottomStart = Math.round(h * 0.88);
-  const bBlendH = Math.round(h * 0.06);
-
+  // Spodnji rob: minimalna korekcija (samo 2%)
+  const btmReplace = Math.round(h * 0.02);
   sctx.fillStyle = faceCSS;
-  sctx.fillRect(0, bottomStart, w, h - bottomStart);
+  sctx.fillRect(0, h - btmReplace, w, btmReplace);
 
-  const btmGrad = sctx.createLinearGradient(0, bottomStart - bBlendH, 0, bottomStart);
-  btmGrad.addColorStop(0, `rgba(${fR},${fG},${fB},0)`);
-  btmGrad.addColorStop(1, faceCSS);
-  sctx.fillStyle = btmGrad;
-  sctx.fillRect(0, bottomStart - bBlendH, w, bBlendH);
-
-  return { canvas: sc, faceR: fR, faceG: fG, faceB: fB };
+  return { canvas: sc, faceR: fR, faceG: fG, faceB: fB, contrast };
 }
 
 /**
  * Izriši okvir z dejansko strip teksturo.
- *
- * Uporablja prepareCleanStrip() za čiste strip slike brez backing-a,
- * nato izriše 4 stranice s trapezoidnimi clip pathi in 45° miter stiki.
  */
 function drawFrame(ctx, photoImg, stripImg, cW, cH, fW, tintColor) {
   ctx.clearRect(0, 0, cW, cH);
@@ -136,12 +144,11 @@ function drawFrame(ctx, photoImg, stripImg, cW, cH, fW, tintColor) {
   const photoW = cW - 2 * fW;
   const photoH = cH - 2 * fW;
 
-  // ─── 1. Ozadje (črno za robove) ───
+  // ─── 1. Ozadje ───
   ctx.fillStyle = '#0a0908';
   ctx.fillRect(0, 0, cW, cH);
 
-  // ─── 2. Fotografija v sredini ───
-  // Crop-to-fill + rahla razširitev čez rob (anti-aliasing fix)
+  // ─── 2. Fotografija (s prekrivanjem za anti-aliasing) ───
   const imgRatio = photoImg.width / photoImg.height;
   const photoOverlap = 2;
   const boxRatio = photoW / photoH;
@@ -157,10 +164,10 @@ function drawFrame(ctx, photoImg, stripImg, cW, cH, fW, tintColor) {
     photoX - photoOverlap, photoY - photoOverlap,
     photoW + photoOverlap * 2, photoH + photoOverlap * 2);
 
-  // ─── 3. Priprava čistih strip tekstur ───
-  const { canvas: cleanStrip, faceR, faceG, faceB } = prepareCleanStrip(stripImg);
+  // ─── 3. Priprava strip tekstur ───
+  const { canvas: cleanStrip, faceR, faceG, faceB, contrast } = prepareCleanStrip(stripImg);
 
-  // Rotirana verzija za horizontalni stranici (top/bottom)
+  // Rotirana verzija za horizontalni stranici
   const hStrip = document.createElement('canvas');
   hStrip.width = cleanStrip.height;
   hStrip.height = cleanStrip.width;
@@ -197,7 +204,7 @@ function drawFrame(ctx, photoImg, stripImg, cW, cH, fW, tintColor) {
   ctx.drawImage(cleanStrip, 0, 0, cleanStrip.width, cleanStrip.height, 0, 0, fW, cH);
   ctx.restore();
 
-  // ─── 6. ZGORNJA STRANICA (rotirana tekstura) ───
+  // ─── 6. ZGORNJA STRANICA ───
   ctx.save();
   ctx.beginPath();
   ctx.moveTo(-o, -o);
@@ -209,7 +216,7 @@ function drawFrame(ctx, photoImg, stripImg, cW, cH, fW, tintColor) {
   ctx.drawImage(hStrip, 0, 0, hStrip.width, hStrip.height, 0, 0, cW, fW);
   ctx.restore();
 
-  // ─── 7. SPODNJA STRANICA (rotirana + zrcaljena) ───
+  // ─── 7. SPODNJA STRANICA ───
   ctx.save();
   ctx.beginPath();
   ctx.moveTo(-o, cH + o);
@@ -223,7 +230,7 @@ function drawFrame(ctx, photoImg, stripImg, cW, cH, fW, tintColor) {
   ctx.drawImage(hStrip, 0, 0, hStrip.width, hStrip.height, 0, 0, cW, fW);
   ctx.restore();
 
-  // ─── 8. Barvno tintanje za New Era okvirje ───
+  // ─── 8. Barvno tintanje (New Era) ───
   if (tintColor) {
     ctx.save();
     ctx.beginPath();
@@ -247,24 +254,55 @@ function drawFrame(ctx, photoImg, stripImg, cW, cH, fW, tintColor) {
     ctx.restore();
   }
 
-  // ─── 9. Subtilne miter črte ───
-  // Tanke, temne črte na 45° stiku za realistično videz kota
-  const darkR = Math.round(faceR * 0.25);
-  const darkG = Math.round(faceG * 0.25);
-  const darkB = Math.round(faceB * 0.25);
-  const miterColor = `rgb(${darkR},${darkG},${darkB})`;
+  // ─── 9. Kotna korekcija (samo za visoko-kontrastne okvirje) ───
+  // Za okvirje z velikim kontrastom (moderni črni ipd.) dodamo
+  // majhen barvni trikotnik na vsakem kotu, da prekrije
+  // preostale backing artefakte, ki jih prepareCleanStrip ni odstranil.
+  if (contrast > 80) {
+    const faceCSS = tintColor || `rgb(${faceR},${faceG},${faceB})`;
+    const patchAlpha = contrast > 120 ? 0.6 : 0.35;
+    const cornerPad = Math.max(3, fW * 0.12);
+
+    const corners = [
+      { ox: 0, oy: 0, mx: fW, my: fW },
+      { ox: cW, oy: 0, mx: cW - fW, my: fW },
+      { ox: 0, oy: cH, mx: fW, my: cH - fW },
+      { ox: cW, oy: cH, mx: cW - fW, my: cH - fW },
+    ];
+
+    corners.forEach(({ ox, oy, mx, my }) => {
+      ctx.save();
+      ctx.fillStyle = faceCSS;
+      ctx.globalAlpha = patchAlpha;
+      const dx = mx - ox, dy = my - oy;
+      const len = Math.sqrt(dx * dx + dy * dy);
+      const px = -dy / len * cornerPad;
+      const py = dx / len * cornerPad;
+      ctx.beginPath();
+      ctx.moveTo(ox, oy);
+      ctx.lineTo(mx + px, my + py);
+      ctx.lineTo(mx - px, my - py);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    });
+  }
+
+  // ─── 10. Miter črte ───
+  const darkR = Math.round(faceR * 0.3);
+  const darkG = Math.round(faceG * 0.3);
+  const darkB = Math.round(faceB * 0.3);
 
   ctx.save();
-  ctx.strokeStyle = miterColor;
-  ctx.lineWidth = Math.max(1.5, fW * 0.035);
-  ctx.globalAlpha = 0.5;
-  const miterCorners = [
+  ctx.strokeStyle = `rgb(${darkR},${darkG},${darkB})`;
+  ctx.lineWidth = Math.max(1.5, fW * 0.03);
+  ctx.globalAlpha = 0.4;
+  [
     [0, 0, fW, fW],
     [cW, 0, cW - fW, fW],
     [0, cH, fW, cH - fW],
     [cW, cH, cW - fW, cH - fW],
-  ];
-  miterCorners.forEach(([x1, y1, x2, y2]) => {
+  ].forEach(([x1, y1, x2, y2]) => {
     ctx.beginPath();
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
@@ -272,8 +310,7 @@ function drawFrame(ctx, photoImg, stripImg, cW, cH, fW, tintColor) {
   });
   ctx.restore();
 
-  // ─── 10. Temen rabbet trak ───
-  // Zapolni vrzel med okvirjem in sliko (temna notranja letvica)
+  // ─── 11. Rabbet trak ───
   const rabbetW = Math.max(2, fW * 0.06);
   ctx.fillStyle = '#0a0908';
   ctx.fillRect(photoX - 1, photoY - 1, photoW + 2, rabbetW + 1);
@@ -281,7 +318,7 @@ function drawFrame(ctx, photoImg, stripImg, cW, cH, fW, tintColor) {
   ctx.fillRect(photoX - 1, photoY - 1, rabbetW + 1, photoH + 2);
   ctx.fillRect(photoX + photoW - rabbetW, photoY - 1, rabbetW + 1, photoH + 2);
 
-  // ─── 11. Notranji rob — temna senca za globino ───
+  // ─── 12. Notranji rob ───
   const innerBevel = Math.max(2, fW * 0.05);
   ctx.save();
   ctx.globalAlpha = 0.5;
@@ -293,7 +330,7 @@ function drawFrame(ctx, photoImg, stripImg, cW, cH, fW, tintColor) {
   );
   ctx.restore();
 
-  // ─── 12. Notranja senca (globina okvirja) ───
+  // ─── 13. Notranja senca ───
   const shadowSize = Math.max(8, fW * 0.22);
 
   const topShadow = ctx.createLinearGradient(photoX, photoY, photoX, photoY + shadowSize);
@@ -310,7 +347,6 @@ function drawFrame(ctx, photoImg, stripImg, cW, cH, fW, tintColor) {
   ctx.fillStyle = leftShadow;
   ctx.fillRect(photoX, photoY, shadowSize, photoH);
 
-  // Radial corner shadow (zgornji levi kot slike)
   const cRad = shadowSize * 0.7;
   const cShadow = ctx.createRadialGradient(photoX, photoY, 0, photoX, photoY, cRad);
   cShadow.addColorStop(0, 'rgba(0,0,0,0.35)');
@@ -318,48 +354,22 @@ function drawFrame(ctx, photoImg, stripImg, cW, cH, fW, tintColor) {
   ctx.fillStyle = cShadow;
   ctx.fillRect(photoX, photoY, cRad, cRad);
 
-  // ─── 13. Zunanji rob ───
+  // ─── 14. Zunanji rob ───
   ctx.strokeStyle = tintColor ? `${tintColor}88` : 'rgba(0,0,0,0.55)';
   ctx.lineWidth = 1.5;
   ctx.strokeRect(0.5, 0.5, cW - 1, cH - 1);
-
-  // ─── 14. 3D zunanji bevel (subtilen) ───
-  // Svetla črta na zgornjem + levem robu, temna na spodnjem + desnem
-  ctx.save();
-  ctx.lineWidth = 1;
-  // Svetla stran (zgoraj + levo)
-  ctx.strokeStyle = 'rgba(255,255,255,0.06)';
-  ctx.beginPath();
-  ctx.moveTo(1, cH - 1);
-  ctx.lineTo(1, 1);
-  ctx.lineTo(cW - 1, 1);
-  ctx.stroke();
-  // Temna stran (spodaj + desno)
-  ctx.strokeStyle = 'rgba(0,0,0,0.12)';
-  ctx.beginPath();
-  ctx.moveTo(cW - 1, 1);
-  ctx.lineTo(cW - 1, cH - 1);
-  ctx.lineTo(1, cH - 1);
-  ctx.stroke();
-  ctx.restore();
 }
 
 /**
  * Izriši napeto platno na podokvir — subtilen 3D efekt.
- * Slika ostane vodoravna, vidna le tanka bela stranica
- * platna na dnu in desni (izometrična projekcija).
  */
 function drawStretched(ctx, photoImg, cW, cH) {
   ctx.clearRect(0, 0, cW, cH);
 
-  // Subtilna debelina — samo občutek globine (~2.5%)
   const depth = Math.round(Math.min(cW, cH) * 0.028);
-
-  // Glavna slika zavzame prostor brez robov
   const photoW = cW - depth;
   const photoH = cH - depth;
 
-  // ─── 1. Crop-to-fill parametri ───
   const imgRatio = photoImg.width / photoImg.height;
   const boxRatio = photoW / photoH;
   let sx = 0, sy = 0, sw = photoImg.width, sh = photoImg.height;
@@ -371,7 +381,7 @@ function drawStretched(ctx, photoImg, cW, cH) {
     sy = (photoImg.height - sh) / 2;
   }
 
-  // ─── 2. Desna stranica (belo platno) ───
+  // Desna stranica
   ctx.fillStyle = '#e0dcd6';
   ctx.beginPath();
   ctx.moveTo(photoW, 0);
@@ -380,14 +390,13 @@ function drawStretched(ctx, photoImg, cW, cH) {
   ctx.lineTo(photoW, photoH);
   ctx.closePath();
   ctx.fill();
-  // Gradient za globino — temnejše proti zadaj
   const rGrad = ctx.createLinearGradient(photoW, 0, cW, 0);
   rGrad.addColorStop(0, 'rgba(0,0,0,0.0)');
   rGrad.addColorStop(1, 'rgba(0,0,0,0.12)');
   ctx.fillStyle = rGrad;
   ctx.fill();
 
-  // ─── 3. Spodnja stranica (belo platno, svetlejša) ───
+  // Spodnja stranica
   ctx.fillStyle = '#e8e4de';
   ctx.beginPath();
   ctx.moveTo(0, photoH);
@@ -396,30 +405,26 @@ function drawStretched(ctx, photoImg, cW, cH) {
   ctx.lineTo(depth, cH);
   ctx.closePath();
   ctx.fill();
-  // Gradient za globino
   const bGrad = ctx.createLinearGradient(0, photoH, 0, cH);
   bGrad.addColorStop(0, 'rgba(0,0,0,0.0)');
   bGrad.addColorStop(1, 'rgba(0,0,0,0.08)');
   ctx.fillStyle = bGrad;
   ctx.fill();
 
-  // ─── 4. Glavna slika (sprednja stran) ───
+  // Glavna slika
   ctx.drawImage(photoImg, sx, sy, sw, sh, 0, 0, photoW, photoH);
 
-  // ─── 5. Tanka robna črta med sliko in stranicami ───
+  // Robne črte
   ctx.strokeStyle = 'rgba(0,0,0,0.15)';
   ctx.lineWidth = 0.8;
-  // Spodnji rob slike
   ctx.beginPath();
   ctx.moveTo(0, photoH);
   ctx.lineTo(photoW, photoH);
   ctx.stroke();
-  // Desni rob slike
   ctx.beginPath();
   ctx.moveTo(photoW, 0);
   ctx.lineTo(photoW, photoH);
   ctx.stroke();
-  // Diagonala v kotu (desni spodnji)
   ctx.beginPath();
   ctx.moveTo(photoW, photoH);
   ctx.lineTo(cW, cH);
@@ -435,7 +440,7 @@ export default function FramePreview({
   selectedSize,
   sizeId,
   withFrame,
-  productType, // 'stretched' | 'framed'
+  productType,
 }) {
   const canvasRef = useRef(null);
   const frame = frameStyles.find((f) => f.id === selectedFrame);
@@ -456,14 +461,12 @@ export default function FramePreview({
 
     try {
       if (withFrame && frame) {
-        // Z dekorativnim okvirjem
         const [photoImg, stripImg] = await Promise.all([
           loadImage(image),
           loadImage(frame.stripImage),
         ]);
         drawFrame(ctx, photoImg, stripImg, canvasW, canvasH, frameW, frame.tint || null);
       } else {
-        // Napeto platno na podokvirju (gallery wrap 3D)
         const photoImg = await loadImage(image);
         drawStretched(ctx, photoImg, canvasW, canvasH);
       }
