@@ -17,10 +17,11 @@
   transition: all 0.4s ease;
 }
 
-/* Drop shadow za 3D učinek okvirja */
+/* Drop shadow za 3D učinek okvirja — simulira obešenost na steni */
 .frame-preview-outer.has-frame {
-  filter: drop-shadow(0 6px 24px rgba(0, 0, 0, 0.55))
-          drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(0 8px 30px rgba(0, 0, 0, 0.5))
+          drop-shadow(0 3px 10px rgba(0, 0, 0, 0.35))
+          drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
 }
 
 /* Canvas element — responsive skaliranje */
