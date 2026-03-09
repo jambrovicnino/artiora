@@ -1,7 +1,7 @@
 import './StepIndicator.css';
 
 const steps = [
-  { key: 'obnovi', label: 'OBNOVI' },
+  { key: 'ustvari', label: 'USTVARI' },
   { key: 'okvir', label: 'OKVIR' },
 ];
 

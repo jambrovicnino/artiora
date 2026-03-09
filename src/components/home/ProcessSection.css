@@ -1,4 +1,8 @@
-/* ─── Process Section ────────────────────────── */
+/* ═══════════════════════════════════════════════
+   ETERNA — Process / Journey Section
+   Rich 5-step storytelling layout
+   ═══════════════════════════════════════════════ */
+
 .process {
   padding: 100px 0;
   background: var(--bg-secondary);
@@ -36,51 +40,48 @@
   color: var(--text-secondary);
 }
 
-/* ─── Timeline — Desktop ─────────────────────── */
-.process-timeline {
-  display: flex;
-  justify-content: center;
-  gap: 0;
-  max-width: 960px;
+/* ═══════════════════════════════════════════════
+   Journey Grid — Vertical timeline
+   ═══════════════════════════════════════════════ */
+.journey-grid {
+  max-width: 640px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
-.process-step {
-  flex: 1;
+/* ─── Card: number column + content ──────────── */
+.journey-card {
+  display: flex;
+  gap: 28px;
+  align-items: stretch;
+}
+
+/* ─── Number column (circle + line) ──────────── */
+.journey-number-col {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  position: relative;
-  padding: 0 16px;
+  flex-shrink: 0;
+  width: 48px;
 }
 
-/* ─── Connecting Line (Desktop) ──────────────── */
-.process-connector {
-  position: absolute;
-  top: 24px;
-  left: calc(50% + 24px);
-  width: calc(100% - 48px);
-  height: 1px;
-  background: var(--gold-border);
-}
-
-/* ─── Circle ─────────────────────────────────── */
-.process-circle {
+.journey-circle {
   width: 48px;
   height: 48px;
-  border: 1px solid var(--gold);
+  border: 1.5px solid var(--gold);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  background: var(--bg-secondary);
   position: relative;
   z-index: 1;
-  background: var(--bg-secondary);
+  flex-shrink: 0;
 }
 
-.process-number {
+.journey-num {
   font-family: var(--font-heading);
   font-size: 1.2rem;
   font-weight: 400;
@@ -88,40 +89,58 @@
   line-height: 1;
 }
 
-/* ─── Step Body ──────────────────────────────── */
-.process-step-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.journey-line {
+  width: 1px;
+  flex: 1;
+  background: linear-gradient(180deg, var(--gold-border), transparent);
+  min-height: 20px;
 }
 
-/* ─── Icon ───────────────────────────────────── */
-.process-icon {
-  color: var(--text-secondary);
-  margin-bottom: 16px;
+/* ─── Content ────────────────────────────────── */
+.journey-content {
+  padding-bottom: 40px;
+  flex: 1;
 }
 
-/* ─── Step Text ──────────────────────────────── */
-.process-step-title {
+.journey-card:last-child .journey-content {
+  padding-bottom: 0;
+}
+
+.journey-icon {
+  margin-bottom: 10px;
+  opacity: 0.85;
+}
+
+.journey-title {
   font-family: var(--font-body);
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--gold);
-  letter-spacing: 0.15em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
-.process-step-desc {
+.journey-subtitle {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+}
+
+.journey-desc {
   font-family: var(--font-body);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 300;
   color: var(--text-secondary);
-  line-height: 1.6;
-  max-width: 180px;
+  line-height: 1.7;
 }
 
-/* ─── Mobile — Vertical Layout ───────────────── */
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════ */
 @media (max-width: 900px) {
   .process {
     padding: 72px 0;
@@ -131,51 +150,42 @@
     font-size: 2rem;
   }
 
-  .process-timeline {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-    max-width: 400px;
-    margin: 0 auto;
-    padding-left: 0;
-  }
-
-  .process-step {
-    flex-direction: row;
-    text-align: left;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 0 0 40px 0;
-  }
-
-  /* Vertical connecting line on the left side */
-  .process-connector {
-    position: absolute;
-    top: 48px;
-    left: 24px;
-    width: 1px;
-    height: calc(100% - 48px);
-    transform: translateX(-50%);
-  }
-
-  .process-circle {
-    flex-shrink: 0;
-    margin-bottom: 0;
-  }
-
-  .process-step-body {
-    align-items: flex-start;
-  }
-
-  .process-icon {
-    display: none;
-  }
-
-  .process-step-desc {
+  .journey-grid {
     max-width: 100%;
   }
 
-  .process-step-title {
-    margin-bottom: 4px;
+  .journey-card {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 500px) {
+  .journey-number-col {
+    width: 36px;
+  }
+
+  .journey-circle {
+    width: 36px;
+    height: 36px;
+  }
+
+  .journey-num {
+    font-size: 0.95rem;
+  }
+
+  .journey-card {
+    gap: 14px;
+  }
+
+  .journey-content {
+    padding-bottom: 28px;
+  }
+
+  .journey-subtitle {
+    font-size: 1rem;
+  }
+
+  .journey-desc {
+    font-size: 0.8rem;
   }
 }

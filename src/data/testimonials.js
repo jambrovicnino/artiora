@@ -1,34 +1,34 @@
 // ═══════════════════════════════════════════════
-// ETERNA — Pričevanja strank
+// ETERNA ARTISAN — Pričevanja strank
 // ═══════════════════════════════════════════════
 
 export const testimonials = [
   {
     id: 1,
-    name: 'Marija K.',
-    initials: 'MK',
+    name: 'Maja L.',
+    initials: 'ML',
     rating: 5,
     quote:
-      'Stara fotografija mojih starih staršev iz leta 1943 je zdaj videti kot novo posneta. Solze sreče, ko sem jo podarila mami za rojstni dan!',
-    service: 'Restavracija + Okvir',
+      'S parimi kliki sem ustvarila umetnino, ki je natanko po mojem okusu. Zdaj visi v dnevni sobi in vsak gost jo občuduje. Neverjetno preprosto!',
+    service: 'AI Umetnost + Okvir',
   },
   {
     id: 2,
-    name: 'Tomaž P.',
-    initials: 'TP',
+    name: 'Luka B.',
+    initials: 'LB',
     rating: 5,
     quote:
-      'Izjemna kakovost platna. Barve so žive, tekstura gel medija je čudovita na otip. Popolno darilo za obletnico poroke.',
-    service: 'Premium platno',
+      'Naložil sem skico svoje ideje in dobil nazaj pravo umetnino na platnu. Kakovost tiska in okvirja presega pričakovanja — kot da bi kupil v galeriji.',
+    service: 'Umetnina po meri',
   },
   {
     id: 3,
-    name: 'Ana S.',
-    initials: 'AS',
+    name: 'Nina T.',
+    initials: 'NT',
     rating: 5,
     quote:
-      'Od naročila do dostave v 5 dneh. Profesionalno, hitro in rezultat presega vsa pričakovanja. Naročila bom še za prijateljice!',
-    service: 'Barvanje + Dostava',
+      'Iskala sem unikatno darilo za očetov rojstni dan. Opisala sem vizijo, AI je ustvaril čudovito pokrajino, in rezultat na platnu z okvirjem — ganljivo darilo.',
+    service: 'AI Umetnost + Premium Platno',
   },
 ];
 

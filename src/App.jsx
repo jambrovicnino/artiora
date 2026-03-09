@@ -13,6 +13,8 @@ import AboutPage from './pages/AboutPage';
 import ProcessPage from './pages/ProcessPage';
 import GalleryPage from './pages/GalleryPage';
 import TestimonialsPage from './pages/TestimonialsPage';
+import AdminNotifyPage from './pages/AdminNotifyPage';
+import AdjustmentPage from './pages/AdjustmentPage';
 import './App.css';
 
 export default function App() {
@@ -32,6 +34,8 @@ export default function App() {
           <Route path="/kako-deluje" element={<ProcessPage />} />
           <Route path="/galerija" element={<GalleryPage />} />
           <Route path="/mnenja" element={<TestimonialsPage />} />
+          <Route path="/admin/notify" element={<AdminNotifyPage />} />
+          <Route path="/prilagoditev" element={<AdjustmentPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

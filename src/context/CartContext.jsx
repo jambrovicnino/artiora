@@ -36,7 +36,23 @@ export function CartProvider({ children }) {
   const [cart, dispatch] = useReducer(cartReducer, null, loadCart);
 
   useEffect(() => {
-    localStorage.setItem('eterna_artisan_cart', JSON.stringify(cart));
+    try {
+      localStorage.setItem('eterna_artisan_cart', JSON.stringify(cart));
+    } catch (e) {
+      // localStorage poln (quota exceeded) — poskusi shraniti brez slik
+      console.warn('[ETERNA] localStorage poln, shranjujem brez slik:', e.message);
+      try {
+        const lightCart = cart.map((item) => ({
+          ...item,
+          thumbnail: item.thumbnail?.slice(0, 200) + '...', // Označi da je skrajšan
+          originalImage: null,
+          processedImage: null,
+        }));
+        localStorage.setItem('eterna_artisan_cart', JSON.stringify(lightCart));
+      } catch {
+        console.error('[ETERNA] localStorage poln — ne morem shraniti košarice');
+      }
+    }
   }, [cart]);
 
   const addItem = (item) => dispatch({ type: 'ADD_ITEM', payload: item });

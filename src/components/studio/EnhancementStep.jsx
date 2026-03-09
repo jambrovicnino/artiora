@@ -1,5 +1,5 @@
+import { ART_STYLES } from '../../services/artStyleService';
 import BeforeAfterSlider from './BeforeAfterSlider';
-import { ENHANCEMENT_METADATA } from '../../services/eternaService';
 import './EnhancementStep.css';
 
 export default function EnhancementStep({
@@ -28,42 +28,47 @@ export default function EnhancementStep({
 
       {/* Right — Controls */}
       <div className="enhancement-controls">
-        <h2 className="enhancement-heading">Izboljšava Slike</h2>
+        <h2 className="enhancement-heading">Umetniška preobrazba</h2>
         <p className="enhancement-description">
-          &ldquo;Z umetno inteligenco razkrivamo skrite podrobnosti vaših
-          najdragocenejših spominov.&rdquo;
+          Preobrazite svojo fotografijo v unikatno umetniško delo.
+          Izberite slog in AI bo ustvaril umetnino.
         </p>
 
-        {/* Enhancement options */}
-        <div className="enhancement-options">
-          {ENHANCEMENT_METADATA.map((option) => (
-            <div
-              key={option.id}
-              className={`enhancement-option ${selectedEnhancement === option.id ? 'selected' : ''}`}
+        {/* Artistic style grid */}
+        <div className="art-style-grid">
+          {ART_STYLES.map((style) => (
+            <button
+              key={style.id}
+              className={`art-style-card ${selectedEnhancement === style.id ? 'selected' : ''} ${isProcessing && selectedEnhancement === style.id ? 'processing' : ''}`}
+              onClick={() => onEnhance(style.id)}
+              disabled={isProcessing}
             >
-              <div className="option-header">
-                <h3 className="option-title">{option.label}</h3>
-                {selectedEnhancement === option.id && (
-                  <span className="option-check">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <circle cx="12" cy="12" r="10" />
-                    </svg>
-                  </span>
+              <div
+                className="art-style-preview"
+                style={{ background: style.previewGradient }}
+              >
+                <span className="art-style-emoji">{style.emoji}</span>
+                {isProcessing && selectedEnhancement === style.id && (
+                  <div className="art-style-spinner" />
                 )}
               </div>
-              <p className="option-description">{option.description}</p>
-              <button
-                className="btn-outline option-btn"
-                onClick={() => onEnhance(option.id)}
-                disabled={isProcessing}
-              >
-                {isProcessing && selectedEnhancement === option.id
-                  ? 'OBDELAVA...'
-                  : option.buttonLabel}
-              </button>
-            </div>
+              <div className="art-style-info">
+                <h3 className="art-style-label">{style.label}</h3>
+                <p className="art-style-desc">{style.description}</p>
+              </div>
+              {selectedEnhancement === style.id && !isProcessing && (
+                <span className="art-style-check">✓</span>
+              )}
+            </button>
           ))}
         </div>
+
+        {/* Hint */}
+        {!selectedEnhancement && !isProcessing && (
+          <p className="art-style-hint">
+            Izberite umetniški slog za predogled preobrazbe
+          </p>
+        )}
 
         {/* Continue button */}
         <button

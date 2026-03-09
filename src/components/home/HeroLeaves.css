@@ -1,41 +1,188 @@
 /* ═══════════════════════════════════════════════
-   ETERNA — Floating Gold Leaves
-   Gentle leaf shapes that orbit the hero section
-   and dissolve through the heading text.
+   ETERNA ARTISAN — Aurora Background + Gemstones
+   Flowing color waves + floating gem particles
    ═══════════════════════════════════════════════ */
 
-.hero-leaves {
+.aurora-bg {
   position: absolute;
   inset: 0;
+  overflow: hidden;
   pointer-events: none;
   z-index: 0;
-  overflow: hidden;
 }
 
-.hero-leaf {
+/* ─── Gradient blobs ─────────────────────────── */
+.aurora-blob {
   position: absolute;
-  top: 0;
-  left: 0;
-  color: var(--gold);
-  will-change: transform, opacity;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.25;
+  will-change: transform;
+}
+
+.aurora-blob-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #3b82f6, #3b82f6cc, transparent 70%);
+  top: -15%;
+  left: 5%;
+  animation: aurora-drift-1 18s ease-in-out infinite alternate;
+}
+
+.aurora-blob-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #8b5cf6, #8b5cf6cc, transparent 70%);
+  top: 25%;
+  right: -8%;
+  animation: aurora-drift-2 22s ease-in-out infinite alternate;
+}
+
+.aurora-blob-3 {
+  width: 700px;
+  height: 450px;
+  background: radial-gradient(circle, #ec4899, #ec4899cc, transparent 70%);
+  bottom: -15%;
+  left: 25%;
+  animation: aurora-drift-3 25s ease-in-out infinite alternate;
+}
+
+.aurora-blob-4 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #10b981, #10b981cc, transparent 70%);
+  top: 5%;
+  right: 15%;
+  animation: aurora-drift-4 20s ease-in-out infinite alternate;
+}
+
+.aurora-blob-5 {
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, #f97316, #f97316cc, transparent 70%);
+  bottom: 15%;
+  left: -5%;
+  animation: aurora-drift-5 24s ease-in-out infinite alternate;
+}
+
+/* ─── Aurora drift keyframes ─────────────────── */
+@keyframes aurora-drift-1 {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, 25px) scale(1.08); }
+  66% { transform: translate(-20px, 40px) scale(0.95); }
+  100% { transform: translate(25px, -15px) scale(1.05); }
+}
+
+@keyframes aurora-drift-2 {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-35px, 20px) scale(1.1); }
+  66% { transform: translate(25px, -30px) scale(0.92); }
+  100% { transform: translate(-15px, 15px) scale(1.06); }
+}
+
+@keyframes aurora-drift-3 {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  50% { transform: translate(30px, -20px) scale(1.12) rotate(3deg); }
+  100% { transform: translate(-25px, 10px) scale(0.95) rotate(-2deg); }
+}
+
+@keyframes aurora-drift-4 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-30px, 35px) scale(1.15); }
+  100% { transform: translate(20px, -10px) scale(0.9); }
+}
+
+@keyframes aurora-drift-5 {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(25px, -20px) scale(1.1); }
+  66% { transform: translate(-15px, -35px) scale(0.96); }
+  100% { transform: translate(10px, 20px) scale(1.08); }
+}
+
+/* ═══════════════════════════════════════════════
+   FLOATING GEMSTONES
+   ═══════════════════════════════════════════════ */
+
+.gems-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
   pointer-events: none;
-  filter: blur(0.2px);
 }
 
-.hero-leaf-svg {
-  display: block;
+.gem {
+  position: absolute;
+  top: -30px;
+  opacity: 0;
+  box-shadow:
+    inset -2px -2px 4px rgba(255, 255, 255, 0.4),
+    inset 2px 2px 4px rgba(0, 0, 0, 0.1),
+    0 0 8px currentColor;
+  animation:
+    gem-fall linear infinite,
+    gem-shimmer ease-in-out infinite;
+  will-change: transform, opacity;
 }
 
-/* Hide on mobile */
-@media (max-width: 768px) {
-  .hero-leaves {
-    display: none;
+/* ─── Fall: drift down + horizontal sway + rotate ── */
+@keyframes gem-fall {
+  0% {
+    transform: translateY(-30px) translateX(0px) rotate(var(--gem-rotate, 0deg)) scale(0.6);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(50vh) translateX(var(--gem-drift, 0px)) rotate(calc(var(--gem-rotate, 0deg) + 180deg)) scale(1);
+    opacity: 0.45;
+  }
+  95% {
+    opacity: 0.15;
+  }
+  100% {
+    transform: translateY(110vh) translateX(calc(var(--gem-drift, 0px) * 0.5)) rotate(calc(var(--gem-rotate, 0deg) + 360deg)) scale(0.7);
+    opacity: 0;
   }
 }
 
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .hero-leaves {
+/* ─── Shimmer: subtle pulse glow ─────────────── */
+@keyframes gem-shimmer {
+  0%, 100% {
+    filter: brightness(1) saturate(1);
+  }
+  50% {
+    filter: brightness(1.6) saturate(1.3);
+  }
+}
+
+/* ─── Mobile: fewer, smaller gems ────────────── */
+@media (max-width: 768px) {
+  .aurora-blob { filter: blur(80px); opacity: 0.18; }
+  .aurora-blob-1 { width: 300px; height: 300px; }
+  .aurora-blob-2 { width: 250px; height: 250px; }
+  .aurora-blob-3 { width: 350px; height: 250px; }
+  .aurora-blob-4 { display: none; }
+  .aurora-blob-5 { display: none; }
+
+  .gem:nth-child(n+10) {
     display: none;
+  }
+  .gem {
+    box-shadow:
+      inset -1px -1px 2px rgba(255, 255, 255, 0.3),
+      0 0 4px currentColor;
+  }
+}
+
+/* ─── Respect reduced motion ─────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .aurora-blob,
+  .gem {
+    animation: none !important;
+  }
+  .gem {
+    opacity: 0.2;
+    top: 30%;
   }
 }

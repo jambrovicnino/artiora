@@ -1,9 +1,6 @@
 import FramePreview from './FramePreview';
-import { displaySizes, frameStyles, getPrice, getSizeLabel, PRODUCT_TYPES, IMPASTO_GEL_COST, MARKUP, DDV_RATE } from '../../data/frameOptions';
+import { displaySizes, frameStyles, getPrice, getSizeLabel, getImpastoCost, PRODUCT_TYPES } from '../../data/frameOptions';
 import './FramingStep.css';
-
-// Maloprodajna cena impasta (za prikaz)
-const IMPASTO_RETAIL = Math.round(IMPASTO_GEL_COST * MARKUP * (1 + DDV_RATE));
 
 export default function FramingStep({
   image,
@@ -18,6 +15,12 @@ export default function FramingStep({
   dedication,
   setDedication,
   onAddToCart,
+  isAddingToCart,
+  uploadProgress,
+  imageQuality, // { dpi, rating, label, color } ali null
+  onUpscale,
+  isUpscaling,
+  upscaleInfo,
 }) {
   const isFramed = productType === PRODUCT_TYPES.FRAMED;
   const frameId = isFramed ? selectedFrame : null;
@@ -34,6 +37,7 @@ export default function FramingStep({
           selectedSize={sizeLabel}
           sizeId={selectedSize}
           withFrame={isFramed}
+          productType={productType}
         />
       </div>
 
@@ -49,6 +53,7 @@ export default function FramingStep({
           <div className="size-grid">
             {displaySizes.map((size) => {
               const printPrice = getPrice(size.id, PRODUCT_TYPES.PRINT);
+              const q = imageQuality?.[size.id];
               return (
                 <button
                   key={size.id}
@@ -58,10 +63,104 @@ export default function FramingStep({
                   <span className="size-card-dims">{size.label}</span>
                   <span className="size-card-name">{size.displayName}</span>
                   <span className="size-card-price">{printPrice} €</span>
+                  {q && (
+                    <span
+                      className={`size-card-quality quality-${q.rating}`}
+                      style={{ color: q.color }}
+                    >
+                      {q.dpi} DPI
+                    </span>
+                  )}
                 </button>
               );
             })}
           </div>
+          {imageQuality?.[selectedSize]?.rating === 'poor' && (
+            <div className="quality-warning">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2">
+                <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+                <line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+              <div className="quality-warning-content">
+                <span>
+                  Resolucija slike je prenizka za to velikost ({imageQuality[selectedSize].dpi} DPI).
+                  Za boljšo kvaliteto izberite manjšo velikost ali povečajte resolucijo.
+                </span>
+                {onUpscale && (
+                  <button
+                    className="btn-upscale"
+                    onClick={onUpscale}
+                    disabled={isUpscaling}
+                  >
+                    {isUpscaling ? (
+                      <>
+                        <span className="upscale-spinner" />
+                        Povečujem resolucijo...
+                      </>
+                    ) : (
+                      <>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <polyline points="15 3 21 3 21 9" />
+                          <polyline points="9 21 3 21 3 15" />
+                          <line x1="21" y1="3" x2="14" y2="10" />
+                          <line x1="3" y1="21" x2="10" y2="14" />
+                        </svg>
+                        IZBOLJŠAJ RESOLUCIJO (AI 4×)
+                      </>
+                    )}
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
+          {imageQuality?.[selectedSize]?.rating === 'acceptable' && (
+            <div className="quality-notice">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2">
+                <circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg>
+              <div className="quality-warning-content">
+                <span>
+                  Resolucija je mejna ({imageQuality[selectedSize].dpi} DPI). Tisk bo sprejemljiv, a ne optimalen.
+                </span>
+                {onUpscale && !upscaleInfo && (
+                  <button
+                    className="btn-upscale btn-upscale--subtle"
+                    onClick={onUpscale}
+                    disabled={isUpscaling}
+                  >
+                    {isUpscaling ? (
+                      <>
+                        <span className="upscale-spinner" />
+                        Povečujem resolucijo...
+                      </>
+                    ) : (
+                      <>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <polyline points="15 3 21 3 21 9" />
+                          <polyline points="9 21 3 21 3 15" />
+                          <line x1="21" y1="3" x2="14" y2="10" />
+                          <line x1="3" y1="21" x2="10" y2="14" />
+                        </svg>
+                        IZBOLJŠAJ RESOLUCIJO (AI 4×)
+                      </>
+                    )}
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
+          {upscaleInfo && (
+            <div className="quality-upscale-info">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+              <span>
+                Resolucija povečana {upscaleInfo.factor}× z {upscaleInfo.method === 'ai' ? 'AI' : 'interpolacijo'}
+                {upscaleInfo.dimensions && ` (${upscaleInfo.dimensions.width}×${upscaleInfo.dimensions.height})`}
+              </span>
+            </div>
+          )}
         </div>
 
         {/* ② IZDELEK */}
@@ -128,8 +227,49 @@ export default function FramingStep({
               <span className="step-number">3</span>
               OKVIR
             </label>
+
+            {/* NEW ERA okvirji */}
+            <div className="frame-category">
+              <span className="frame-category-label frame-category-new-era">NEW ERA</span>
+            </div>
             <div className="frame-options">
-              {frameStyles.map((frame) => {
+              {frameStyles.filter((f) => f.category === 'new-era').map((frame) => {
+                const framePrice = getPrice(selectedSize, PRODUCT_TYPES.FRAMED, frame.id, withImpasto);
+                return (
+                  <button
+                    key={frame.id}
+                    className={`frame-option frame-option--new-era ${selectedFrame === frame.id ? 'selected' : ''}`}
+                    onClick={() => setSelectedFrame(frame.id)}
+                    title={`${frame.label} — ${frame.profileDimensions}`}
+                  >
+                    <div className="frame-thumb" style={{ position: 'relative', overflow: 'hidden' }}>
+                      <img
+                        src={frame.stripImage}
+                        alt={frame.label}
+                        className="frame-thumb-img"
+                        loading="lazy"
+                      />
+                      {frame.tint && (
+                        <div
+                          className="frame-thumb-tint"
+                          style={{ backgroundColor: frame.tint }}
+                        />
+                      )}
+                    </div>
+                    <span className="frame-option-label">{frame.label}</span>
+                    <span className="frame-option-price">{framePrice} €</span>
+                    <span className="frame-option-dims">{frame.profileDimensions}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* KLASIČNI okvirji */}
+            <div className="frame-category">
+              <span className="frame-category-label">KLASIČNI</span>
+            </div>
+            <div className="frame-options">
+              {frameStyles.filter((f) => f.category === 'klasicni').map((frame) => {
                 const framePrice = getPrice(selectedSize, PRODUCT_TYPES.FRAMED, frame.id, withImpasto);
                 return (
                   <button
@@ -169,7 +309,7 @@ export default function FramingStep({
                 <span className="impasto-name">Impasto gel zaključek</span>
                 <span className="impasto-desc">Ročno nanesen gel za umetniško teksturo</span>
               </div>
-              <span className="impasto-price">+{IMPASTO_RETAIL} €</span>
+              <span className="impasto-price">+{getImpastoCost(selectedSize)} €</span>
             </label>
           </div>
         )}
@@ -209,8 +349,19 @@ export default function FramingStep({
         </div>
 
         {/* Dodaj v košarico */}
-        <button className="btn-gold-large" onClick={onAddToCart}>
-          DODAJ V KOŠARICO
+        <button
+          className="btn-gold-large"
+          onClick={onAddToCart}
+          disabled={isAddingToCart}
+        >
+          {isAddingToCart ? (
+            <>
+              <span className="upscale-spinner" />
+              {uploadProgress || 'Nalagam...'}
+            </>
+          ) : (
+            'DODAJ V KOŠARICO'
+          )}
         </button>
       </div>
     </div>

@@ -137,7 +137,7 @@
   display: block;
   width: 40px;
   height: 2px;
-  background: var(--gold);
+  background: linear-gradient(90deg, var(--primary), var(--vivid-yellow));
   margin-bottom: 14px;
 }
 

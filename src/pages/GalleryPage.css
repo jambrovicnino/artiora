@@ -2,7 +2,7 @@
    ETERNA — Gallery Page
    ═══════════════════════════════════════════════ */
 
-/* ─── Page Hero (scoped to gallery for independence) ── */
+/* ─── Page Hero ──────────────────────────────── */
 .gallery-page .page-hero {
   text-align: center;
   padding: 6rem 0 4rem;
@@ -10,147 +10,48 @@
   border-bottom: 1px solid var(--gold-border);
 }
 
-/* ─── Showcase Section ─────────────────────────── */
-.gallery-showcase {
-  padding: 5rem 0;
+/* ─── Category Filter Bar ────────────────────── */
+.gallery-filter-section {
+  padding: 2rem 0 0;
   background: var(--bg-primary);
 }
 
-.gallery-showcase .container {
-  max-width: 960px;
-  margin-left: auto;
-  margin-right: auto;
+.gallery-filter-bar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.gallery-showcase-alt {
-  background: var(--bg-secondary);
-}
-
-.showcase-header {
-  text-align: center;
-  margin-bottom: 3rem;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.showcase-label {
-  display: block;
+.gallery-filter-btn {
   font-family: var(--font-body);
   font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 0.75rem;
-}
-
-.showcase-title {
-  font-family: var(--font-heading);
-  font-size: 2rem;
-  font-weight: 400;
-  letter-spacing: 0.06em;
-  color: var(--text-primary);
-  margin-bottom: 0.75rem;
-}
-
-.showcase-description {
-  font-family: var(--font-body);
-  font-size: 0.9rem;
   color: var(--text-secondary);
-  font-style: italic;
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  padding: 8px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.showcase-slider-wrapper {
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  border: 1px solid var(--gold-border);
-  background: var(--bg-card);
-  padding: 1rem;
-  box-sizing: border-box;
-}
-
-/* ─── Framed Result Card ───────────────────────── */
-.showcase-framed {
-  margin-top: 3rem;
-  display: flex;
-  justify-content: center;
-}
-
-.showcase-framed-card {
-  background: var(--bg-card);
-  border: 1px solid var(--gold-border);
-  max-width: 500px;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  overflow: hidden;
-}
-
-.showcase-framed-image {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.showcase-framed-info {
-  padding: 1.5rem 2rem;
-  text-align: center;
-}
-
-.showcase-framed-badge {
-  display: inline-block;
-  font-family: var(--font-body);
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--bg-primary);
-  background: var(--gold);
-  padding: 4px 12px;
-  margin-bottom: 0.75rem;
-}
-
-.showcase-framed-title {
-  font-family: var(--font-heading);
-  font-size: 1.3rem;
-  font-weight: 400;
+.gallery-filter-btn:hover {
   color: var(--text-primary);
-  letter-spacing: 0.04em;
-  margin-bottom: 0.5rem;
+  border-color: var(--primary-border);
 }
 
-.showcase-framed-detail {
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  color: var(--text-secondary);
+.gallery-filter-btn.active {
+  color: var(--text-inverse);
+  background: var(--primary);
+  border-color: var(--primary);
 }
 
-/* ─── Grid Section ─────────────────────────────── */
+/* ─── Grid Section ───────────────────────────── */
 .gallery-grid-section {
-  padding: 5rem 0;
+  padding: 3rem 0 5rem;
   background: var(--bg-primary);
-}
-
-.gallery-grid-header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.gallery-grid-heading {
-  font-family: var(--font-heading);
-  font-size: 2rem;
-  font-weight: 400;
-  letter-spacing: 0.06em;
-  color: var(--text-primary);
-  margin-bottom: 0.75rem;
-}
-
-.gallery-grid-subtitle {
-  font-family: var(--font-body);
-  font-size: 0.9rem;
-  color: var(--text-secondary);
 }
 
 .gallery-page-grid {
@@ -163,6 +64,12 @@
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.gallery-page-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--primary-border);
 }
 
 .gallery-page-image-container {
@@ -176,27 +83,15 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: grayscale(30%) brightness(0.7);
-  transition: filter 0.3s ease;
+  transition: transform 0.5s ease;
+}
+
+.gallery-page-image--real {
+  filter: none;
 }
 
 .gallery-page-card:hover .gallery-page-image {
-  filter: grayscale(0%) brightness(0.85);
-}
-
-.gallery-page-badge {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  font-family: var(--font-body);
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--bg-primary);
-  background: var(--gold);
-  padding: 4px 10px;
-  z-index: 2;
+  transform: scale(1.05);
 }
 
 .gallery-page-overlay {
@@ -224,39 +119,61 @@
   color: var(--text-secondary);
 }
 
-.gallery-page-overlay-enhancement {
+.gallery-page-overlay-frame {
   font-family: var(--font-body);
-  font-size: 0.7rem;
-  color: var(--gold);
-  letter-spacing: 0.1em;
+  font-size: 0.65rem;
+  color: var(--primary);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
+  font-weight: 600;
 }
 
-/* ─── Responsive ───────────────────────────────── */
+/* ─── Empty State ────────────────────────────── */
+.gallery-empty {
+  text-align: center;
+  padding: 5rem 2rem;
+}
+
+.gallery-empty-icon {
+  margin-bottom: 1.5rem;
+}
+
+.gallery-empty-title {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  margin-bottom: 0.75rem;
+}
+
+.gallery-empty-desc {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  max-width: 440px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ─── Responsive ─────────────────────────────── */
 @media (max-width: 768px) {
-  .gallery-showcase {
-    padding: 3rem 0;
-  }
-
-  .showcase-title {
-    font-size: 1.6rem;
-  }
-
-  .showcase-slider-wrapper {
-    padding: 0.5rem;
-  }
-
   .gallery-page-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
 
   .gallery-grid-section {
-    padding: 3rem 0;
+    padding: 2rem 0 3rem;
   }
 
-  .showcase-framed-card {
-    max-width: 100%;
+  .gallery-filter-bar {
+    gap: 6px;
+  }
+
+  .gallery-filter-btn {
+    padding: 6px 14px;
+    font-size: 0.65rem;
   }
 }
 

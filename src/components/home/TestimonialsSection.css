@@ -15,7 +15,7 @@
   font-family: var(--font-body);
   font-size: 0.7rem;
   font-weight: 600;
-  color: var(--gold);
+  color: var(--primary);
   letter-spacing: 0.5em;
   text-transform: uppercase;
   margin-bottom: 12px;
@@ -51,41 +51,19 @@
   position: relative;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  border-top: 2px solid var(--gold);
+  border-top: 3px solid transparent;
+  border-image: var(--gradient-rainbow) 1;
+  border-image-slice: 1 0 0 0;
   padding: 32px 28px;
   transition: all 0.3s ease;
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
 }
 
 .testimonial-card:hover {
-  background: var(--bg-elevated);
-  border-color: var(--gold-border);
-  border-top-color: var(--gold);
-}
-
-/* ─── L-shaped Corner Decorations ────────────── */
-.testimonial-card::before,
-.testimonial-card::after {
-  content: '';
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  pointer-events: none;
-}
-
-/* Top-left corner */
-.testimonial-card::before {
-  top: 8px;
-  left: 8px;
-  border-top: 1px solid var(--gold-border);
-  border-left: 1px solid var(--gold-border);
-}
-
-/* Bottom-right corner */
-.testimonial-card::after {
-  bottom: 8px;
-  right: 8px;
-  border-bottom: 1px solid var(--gold-border);
-  border-right: 1px solid var(--gold-border);
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-3px);
 }
 
 /* ─── Quote Mark ─────────────────────────────── */
@@ -93,7 +71,7 @@
   display: block;
   font-family: var(--font-heading);
   font-size: 3rem;
-  color: var(--gold);
+  color: var(--primary);
   opacity: 0.3;
   line-height: 1;
   margin-bottom: 8px;
@@ -111,7 +89,7 @@
 
 /* ─── Stars ──────────────────────────────────── */
 .testimonial-stars {
-  color: var(--gold);
+  color: var(--vivid-yellow);
   font-size: 0.75rem;
   letter-spacing: 2px;
   margin-bottom: 16px;
@@ -120,9 +98,10 @@
 /* ─── Divider ────────────────────────────────── */
 .testimonial-divider {
   width: 40px;
-  height: 1px;
-  background: var(--gold);
+  height: 2px;
+  background: var(--gradient-rainbow);
   margin-bottom: 20px;
+  border-radius: 1px;
 }
 
 /* ─── Author ─────────────────────────────────── */
@@ -135,7 +114,7 @@
 .testimonial-avatar {
   width: 40px;
   height: 40px;
-  background: var(--gold);
+  background: var(--gradient-rainbow);
   color: var(--text-inverse);
   font-family: var(--font-body);
   font-size: 0.75rem;

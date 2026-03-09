@@ -30,13 +30,129 @@
 
 .checkout-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.2fr 0.8fr;
   gap: 2rem;
   align-items: start;
+}
+
+.checkout-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.checkout-right {
+  position: sticky;
+  top: 2rem;
+}
+
+/* ─── Demo order section ─── */
+.demo-order-section {
+  margin-top: 1rem;
+}
+
+.demo-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 1rem 0;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.demo-divider::before,
+.demo-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.btn-demo-order {
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  color: white;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-demo-order:hover {
+  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(139, 92, 246, 0.35);
+}
+
+.btn-demo-order:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.demo-note {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* ─── Order processing spinner ─── */
+.order-processing {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+}
+
+.processing-spinner {
+  width: 44px;
+  height: 44px;
+  border: 3px solid var(--border);
+  border-top-color: #8b5cf6;
+  border-right-color: #ec4899;
+  border-radius: 50%;
+  margin: 0 auto 1.25rem;
+  animation: spin 1s linear infinite;
+}
+
+.processing-status {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.processing-note {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.paypal-note {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 0.75rem;
 }
 
 @media (max-width: 768px) {
   .checkout-layout {
     grid-template-columns: 1fr;
+  }
+
+  .checkout-right {
+    position: static;
   }
 }

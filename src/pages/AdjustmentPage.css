@@ -1,0 +1,196 @@
+/* ═══════════════════════════════════════════════
+   ETERNA Artisan — Adjustment Request Page
+   ═══════════════════════════════════════════════ */
+
+.adjustment-page {
+  padding: 3rem 0 5rem;
+  min-height: 60vh;
+  display: flex;
+  justify-content: center;
+}
+
+/* ─── Card ─── */
+.adjustment-card {
+  max-width: 600px;
+  width: 100%;
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+/* ─── Header ─── */
+.adjustment-header {
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+  padding: 24px;
+  text-align: center;
+}
+
+.adjustment-header h1 {
+  color: white;
+  margin: 0;
+  font-size: 1.6rem;
+  font-family: var(--font-heading);
+  letter-spacing: 0.15em;
+  font-weight: 400;
+}
+
+.adjustment-header span {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+}
+
+/* ─── Image Preview ─── */
+.adjustment-preview {
+  padding: 20px 24px 0;
+  text-align: center;
+}
+
+.adjustment-preview-img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border-light);
+  background: #f9f9f9;
+}
+
+.adjustment-preview-label {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  margin: 8px 0 0;
+}
+
+/* ─── Body ─── */
+.adjustment-body {
+  padding: 20px 24px 24px;
+}
+
+.adjustment-order-ref {
+  background: var(--bg-subtle, #f8f5ff);
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  text-align: center;
+  border: 1px solid #e9e0ff;
+}
+
+.adjustment-intro {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0 0 20px;
+}
+
+/* ─── Form ─── */
+.adjustment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.adjustment-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.adjustment-field label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.adjustment-field input,
+.adjustment-field textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background: var(--bg-main);
+  color: var(--text-primary);
+  font-family: inherit;
+  transition: border-color 0.2s;
+  resize: vertical;
+}
+
+.adjustment-field input:focus,
+.adjustment-field textarea:focus {
+  outline: none;
+  border-color: #8b5cf6;
+}
+
+.adjustment-field textarea {
+  min-height: 120px;
+}
+
+/* ─── Submit ─── */
+.adjustment-submit {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* ─── Result ─── */
+.adjustment-result {
+  padding: 14px 16px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 16px;
+}
+
+.adjustment-result--success {
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+
+.adjustment-result--error {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+/* ─── Footer ─── */
+.adjustment-footer {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  text-align: center;
+  margin: 20px 0 0;
+}
+
+.adjustment-footer a {
+  color: #8b5cf6;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.adjustment-footer a:hover {
+  text-decoration: underline;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 640px) {
+  .adjustment-page {
+    padding: 1rem 0 3rem;
+  }
+
+  .adjustment-card {
+    border-radius: 12px;
+    margin: 0 -0.5rem;
+  }
+
+  .adjustment-body {
+    padding: 16px;
+  }
+}

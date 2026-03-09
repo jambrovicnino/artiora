@@ -14,9 +14,12 @@ export default function Navbar() {
     <nav className="navbar">
       <div className="container navbar-inner">
         <Link to="/" className="logo-group" onClick={closeMenu}>
-          <span className="logo-diamond">
-            <span className="diamond-frame" />
-            <span className="diamond-inner">E</span>
+          <span className="logo-wrap">
+            <span className="logo-glass-block" />
+            <span className="logo-diamond">
+              <span className="diamond-frame" />
+              <span className="diamond-inner">E</span>
+            </span>
           </span>
           <div className="logo-text">
             <span className="logo-brand">ETERNA</span>

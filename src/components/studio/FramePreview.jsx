@@ -9,6 +9,8 @@ import './FramePreview.css';
 // strip teksturami iz Vidal kataloga.
 // Koti so pravilni 45° miter stiki (trapezoidni
 // clipping pathi na Canvas elementu).
+//
+// NEW: Podpora za barvno tintanje (New Era okvirji)
 // ═══════════════════════════════════════════════
 
 // Višina canvas elementa (piksli) — višja = bolj ostro
@@ -16,6 +18,9 @@ const CANVAS_HEIGHT = 700;
 
 // Faktor za boljšo vidnost okvirja v predogledu
 const PREVIEW_SCALE = 2.0;
+
+// Razširitev clipping patha za preprečevanje vrzeli (anti-aliasing fix)
+const SEAM_OVERLAP = 1;
 
 /** Razmerje stranic iz sizeId (npr. "40x50" → 0.8) */
 function getAspectRatio(sizeId) {
@@ -40,8 +45,13 @@ function loadImage(src) {
  * Izriši okvir z dejansko strip teksturo.
  * Vsako stranico okvirja izriše s pravilno orientirano
  * teksturo, kote pa oreže s 45° trapezoidnim clipping pathom.
+ *
+ * SEAM_OVERLAP: Vsak clip path se razširi za 1px čez miter šiv,
+ * kar prepreči vrzeli med stranmi okvirja zaradi anti-aliasinga.
+ *
+ * tintColor: Opcijski HEX za barvno tintanje (New Era okvirji).
  */
-function drawFrame(ctx, photoImg, stripImg, cW, cH, fW) {
+function drawFrame(ctx, photoImg, stripImg, cW, cH, fW, tintColor) {
   ctx.clearRect(0, 0, cW, cH);
 
   const photoX = fW;
@@ -77,13 +87,16 @@ function drawFrame(ctx, photoImg, stripImg, cW, cH, fW) {
   hCtx.rotate(-Math.PI / 2);
   hCtx.drawImage(stripImg, 0, 0);
 
+  // Overlap (o) prepreči vrzeli na miter šivih
+  const o = SEAM_OVERLAP;
+
   // ─── 4. LEVA STRANICA ───
   ctx.save();
   ctx.beginPath();
-  ctx.moveTo(0, 0);
-  ctx.lineTo(fW, fW);
-  ctx.lineTo(fW, cH - fW);
-  ctx.lineTo(0, cH);
+  ctx.moveTo(-o, -o);
+  ctx.lineTo(fW + o, fW - o);
+  ctx.lineTo(fW + o, cH - fW + o);
+  ctx.lineTo(-o, cH + o);
   ctx.closePath();
   ctx.clip();
   ctx.drawImage(stripImg, 0, 0, stripImg.width, stripImg.height, 0, 0, fW, cH);
@@ -92,10 +105,10 @@ function drawFrame(ctx, photoImg, stripImg, cW, cH, fW) {
   // ─── 5. DESNA STRANICA (zrcaljeno) ───
   ctx.save();
   ctx.beginPath();
-  ctx.moveTo(cW, 0);
-  ctx.lineTo(cW - fW, fW);
-  ctx.lineTo(cW - fW, cH - fW);
-  ctx.lineTo(cW, cH);
+  ctx.moveTo(cW + o, -o);
+  ctx.lineTo(cW - fW - o, fW - o);
+  ctx.lineTo(cW - fW - o, cH - fW + o);
+  ctx.lineTo(cW + o, cH + o);
   ctx.closePath();
   ctx.clip();
   ctx.translate(cW, 0);
@@ -106,10 +119,10 @@ function drawFrame(ctx, photoImg, stripImg, cW, cH, fW) {
   // ─── 6. ZGORNJA STRANICA (rotirana tekstura) ───
   ctx.save();
   ctx.beginPath();
-  ctx.moveTo(0, 0);
-  ctx.lineTo(cW, 0);
-  ctx.lineTo(cW - fW, fW);
-  ctx.lineTo(fW, fW);
+  ctx.moveTo(-o, -o);
+  ctx.lineTo(cW + o, -o);
+  ctx.lineTo(cW - fW + o, fW + o);
+  ctx.lineTo(fW - o, fW + o);
   ctx.closePath();
   ctx.clip();
   ctx.drawImage(hCanvas, 0, 0, hCanvas.width, hCanvas.height, 0, 0, cW, fW);
@@ -118,10 +131,10 @@ function drawFrame(ctx, photoImg, stripImg, cW, cH, fW) {
   // ─── 7. SPODNJA STRANICA (rotirana + zrcaljena) ───
   ctx.save();
   ctx.beginPath();
-  ctx.moveTo(0, cH);
-  ctx.lineTo(cW, cH);
-  ctx.lineTo(cW - fW, cH - fW);
-  ctx.lineTo(fW, cH - fW);
+  ctx.moveTo(-o, cH + o);
+  ctx.lineTo(cW + o, cH + o);
+  ctx.lineTo(cW - fW + o, cH - fW - o);
+  ctx.lineTo(fW - o, cH - fW - o);
   ctx.closePath();
   ctx.clip();
   ctx.translate(0, cH);
@@ -129,7 +142,69 @@ function drawFrame(ctx, photoImg, stripImg, cW, cH, fW) {
   ctx.drawImage(hCanvas, 0, 0, hCanvas.width, hCanvas.height, 0, 0, cW, fW);
   ctx.restore();
 
-  // ─── 8. Notranja senca (globina okvirja) ───
+  // ─── 7b. Barvno tintanje za New Era okvirje ───
+  if (tintColor) {
+    // Shrani fotografijo (brez okvirja)
+    ctx.save();
+
+    // Ustvari masko ki izloči fotografijo (samo okvir)
+    ctx.beginPath();
+    ctx.rect(0, 0, cW, cH);
+    // Izreži notranjost (fotografijo)
+    ctx.moveTo(photoX, photoY);
+    ctx.lineTo(photoX, photoY + photoH);
+    ctx.lineTo(photoX + photoW, photoY + photoH);
+    ctx.lineTo(photoX + photoW, photoY);
+    ctx.closePath();
+    ctx.clip('evenodd');
+
+    // Overlay pass — ohranja teksturo, dodaja barvo
+    ctx.globalCompositeOperation = 'overlay';
+    ctx.fillStyle = tintColor;
+    ctx.fillRect(0, 0, cW, cH);
+
+    // Color pass — nastavlja hue bolj agresivno
+    ctx.globalCompositeOperation = 'color';
+    ctx.globalAlpha = 0.6;
+    ctx.fillStyle = tintColor;
+    ctx.fillRect(0, 0, cW, cH);
+
+    ctx.restore();
+  }
+
+  // ─── 8. Miter šivi — izriši tanke črte za zapolnitev vrzeli ───
+  ctx.save();
+  ctx.strokeStyle = tintColor || '#2a2218';
+  ctx.lineWidth = 1.5;
+  ctx.globalAlpha = 0.5;
+
+  // Zgornji levi šiv
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(fW, fW);
+  ctx.stroke();
+
+  // Zgornji desni šiv
+  ctx.beginPath();
+  ctx.moveTo(cW, 0);
+  ctx.lineTo(cW - fW, fW);
+  ctx.stroke();
+
+  // Spodnji levi šiv
+  ctx.beginPath();
+  ctx.moveTo(0, cH);
+  ctx.lineTo(fW, cH - fW);
+  ctx.stroke();
+
+  // Spodnji desni šiv
+  ctx.beginPath();
+  ctx.moveTo(cW, cH);
+  ctx.lineTo(cW - fW, cH - fW);
+  ctx.stroke();
+
+  ctx.restore();
+
+  // ─── 9. Notranja senca (globina okvirja) ───
   const shadowSize = Math.max(6, fW * 0.15);
 
   // Zgornja notranja senca
@@ -166,10 +241,92 @@ function drawFrame(ctx, photoImg, stripImg, cW, cH, fW) {
   ctx.fillStyle = bottomGrad;
   ctx.fillRect(photoX, photoY + photoH - shadowSize * 0.5, photoW, shadowSize * 0.5);
 
-  // ─── 9. Zunanji rob okvirja (subtilen temen rob) ───
-  ctx.strokeStyle = 'rgba(0,0,0,0.5)';
+  // ─── 10. Zunanji rob okvirja (subtilen temen rob) ───
+  ctx.strokeStyle = tintColor ? `${tintColor}88` : 'rgba(0,0,0,0.5)';
   ctx.lineWidth = 2;
   ctx.strokeRect(1, 1, cW - 2, cH - 2);
+}
+
+/**
+ * Izriši napeto platno na podokvir — subtilen 3D efekt.
+ * Slika ostane vodoravna, vidna le tanka bela stranica
+ * platna na dnu in desni (izometrična projekcija).
+ */
+function drawStretched(ctx, photoImg, cW, cH) {
+  ctx.clearRect(0, 0, cW, cH);
+
+  // Subtilna debelina — samo občutek globine (~2.5%)
+  const depth = Math.round(Math.min(cW, cH) * 0.028);
+
+  // Glavna slika zavzame prostor brez robov
+  const photoW = cW - depth;
+  const photoH = cH - depth;
+
+  // ─── 1. Crop-to-fill parametri ───
+  const imgRatio = photoImg.width / photoImg.height;
+  const boxRatio = photoW / photoH;
+  let sx = 0, sy = 0, sw = photoImg.width, sh = photoImg.height;
+  if (imgRatio > boxRatio) {
+    sw = photoImg.height * boxRatio;
+    sx = (photoImg.width - sw) / 2;
+  } else {
+    sh = photoImg.width / boxRatio;
+    sy = (photoImg.height - sh) / 2;
+  }
+
+  // ─── 2. Desna stranica (belo platno) ───
+  ctx.fillStyle = '#e0dcd6';
+  ctx.beginPath();
+  ctx.moveTo(photoW, 0);
+  ctx.lineTo(cW, depth);
+  ctx.lineTo(cW, cH);
+  ctx.lineTo(photoW, photoH);
+  ctx.closePath();
+  ctx.fill();
+  // Gradient za globino — temnejše proti zadaj
+  const rGrad = ctx.createLinearGradient(photoW, 0, cW, 0);
+  rGrad.addColorStop(0, 'rgba(0,0,0,0.0)');
+  rGrad.addColorStop(1, 'rgba(0,0,0,0.12)');
+  ctx.fillStyle = rGrad;
+  ctx.fill();
+
+  // ─── 3. Spodnja stranica (belo platno, svetlejša) ───
+  ctx.fillStyle = '#e8e4de';
+  ctx.beginPath();
+  ctx.moveTo(0, photoH);
+  ctx.lineTo(photoW, photoH);
+  ctx.lineTo(cW, cH);
+  ctx.lineTo(depth, cH);
+  ctx.closePath();
+  ctx.fill();
+  // Gradient za globino
+  const bGrad = ctx.createLinearGradient(0, photoH, 0, cH);
+  bGrad.addColorStop(0, 'rgba(0,0,0,0.0)');
+  bGrad.addColorStop(1, 'rgba(0,0,0,0.08)');
+  ctx.fillStyle = bGrad;
+  ctx.fill();
+
+  // ─── 4. Glavna slika (sprednja stran) ───
+  ctx.drawImage(photoImg, sx, sy, sw, sh, 0, 0, photoW, photoH);
+
+  // ─── 5. Tanka robna črta med sliko in stranicami ───
+  ctx.strokeStyle = 'rgba(0,0,0,0.15)';
+  ctx.lineWidth = 0.8;
+  // Spodnji rob slike
+  ctx.beginPath();
+  ctx.moveTo(0, photoH);
+  ctx.lineTo(photoW, photoH);
+  ctx.stroke();
+  // Desni rob slike
+  ctx.beginPath();
+  ctx.moveTo(photoW, 0);
+  ctx.lineTo(photoW, photoH);
+  ctx.stroke();
+  // Diagonala v kotu (desni spodnji)
+  ctx.beginPath();
+  ctx.moveTo(photoW, photoH);
+  ctx.lineTo(cW, cH);
+  ctx.stroke();
 }
 
 /**
@@ -200,10 +357,12 @@ export default function FramePreview({
   selectedSize,
   sizeId,
   withFrame,
+  productType, // 'print' | 'stretched' | 'framed'
 }) {
   const canvasRef = useRef(null);
   const frame = frameStyles.find((f) => f.id === selectedFrame);
   const aspectRatio = getAspectRatio(sizeId);
+  const isStretched = productType === 'stretched';
 
   const canvasH = CANVAS_HEIGHT;
   const canvasW = Math.round(canvasH * aspectRatio);
@@ -218,21 +377,24 @@ export default function FramePreview({
     const ctx = canvas.getContext('2d');
 
     try {
-      if (!withFrame || !frame) {
-        // Brez okvirja — samo fotografija
-        const photoImg = await loadImage(image);
-        drawPhotoOnly(ctx, photoImg, canvasW, canvasH);
-      } else {
-        // Z okvirjem — naloži obe sliki
+      if (withFrame && frame) {
+        // Z dekorativnim okvirjem
         const [photoImg, stripImg] = await Promise.all([
           loadImage(image),
           loadImage(frame.stripImage),
         ]);
-        drawFrame(ctx, photoImg, stripImg, canvasW, canvasH, frameW);
+        drawFrame(ctx, photoImg, stripImg, canvasW, canvasH, frameW, frame.tint || null);
+      } else if (isStretched) {
+        // Napeto platno na podokvirju (gallery wrap 3D)
+        const photoImg = await loadImage(image);
+        drawStretched(ctx, photoImg, canvasW, canvasH);
+      } else {
+        // Samo tisk — ravna slika
+        const photoImg = await loadImage(image);
+        drawPhotoOnly(ctx, photoImg, canvasW, canvasH);
       }
     } catch (err) {
       console.warn('FramePreview render error:', err);
-      // Fallback: samo fotografija
       try {
         const photoImg = await loadImage(image);
         drawPhotoOnly(ctx, photoImg, canvasW, canvasH);
@@ -240,7 +402,7 @@ export default function FramePreview({
         // Cannot render at all
       }
     }
-  }, [image, withFrame, frame, canvasW, canvasH, frameW]);
+  }, [image, withFrame, isStretched, frame, canvasW, canvasH, frameW]);
 
   useEffect(() => {
     render();
@@ -248,7 +410,7 @@ export default function FramePreview({
 
   return (
     <div className="frame-preview-wrap">
-      <div className={`frame-preview-outer ${withFrame ? 'has-frame' : ''}`}>
+      <div className={`frame-preview-outer ${withFrame || isStretched ? 'has-frame' : ''}`}>
         <canvas
           ref={canvasRef}
           width={canvasW}

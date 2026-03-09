@@ -1,0 +1,269 @@
+/* ═══════════════════════════════════════════════
+   ETERNA Artisan — Admin Notification Page
+   ═══════════════════════════════════════════════ */
+
+.admin-notify-page {
+  padding: 3rem 0 5rem;
+  min-height: 60vh;
+  display: flex;
+  justify-content: center;
+}
+
+/* ─── Login Card ─── */
+.admin-login-card {
+  max-width: 400px;
+  width: 100%;
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+/* ─── Header (both login & form) ─── */
+.admin-header {
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+  padding: 24px;
+  text-align: center;
+}
+
+.admin-header h1 {
+  color: white;
+  margin: 0;
+  font-size: 1.6rem;
+  font-family: var(--font-heading);
+  letter-spacing: 0.15em;
+  font-weight: 400;
+}
+
+.admin-header span {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+}
+
+/* ─── Login Form ─── */
+.admin-login-form {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-login-form label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.admin-login-form input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: var(--bg-main);
+  color: var(--text-primary);
+  transition: border-color 0.2s;
+}
+
+.admin-login-form input:focus {
+  outline: none;
+  border-color: #8b5cf6;
+}
+
+.admin-error {
+  color: #ef4444;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* ─── Notify Card ─── */
+.admin-notify-card {
+  max-width: 600px;
+  width: 100%;
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+.admin-subtitle {
+  padding: 16px 24px 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* ─── Form ─── */
+.admin-form {
+  padding: 20px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.admin-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-field label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.admin-field input,
+.admin-field textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background: var(--bg-main);
+  color: var(--text-primary);
+  font-family: inherit;
+  transition: border-color 0.2s;
+  resize: vertical;
+}
+
+.admin-field input:focus,
+.admin-field textarea:focus {
+  outline: none;
+  border-color: #8b5cf6;
+}
+
+.admin-field textarea {
+  min-height: 100px;
+}
+
+/* ─── Image Upload ─── */
+.admin-image-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-file-input {
+  display: none;
+}
+
+.admin-upload-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border: 2px dashed var(--border-light);
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  justify-content: center;
+}
+
+.admin-upload-label:hover {
+  border-color: #8b5cf6;
+  color: #8b5cf6;
+  background: rgba(139, 92, 246, 0.03);
+}
+
+.admin-preview-wrap {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+}
+
+.admin-preview-img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  display: block;
+  background: #f9f9f9;
+}
+
+.admin-preview-remove {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.admin-preview-remove:hover {
+  background: #ef4444;
+}
+
+.admin-url-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.admin-url-input input {
+  flex: 1;
+  padding: 6px 10px;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  background: var(--bg-main);
+  color: var(--text-primary);
+}
+
+/* ─── Send Button ─── */
+.admin-send-btn {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* ─── Result ─── */
+.admin-result {
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.admin-result--success {
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+
+.admin-result--error {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 640px) {
+  .admin-notify-page {
+    padding: 1rem 0 3rem;
+  }
+
+  .admin-notify-card,
+  .admin-login-card {
+    border-radius: 12px;
+    margin: 0 -0.5rem;
+  }
+
+  .admin-form {
+    padding: 16px;
+  }
+}

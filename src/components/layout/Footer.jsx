@@ -9,9 +9,12 @@ export default function Footer() {
           {/* Brand column */}
           <div className="footer-brand-col">
             <div className="footer-logo logo-group">
-              <span className="logo-diamond">
-                <span className="diamond-frame" />
-                <span className="diamond-inner">E</span>
+              <span className="logo-wrap">
+                <span className="logo-glass-block" />
+                <span className="logo-diamond">
+                  <span className="diamond-frame" />
+                  <span className="diamond-inner">E</span>
+                </span>
               </span>
               <div className="logo-text">
                 <span className="logo-brand">ETERNA</span>
@@ -19,7 +22,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="footer-brand-desc">
-              Oživljamo vaše najdragocenejše spomine s tehnologijo in mojstrstvom.
+              Ustvarjamo unikatne umetnine s tehnologijo in mojstrstvom.
             </p>
             {/* Social icons */}
             <div className="footer-social">

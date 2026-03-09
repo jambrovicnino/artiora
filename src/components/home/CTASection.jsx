@@ -1,13 +1,21 @@
+import { useNavigate, useLocation } from 'react-router-dom';
 import './CTASection.css';
 
-function handleScrollToTop() {
-  const hero = document.getElementById('hero');
-  if (hero) {
-    hero.scrollIntoView({ behavior: 'smooth' });
-  }
-}
-
 export default function CTASection() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleClick = () => {
+    if (location.pathname === '/') {
+      // Already on homepage — scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      // On subpage — navigate to homepage
+      navigate('/');
+      window.scrollTo({ top: 0 });
+    }
+  };
+
   return (
     <section id="cta" className="cta">
       <div className="container">
@@ -19,18 +27,18 @@ export default function CTASection() {
           <div className="cta-corner cta-corner-br" />
 
           <span className="cta-label">ZAČNITE DANES</span>
-          <h2 className="cta-heading">Vaš Spomin Zasluži Večnost</h2>
+          <h2 className="cta-heading">Ustvarite Svojo Umetnino</h2>
           <div className="cta-divider" />
           <p className="cta-text">
-            Naložite fotografijo in v nekaj minutah ustvarite unikatno
-            umetnino za vaš dom.
+            Opišite svojo vizijo ali naložite referenco — v nekaj minutah
+            ustvarite unikatno umetnino za vaš dom.
           </p>
           <button
             type="button"
             className="btn-gold-large cta-button"
-            onClick={handleScrollToTop}
+            onClick={handleClick}
           >
-            OŽIVITE SVOJ SPOMIN
+            ZAČNITE USTVARJATI
           </button>
           <p className="cta-secondary">
             Brezplačen predogled · Brez obveznosti · Dostava po vsej

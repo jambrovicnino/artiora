@@ -1,30 +1,33 @@
 const services = [
   {
-    id: 'jasnost',
+    id: 'ustvari',
     romanNumeral: 'I',
-    name: 'JASNOST',
-    title: 'Jasnost',
+    name: 'USTVARI',
+    title: 'Ustvari',
     description:
-      'Povrnite izgubljene podrobnosti s poškodbanih fotografij. Naš nevronski motor rekonstruira teksturo do ločljivosti 4K ter zakoj odstrani prah in praske.',
-    subtitle: 'Restavracija & Povečava',
+      'Opišite svojo vizijo ali naložite referenco — naša umetna inteligenca ustvari unikatno umetnino po vaši meri. Od abstraktnih del do portretov.',
+    subtitle: 'AI Umetniško Ustvarjanje',
+    color: 'var(--vivid-blue)',
   },
   {
-    id: 'pigment',
+    id: 'razstavi',
     romanNumeral: 'II',
-    name: 'PIGMENT',
-    title: 'Pigment',
+    name: 'RAZSTAVI',
+    title: 'Razstavi',
     description:
-      'Analiza zgodovinskih barvne natančnosti za vdah pristnega življenja črno-belim spominom, ob spoštovanju obdobja in osvetlitve izvirnega posnetka.',
-    subtitle: 'Barvanje z AI',
+      'Promovirajte svojo umetnost na naši platformi. Odkrijte novo občinstvo, prodajajte tiske in se povežite z ljubitelji umetnosti po vsej Sloveniji.',
+    subtitle: 'Platforma za Umetnike',
+    color: 'var(--vivid-magenta)',
   },
   {
-    id: 'okvirjanje',
+    id: 'okvirji',
     romanNumeral: 'III',
-    name: 'OKVIRJANJE',
-    title: 'Okvirjanje',
+    name: 'OKVIRJI',
+    title: 'Okvirji',
     description:
-      'Muzejsko arhivsko okvirjanje, ročno sestavljeno z zlatimi poudarki in dostavljeno pripravljeno za obešanje v vaši družinski galeriji.',
-    subtitle: 'Okvir & Tisk na Platno',
+      'Muzejsko kakovostno okvirjanje in tisk na premium platno. Izberite med 16 profili okvirjev iz kataloga Vidal.',
+    subtitle: 'Premium Okvirjanje & Platno',
+    color: 'var(--vivid-yellow)',
   },
 ];
 

@@ -17,17 +17,17 @@ export const ENHANCEMENT_OPTIONS = {
 export const ENHANCEMENT_METADATA = [
   {
     id: ENHANCEMENT_OPTIONS.RESTORATION,
-    label: 'Restavracija in Povečava',
+    label: 'AI Stilizacija',
     description:
-      'Odstranitev prask, izboljšava obrazov in 400% povečanje ločljivosti.',
-    buttonLabel: 'UPORABI RESTAVRACIJO',
+      'Unikatni umetniški slogi, izboljšava podrobnosti in 400% povečanje ločljivosti.',
+    buttonLabel: 'UPORABI AI STILIZACIJO',
   },
   {
     id: ENHANCEMENT_OPTIONS.COLORIZE,
-    label: 'Barvanje',
+    label: 'AI Barvanje & Stilizacija',
     description:
-      'Najprej povečamo ločljivost, nato obarvamo z umetno inteligenco.',
-    buttonLabel: 'POVEČAJ & OBARVAJ',
+      'Najprej povečamo ločljivost, nato ustvarimo umetniško barvno kompozicijo z AI.',
+    buttonLabel: 'USTVARI & OBARVAJ',
   },
 ];
 

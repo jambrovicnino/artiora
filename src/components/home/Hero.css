@@ -1,40 +1,12 @@
 /* ─── Hero Section ───────────────────────────── */
 .hero {
-  background:
-    radial-gradient(ellipse at 50% 30%, rgba(201,168,76,0.035) 0%, transparent 55%),
-    var(--bg-primary);
+  background: var(--bg-primary);
   padding: 60px 0 80px;
   min-height: 80vh;
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
-}
-
-/* Subtle noise grain overlay */
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  opacity: 0.025;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 256px 256px;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Art-deco geometric diamond pattern */
-.hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' fill='none' stroke='%23c9a84c' stroke-width='0.5'/%3E%3Cpath d='M30 10L50 30L30 50L10 30Z' fill='none' stroke='%23c9a84c' stroke-width='0.3'/%3E%3C/svg%3E");
-  background-size: 60px 60px;
-  pointer-events: none;
-  z-index: 0;
-  mask-image: radial-gradient(ellipse at 50% 50%, transparent 20%, black 50%, transparent 85%);
-  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, transparent 20%, black 50%, transparent 85%);
 }
 
 .hero-content {
@@ -49,14 +21,14 @@
 .hero-established {
   font-family: var(--font-body);
   font-size: 0.7rem;
-  font-weight: 400;
-  color: var(--gold);
+  font-weight: 500;
+  color: var(--primary);
   letter-spacing: 0.5em;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
 }
 
-/* ─── Heading — interactive float on hover ─── */
+/* ─── Heading ────────────────────────────────── */
 .hero-heading {
   font-family: var(--font-heading);
   font-size: 4.5rem;
@@ -65,19 +37,12 @@
   line-height: 1.1;
   margin-bottom: 2rem;
   display: inline-block;
-  transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1),
-              text-shadow 0.8s ease;
+  transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
   cursor: default;
 }
 
 .hero-heading:hover {
   transform: translateY(-6px);
-  text-shadow: 0 8px 24px rgba(201,168,76,0.15),
-               0 2px 8px rgba(201,168,76,0.1);
-}
-
-.hero-heading:hover .hero-heading-script {
-  text-shadow: 0 6px 20px rgba(201,168,76,0.25);
 }
 
 .hero-heading-main {
@@ -89,16 +54,20 @@
 .hero-heading-script {
   font-family: var(--font-script);
   font-style: italic;
-  color: var(--gold);
   font-weight: 400;
+  background: var(--gradient-rainbow);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* ─── Divider ────────────────────────────────── */
 .hero-divider {
-  width: 80px;
-  height: 2px;
-  background: var(--gold);
+  width: 100px;
+  height: 3px;
+  background: var(--gradient-rainbow);
   margin: 0 auto 2rem;
+  border-radius: 2px;
 }
 
 /* ─── Quote ──────────────────────────────────── */
@@ -111,71 +80,106 @@
   line-height: 1.8;
 }
 
-/* ─── Upload Box ─────────────────────────────── */
-.hero-upload {
-  max-width: 600px;
+/* ─── Hero Actions (two boxes) ───────────────── */
+.hero-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 780px;
   margin: 0 auto;
 }
 
-.upload-box {
-  border: 1.5px dashed var(--gold-border);
+.action-box {
+  border: 1.5px solid var(--border-subtle);
   background: var(--bg-card);
-  padding: 48px 40px 40px;
+  padding: 36px 28px 28px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  transition: border-color 0.3s;
+  text-align: center;
+  transition: all 0.3s ease;
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  cursor: pointer;
 }
 
-.upload-box:hover {
-  border-color: var(--gold);
-  box-shadow: 0 0 40px var(--gold-glow);
+.action-box:hover {
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-4px);
 }
 
-.upload-box--dragging {
-  border-color: var(--gold);
-  background: rgba(201, 168, 76, 0.04);
-  box-shadow: 0 0 60px var(--gold-glow), inset 0 0 30px var(--gold-glow);
+.action-box--create {
+  border-color: var(--primary-border);
+  background: linear-gradient(135deg, rgba(139,92,246,0.04) 0%, rgba(236,72,153,0.04) 100%);
 }
 
-.upload-icon {
+.action-box--create:hover {
+  border-color: var(--primary);
+  box-shadow: 0 0 40px var(--primary-glow), var(--card-shadow-hover);
+}
+
+.action-box--upload {
+  border-style: dashed;
+}
+
+.action-box--upload:hover {
+  border-color: var(--primary);
+}
+
+.action-box--dragging {
+  border-color: var(--primary);
+  background: var(--primary-muted);
+  box-shadow: 0 0 60px var(--primary-glow), inset 0 0 30px var(--primary-glow);
+}
+
+.action-icon {
   width: 56px;
   height: 56px;
-  border: 1.5px solid var(--gold-border);
+  border: 1.5px solid var(--border-subtle);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-secondary);
-  margin-bottom: 12px;
+  color: var(--primary);
+  margin-bottom: 8px;
 }
 
-.upload-title {
+.action-icon--create {
+  border-color: var(--primary-border);
+  background: rgba(139, 92, 246, 0.06);
+}
+
+.action-title {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 500;
   color: var(--text-primary);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
-.upload-quote {
+.action-desc {
   font-family: var(--font-script);
   font-style: italic;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--text-secondary);
-  margin-bottom: 16px;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.action-btn {
+  margin-top: 8px;
 }
 
 .upload-formats {
   font-family: var(--font-body);
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   color: var(--text-muted);
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  margin-bottom: 24px;
+  margin-bottom: 8px;
 }
 
 .btn-icon {
@@ -186,7 +190,7 @@
 
 .upload-buttons {
   display: flex;
-  gap: 16px;
+  gap: 10px;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -202,8 +206,13 @@
     font-size: 2.8rem;
   }
 
-  .upload-box {
-    padding: 32px 24px;
+  .hero-actions {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+
+  .action-box {
+    padding: 28px 20px 24px;
   }
 
   .upload-buttons {

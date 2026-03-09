@@ -54,71 +54,153 @@
 }
 
 .enhancement-description {
-  font-family: var(--font-script);
-  font-style: italic;
-  font-size: 0.85rem;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
   color: var(--text-secondary);
   line-height: 1.7;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
-/* ─── Enhancement Options ────────────────────── */
-.enhancement-options {
+/* ─── Art Style Grid ─────────────────────────── */
+.art-style-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.art-style-card {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-bottom: 32px;
-}
-
-.enhancement-option {
   background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  padding: 20px;
-  transition: all 0.3s;
+  border: 1.5px solid var(--border-subtle);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  padding: 0;
+  font-family: inherit;
+  color: inherit;
 }
 
-.enhancement-option.selected {
-  border-color: var(--gold-border);
-  background: var(--bg-elevated);
+.art-style-card:hover:not(:disabled) {
+  border-color: var(--gold-border, #8b5cf6);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.12);
 }
 
-.option-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 6px;
+.art-style-card.selected {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2), 0 6px 20px rgba(139, 92, 246, 0.12);
 }
 
-.option-title {
-  font-family: var(--font-heading);
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+.art-style-card.processing {
+  opacity: 0.85;
 }
 
-.option-check {
-  color: var(--gold);
-}
-
-.option-description {
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  margin-bottom: 14px;
-  line-height: 1.5;
-}
-
-.option-btn {
-  width: 100%;
-  padding: 12px 24px;
-  font-size: 0.7rem;
-}
-
-.option-btn:disabled {
+.art-style-card:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+  transform: none;
+}
+
+/* ─── Style Preview (gradient square) ─────────── */
+.art-style-preview {
+  position: relative;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px 11px 0 0;
+}
+
+.art-style-emoji {
+  font-size: 1.5rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.art-style-spinner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 11px 11px 0 0;
+}
+
+.art-style-spinner::after {
+  content: '';
+  width: 24px;
+  height: 24px;
+  border: 2.5px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Style Info ──────────────────────────────── */
+.art-style-info {
+  padding: 10px 12px 12px;
+}
+
+.art-style-label {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 4px;
+}
+
+.art-style-desc {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ─── Check mark ──────────────────────────────── */
+.art-style-check {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #8b5cf6;
+  color: white;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(139, 92, 246, 0.4);
+}
+
+/* ─── Last card spans full width if odd count ── */
+.art-style-grid .art-style-card:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.art-style-grid .art-style-card:last-child:nth-child(odd) .art-style-preview {
+  height: 64px;
+}
+
+/* ─── Hint ────────────────────────────────────── */
+.art-style-hint {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  font-style: italic;
 }
 
 /* ─── Continue Button ────────────────────────── */
@@ -145,5 +227,16 @@
 
   .enhancement-preview {
     position: static;
+  }
+
+  .art-style-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .art-style-grid {
+    grid-template-columns: 1fr;
   }
 }

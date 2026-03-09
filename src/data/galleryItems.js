@@ -1,78 +1,152 @@
 // ═══════════════════════════════════════════════
-// ETERNA — Galerija primerkov
-// Zamenjaj src s pravimi fotografijami po photoshootingu
+// ETERNA ARTISAN — Galerija umetnin
+//
+// Kategorije in umetnine. Slike dodaj v public/gallery/
+// in posodobi vnose spodaj.
+//
+// Struktura:
+//   id        — unikatni ID
+//   src       — pot do slike (public/gallery/...)
+//   title     — naslov umetnine
+//   category  — kategorija (mora biti v CATEGORIES)
+//   style     — umetniški slog (oljno, akvarel, itd.)
+//   size      — velikost platna
+//   frame     — ID okvirja iz frameOptions.js
+//   featured  — ali je prikazana na domači strani
 // ═══════════════════════════════════════════════
 
+export const CATEGORIES = [
+  { id: 'vse', label: 'Vse' },
+  { id: 'pokrajine', label: 'Pokrajine' },
+  { id: 'abstrakt', label: 'Abstrakt' },
+  { id: 'portreti', label: 'Portreti' },
+  { id: 'tihozitja', label: 'Tihožitja' },
+  { id: 'moderna', label: 'Moderna' },
+];
+
 export const galleryItems = [
+  // ─── Pokrajine ───
   {
-    id: 'featured-1',
-    src: '/gallery/family-original.jpg',
-    srcAfter: '/gallery/family-colorized.png',
-    srcFramed: '/gallery/family-framed.png',
-    title: 'Družinski portret, ~1960',
-    size: 'Imperial (40 × 50 cm)',
-    enhancement: 'Restavracija + Barvanje',
-    isPlaceholder: false,
-    isFeatured: true,
+    id: 'art-001',
+    src: '/gallery/bled-cerkvija.jpg',
+    title: 'Bled s Cerkvijo',
+    category: 'pokrajine',
+    style: 'Oljno slikarstvo',
+    size: '50×70 cm',
+    frame: '290-barok',
+    featured: true,
   },
   {
-    id: 'featured-2',
-    src: '/gallery/wedding-original.jpg',
-    srcAfter: '/gallery/wedding-colorized.png',
-    srcFramed: '/gallery/wedding-framed.png',
-    title: 'Poročna fotografija, ~1965',
-    size: 'Salon (45 × 60 cm)',
-    enhancement: 'Restavracija + Barvanje',
-    isPlaceholder: false,
-    isFeatured: true,
+    id: 'art-002',
+    src: '/gallery/gorski-zahod.jpg',
+    title: 'Gorski Sončni Zahod',
+    category: 'pokrajine',
+    style: 'Impresionizem',
+    size: '50×70 cm',
+    frame: 'ne-vivid-violet',
+    featured: false,
   },
   {
-    id: 1,
-    src: '/demo/family-bw.svg',
-    title: 'Družinska fotografija, 1952',
-    size: 'Imperial (40 × 50 cm)',
-    enhancement: 'Restavracija',
-    isPlaceholder: true,
+    id: 'art-003',
+    src: '/gallery/jesenski-gozd.jpg',
+    title: 'Jesenski Gozd',
+    category: 'pokrajine',
+    style: 'Oljno slikarstvo',
+    size: '50×70 cm',
+    frame: 'k115-ornament',
+    featured: false,
   },
   {
-    id: 2,
-    src: '/demo/family-color.svg',
-    title: 'Poročna fotografija, 1967',
-    size: 'Salon (45 × 60 cm)',
-    enhancement: 'Barvanje',
-    isPlaceholder: true,
+    id: 'art-004',
+    src: '/gallery/megleno-jutro.jpg',
+    title: 'Megleno Jutro ob Jezeru',
+    category: 'pokrajine',
+    style: 'Akvarel',
+    size: '50×70 cm',
+    frame: '171-ornament',
+    featured: false,
   },
   {
-    id: 3,
-    src: '/demo/grandparents-bw.svg',
-    title: 'Portret starih staršev, 1943',
-    size: 'Kabinet (30 × 40 cm)',
-    enhancement: 'Restavracija',
-    isPlaceholder: true,
+    id: 'art-011',
+    src: '/gallery/morski-valovi.jpg',
+    title: 'Morski Valovi',
+    category: 'pokrajine',
+    style: 'Oljno slikarstvo',
+    size: '60×90 cm',
+    frame: '3000-premium',
+    featured: true,
   },
   {
-    id: 4,
-    src: '/demo/portrait-color.svg',
-    title: 'Mladostni portret, 1971',
-    size: 'Imperial (40 × 50 cm)',
-    enhancement: 'Barvanje',
-    isPlaceholder: true,
+    id: 'art-012',
+    src: '/gallery/cvetlicna-livada.jpg',
+    title: 'Cvetlična Livada',
+    category: 'pokrajine',
+    style: 'Impresionizem',
+    size: '50×70 cm',
+    frame: '127-klasik',
+    featured: true,
+  },
+  // ─── Abstrakt ───
+  {
+    id: 'art-005',
+    src: '/gallery/modro-zlati-abstrakt.jpg',
+    title: 'Modro-Zlati Abstrakt',
+    category: 'abstrakt',
+    style: 'Moderna umetnost',
+    size: '50×70 cm',
+    frame: '175-zlat',
+    featured: true,
   },
   {
-    id: 5,
-    src: '/demo/couple-vintage.svg',
-    title: 'Par na poročnem dnevu, 1958',
-    size: 'Salon (45 × 60 cm)',
-    enhancement: 'Restavracija + Barvanje',
-    isPlaceholder: true,
+    id: 'art-006',
+    src: '/gallery/geometrijski-abstrakt.jpg',
+    title: 'Geometrijska Harmonija',
+    category: 'abstrakt',
+    style: 'Moderna umetnost',
+    size: '50×70 cm',
+    frame: '3000-rdece-zlat',
+    featured: false,
   },
   {
-    id: 6,
-    src: '/demo/family-bw.svg',
-    title: 'Družinski izlet, 1965',
-    size: 'Kabinet (30 × 40 cm)',
-    enhancement: 'Restavracija',
-    isPlaceholder: true,
+    id: 'art-007',
+    src: '/gallery/ekspresionizem.jpg',
+    title: 'Ekspresionistična Energija',
+    category: 'abstrakt',
+    style: 'Ekspresionizem',
+    size: '60×90 cm',
+    frame: 'ne-emerald',
+    featured: true,
+  },
+  // ─── Moderna ───
+  {
+    id: 'art-008',
+    src: '/gallery/pop-art-cvetje.jpg',
+    title: 'Pop Art Sončnice',
+    category: 'moderna',
+    style: 'Pop Art',
+    size: '50×70 cm',
+    frame: '3000-crn',
+    featured: true,
+  },
+  {
+    id: 'art-009',
+    src: '/gallery/minimalizem-drevo.jpg',
+    title: 'Minimalistično Drevo',
+    category: 'moderna',
+    style: 'Minimalizem',
+    size: '50×70 cm',
+    frame: 'k112-les',
+    featured: false,
+  },
+  {
+    id: 'art-010',
+    src: '/gallery/urbana-ulica.jpg',
+    title: 'Urbana Ulica ob Mraku',
+    category: 'moderna',
+    style: 'Impresionizem',
+    size: '50×70 cm',
+    frame: 'ne-electric-blue',
+    featured: false,
   },
 ];
 

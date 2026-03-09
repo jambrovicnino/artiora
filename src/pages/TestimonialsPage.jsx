@@ -1,5 +1,6 @@
 import TestimonialsSection from '../components/home/TestimonialsSection';
 import CTASection from '../components/home/CTASection';
+import ScrollReveal from '../components/ScrollReveal';
 import './TestimonialsPage.css';
 
 const EXTENDED_TESTIMONIALS = [
@@ -63,57 +64,69 @@ function ExtendedTestimonialCard({ testimonial }) {
 export default function TestimonialsPage() {
   return (
     <div className="testimonials-page">
-      <div className="page-hero">
-        <div className="container">
-          <span className="page-hero-label">ETERNA</span>
-          <h1 className="page-hero-heading">Mnenja Strank</h1>
-          <p className="page-hero-subtitle">Kaj pravijo naši zadovoljni naročniki</p>
+      <ScrollReveal variant="fade-in">
+        <div className="page-hero">
+          <div className="container">
+            <span className="page-hero-label">ETERNA</span>
+            <h1 className="page-hero-heading">Mnenja Strank</h1>
+            <p className="page-hero-subtitle">Kaj pravijo naši zadovoljni naročniki</p>
+          </div>
         </div>
-      </div>
+      </ScrollReveal>
 
-      <TestimonialsSection />
+      <ScrollReveal variant="fade-up">
+        <TestimonialsSection />
+      </ScrollReveal>
 
       <section className="testimonials-extended">
         <div className="container">
-          <div className="testimonials-extended-header">
-            <h2 className="testimonials-extended-heading">Še Več Mnenj</h2>
-            <p className="testimonials-extended-subtitle">
-              Vsaka zgodba je unikatna — tako kot vsaka fotografija, ki jo obnovimo
-            </p>
-          </div>
+          <ScrollReveal variant="fade-up">
+            <div className="testimonials-extended-header">
+              <h2 className="testimonials-extended-heading">Še Več Mnenj</h2>
+              <p className="testimonials-extended-subtitle">
+                Vsaka zgodba je unikatna — tako kot vsaka fotografija, ki jo obnovimo
+              </p>
+            </div>
+          </ScrollReveal>
 
-          <div className="testimonials-extended-grid">
-            {EXTENDED_TESTIMONIALS.map((t) => (
-              <ExtendedTestimonialCard key={t.id} testimonial={t} />
-            ))}
-          </div>
+          <ScrollReveal variant="fade-up" stagger>
+            <div className="testimonials-extended-grid">
+              {EXTENDED_TESTIMONIALS.map((t) => (
+                <ExtendedTestimonialCard key={t.id} testimonial={t} />
+              ))}
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      <section className="testimonials-stats">
-        <div className="container">
-          <div className="stats-grid">
-            <div className="stat-card">
-              <span className="stat-number">500+</span>
-              <span className="stat-label">Obnovljenih Fotografij</span>
-            </div>
-            <div className="stat-card">
-              <span className="stat-number">98%</span>
-              <span className="stat-label">Zadovoljnih Strank</span>
-            </div>
-            <div className="stat-card">
-              <span className="stat-number">5.0</span>
-              <span className="stat-label">Povprečna Ocena</span>
-            </div>
-            <div className="stat-card">
-              <span className="stat-number">5 dni</span>
-              <span className="stat-label">Povprečna Dostava</span>
+      <ScrollReveal variant="fade-up" stagger>
+        <section className="testimonials-stats">
+          <div className="container">
+            <div className="stats-grid">
+              <div className="stat-card">
+                <span className="stat-number">500+</span>
+                <span className="stat-label">Obnovljenih Fotografij</span>
+              </div>
+              <div className="stat-card">
+                <span className="stat-number">98%</span>
+                <span className="stat-label">Zadovoljnih Strank</span>
+              </div>
+              <div className="stat-card">
+                <span className="stat-number">5.0</span>
+                <span className="stat-label">Povprečna Ocena</span>
+              </div>
+              <div className="stat-card">
+                <span className="stat-number">5 dni</span>
+                <span className="stat-label">Povprečna Dostava</span>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
-      <CTASection />
+      <ScrollReveal variant="fade-up">
+        <CTASection />
+      </ScrollReveal>
     </div>
   );
 }
