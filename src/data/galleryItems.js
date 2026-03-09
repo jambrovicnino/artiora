@@ -28,7 +28,7 @@ export const galleryItems = [
   // ─── Pokrajine ───
   {
     id: 'art-001',
-    src: '/gallery/bled-cerkvija.jpg',
+    src: '/gallery/bled-cerkvija.png',
     title: 'Bled s Cerkvijo',
     category: 'pokrajine',
     style: 'Oljno slikarstvo',
@@ -38,7 +38,7 @@ export const galleryItems = [
   },
   {
     id: 'art-002',
-    src: '/gallery/gorski-zahod.jpg',
+    src: '/gallery/gorski-zahod.png',
     title: 'Gorski Sončni Zahod',
     category: 'pokrajine',
     style: 'Impresionizem',
@@ -48,7 +48,7 @@ export const galleryItems = [
   },
   {
     id: 'art-003',
-    src: '/gallery/jesenski-gozd.jpg',
+    src: '/gallery/jesenski-gozd.png',
     title: 'Jesenski Gozd',
     category: 'pokrajine',
     style: 'Oljno slikarstvo',
@@ -58,7 +58,7 @@ export const galleryItems = [
   },
   {
     id: 'art-004',
-    src: '/gallery/megleno-jutro.jpg',
+    src: '/gallery/megleno-jutro.png',
     title: 'Megleno Jutro ob Jezeru',
     category: 'pokrajine',
     style: 'Akvarel',
@@ -68,7 +68,7 @@ export const galleryItems = [
   },
   {
     id: 'art-011',
-    src: '/gallery/morski-valovi.jpg',
+    src: '/gallery/morski-valovi.png',
     title: 'Morski Valovi',
     category: 'pokrajine',
     style: 'Oljno slikarstvo',
@@ -78,7 +78,7 @@ export const galleryItems = [
   },
   {
     id: 'art-012',
-    src: '/gallery/cvetlicna-livada.jpg',
+    src: '/gallery/cvetlicna-livada.png',
     title: 'Cvetlična Livada',
     category: 'pokrajine',
     style: 'Impresionizem',
@@ -89,7 +89,7 @@ export const galleryItems = [
   // ─── Abstrakt ───
   {
     id: 'art-005',
-    src: '/gallery/modro-zlati-abstrakt.jpg',
+    src: '/gallery/modro-zlati-abstrakt.png',
     title: 'Modro-Zlati Abstrakt',
     category: 'abstrakt',
     style: 'Moderna umetnost',
@@ -99,7 +99,7 @@ export const galleryItems = [
   },
   {
     id: 'art-006',
-    src: '/gallery/geometrijski-abstrakt.jpg',
+    src: '/gallery/geometrijski-abstrakt.png',
     title: 'Geometrijska Harmonija',
     category: 'abstrakt',
     style: 'Moderna umetnost',
@@ -109,7 +109,7 @@ export const galleryItems = [
   },
   {
     id: 'art-007',
-    src: '/gallery/ekspresionizem.jpg',
+    src: '/gallery/ekspresionizem.png',
     title: 'Ekspresionistična Energija',
     category: 'abstrakt',
     style: 'Ekspresionizem',
@@ -120,7 +120,7 @@ export const galleryItems = [
   // ─── Moderna ───
   {
     id: 'art-008',
-    src: '/gallery/pop-art-cvetje.jpg',
+    src: '/gallery/pop-art-cvetje.png',
     title: 'Pop Art Sončnice',
     category: 'moderna',
     style: 'Pop Art',
@@ -130,7 +130,7 @@ export const galleryItems = [
   },
   {
     id: 'art-009',
-    src: '/gallery/minimalizem-drevo.jpg',
+    src: '/gallery/minimalizem-drevo.png',
     title: 'Minimalistično Drevo',
     category: 'moderna',
     style: 'Minimalizem',
@@ -140,7 +140,7 @@ export const galleryItems = [
   },
   {
     id: 'art-010',
-    src: '/gallery/urbana-ulica.jpg',
+    src: '/gallery/urbana-ulica.png',
     title: 'Urbana Ulica ob Mraku',
     category: 'moderna',
     style: 'Impresionizem',
