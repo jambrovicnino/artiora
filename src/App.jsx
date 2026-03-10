@@ -23,6 +23,17 @@ import AdjustmentPage from './pages/AdjustmentPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 
+// ─── Marketplace Pages ───
+import MarketplacePage from './pages/MarketplacePage';
+import ArtworkDetailPage from './pages/ArtworkDetailPage';
+
+// ─── Artist Pages ───
+import ArtistsPage from './pages/ArtistsPage';
+import ArtistProfilePage from './pages/ArtistProfilePage';
+
+// ─── Wishlist ───
+import WishlistPage from './pages/WishlistPage';
+
 import './App.css';
 
 export default function App() {
@@ -49,6 +60,17 @@ export default function App() {
           {/* ─── Auth ─── */}
           <Route path="/prijava" element={<LoginPage />} />
           <Route path="/registracija" element={<RegisterPage />} />
+
+          {/* ─── Marketplace ─── */}
+          <Route path="/tržnica" element={<MarketplacePage />} />
+          <Route path="/tržnica/:artworkId" element={<ArtworkDetailPage />} />
+
+          {/* ─── Artists ─── */}
+          <Route path="/umetniki" element={<ArtistsPage />} />
+          <Route path="/umetnik/:artistId" element={<ArtistProfilePage />} />
+
+          {/* ─── Wishlist ─── */}
+          <Route path="/priljubljene" element={<WishlistPage />} />
 
           {/* ─── 404 ─── */}
           <Route path="*" element={<NotFoundPage />} />

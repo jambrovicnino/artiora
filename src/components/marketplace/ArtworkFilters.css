@@ -1,0 +1,217 @@
+/* ═══════════════════════════════════════════════
+   ArtworkFilters — Dark Sidebar with Gold Accents
+   ═══════════════════════════════════════════════ */
+
+.artwork-filters {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 20px;
+  font-family: var(--font-body);
+  width: 100%;
+}
+
+/* ─── Section ─────────────────────────────────── */
+.artwork-filters__section {
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--gold-border);
+}
+
+.artwork-filters__section:last-of-type {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* ─── Section header (collapsible) ────────────── */
+.artwork-filters__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 4px 0;
+  user-select: none;
+}
+
+.artwork-filters__header:hover .artwork-filters__section-title {
+  color: var(--gold);
+}
+
+.artwork-filters__section-title {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+  margin: 0;
+}
+
+.artwork-filters__chevron {
+  color: var(--text-muted);
+  font-size: 0.65rem;
+  transition: transform 0.2s ease;
+}
+
+.artwork-filters__chevron--open {
+  transform: rotate(180deg);
+}
+
+/* ─── Section content ─────────────────────────── */
+.artwork-filters__content {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.artwork-filters__content--collapsed {
+  display: none;
+}
+
+/* ─── Checkbox / Radio items ──────────────────── */
+.artwork-filters__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 3px 0;
+}
+
+.artwork-filters__item input[type='checkbox'],
+.artwork-filters__item input[type='radio'] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--gold-border);
+  background: var(--bg-input);
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.artwork-filters__item input[type='radio'] {
+  border-radius: 50%;
+}
+
+.artwork-filters__item input[type='checkbox']:checked,
+.artwork-filters__item input[type='radio']:checked {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.artwork-filters__item input[type='checkbox']:checked::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 4px;
+  width: 4px;
+  height: 7px;
+  border: solid var(--text-inverse);
+  border-width: 0 1.5px 1.5px 0;
+  transform: rotate(45deg);
+}
+
+.artwork-filters__item input[type='radio']:checked::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 6px;
+  height: 6px;
+  background: var(--text-inverse);
+  border-radius: 50%;
+}
+
+.artwork-filters__label {
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+
+/* ─── Range inputs (price) ────────────────────── */
+.artwork-filters__range-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.artwork-filters__range-input {
+  flex: 1;
+  padding: 8px 10px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+  width: 100%;
+}
+
+.artwork-filters__range-input:focus {
+  border-color: var(--gold-border);
+}
+
+.artwork-filters__range-input::placeholder {
+  color: var(--text-muted);
+}
+
+.artwork-filters__range-sep {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+/* ─── Search input ────────────────────────────── */
+.artwork-filters__search-input {
+  width: 100%;
+  padding: 8px 12px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.artwork-filters__search-input:focus {
+  border-color: var(--gold-border);
+}
+
+.artwork-filters__search-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* ─── Reset button ────────────────────────────── */
+.artwork-filters__reset {
+  margin-top: 16px;
+  width: 100%;
+  padding: 10px 16px;
+  background: transparent;
+  border: 1px solid var(--gold-border);
+  color: var(--gold);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.artwork-filters__reset:hover {
+  background: var(--gold-muted);
+  border-color: var(--gold);
+}
+
+/* ─── Responsive ──────────────────────────────── */
+@media (max-width: 1024px) {
+  .artwork-filters {
+    padding: 16px;
+  }
+}

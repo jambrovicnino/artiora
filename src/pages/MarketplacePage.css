@@ -1,0 +1,134 @@
+/* ═══════════════════════════════════════════════
+   ARTIORA — Marketplace Page (Tržnica)
+   ═══════════════════════════════════════════════ */
+
+/* ─── Hero ───────────────────────────────────── */
+.marketplace-page__hero {
+  text-align: center;
+  padding: 6rem 0 3.5rem;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--gold-border);
+}
+
+.marketplace-page__label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+
+.marketplace-page__heading {
+  font-family: var(--font-heading);
+  font-size: 2.8rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: var(--text-primary);
+  margin: 0 0 1.25rem;
+}
+
+.marketplace-page__subtitle {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-top: 1.25rem;
+  letter-spacing: 0.02em;
+}
+
+/* ─── Mobile filter toggle ───────────────────── */
+.marketplace-page__mobile-toggle {
+  display: none;
+  padding: 1rem 0;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.marketplace-page__filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  justify-content: center;
+}
+
+.marketplace-page__filter-btn:hover {
+  border-color: var(--gold-border);
+  color: var(--gold);
+}
+
+/* ─── Layout ─────────────────────────────────── */
+.marketplace-page__content {
+  padding: 2.5rem 0 5rem;
+  background: var(--bg-primary);
+}
+
+.marketplace-page__layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.marketplace-page__sidebar {
+  position: sticky;
+  top: 100px;
+}
+
+.marketplace-page__results {
+  min-width: 0;
+}
+
+/* ─── Responsive ─────────────────────────────── */
+@media (max-width: 900px) {
+  .marketplace-page__mobile-toggle {
+    display: block;
+  }
+
+  .marketplace-page__layout {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .marketplace-page__sidebar {
+    display: none;
+    position: static;
+    margin-bottom: 1.5rem;
+  }
+
+  .marketplace-page__sidebar--open {
+    display: block;
+  }
+
+  .marketplace-page__hero {
+    padding: 4rem 0 2.5rem;
+  }
+
+  .marketplace-page__heading {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .marketplace-page__heading {
+    font-size: 1.8rem;
+    letter-spacing: 0.08em;
+  }
+
+  .marketplace-page__content {
+    padding: 1.5rem 0 3rem;
+  }
+}

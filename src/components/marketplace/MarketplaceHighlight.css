@@ -1,0 +1,90 @@
+/* ═══════════════════════════════════════════════
+   MarketplaceHighlight — Homepage Featured Section
+   ═══════════════════════════════════════════════ */
+
+.marketplace-highlight {
+  padding: 5rem 0;
+  background: var(--bg-primary);
+}
+
+.marketplace-highlight__header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.marketplace-highlight__title {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  margin: 0 0 0.75rem;
+}
+
+.marketplace-highlight__divider {
+  width: 60px;
+  height: 2px;
+  background: var(--gold);
+  margin: 0 auto 1rem;
+}
+
+.marketplace-highlight__subtitle {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ─── 4-column grid ───────────────────────────── */
+.marketplace-highlight__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+/* ─── CTA link ────────────────────────────────── */
+.marketplace-highlight__cta {
+  text-align: center;
+}
+
+.marketplace-highlight__link {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold-border);
+  padding: 14px 36px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.marketplace-highlight__link:hover {
+  background: var(--gold-muted);
+  border-color: var(--gold);
+}
+
+/* ─── Responsive ──────────────────────────────── */
+@media (max-width: 1024px) {
+  .marketplace-highlight__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .marketplace-highlight {
+    padding: 3rem 0;
+  }
+
+  .marketplace-highlight__grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .marketplace-highlight__title {
+    font-size: 1.8rem;
+  }
+}

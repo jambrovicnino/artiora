@@ -1,0 +1,212 @@
+/* ═══════════════════════════════════════════════
+   ArtworkCard — Dark Luxury Marketplace Card
+   ═══════════════════════════════════════════════ */
+
+.artwork-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.artwork-card:hover {
+  border-color: var(--gold-border);
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-2px);
+}
+
+/* ─── Image container ─────────────────────────── */
+.artwork-card__image-wrap {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: auto;
+  cursor: pointer;
+}
+
+.artwork-card__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.artwork-card:hover .artwork-card__image {
+  transform: scale(1.05);
+}
+
+/* ─── Gold hover overlay gradient ─────────────── */
+.artwork-card__hover-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 40%,
+    rgba(201, 168, 76, 0.06) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.artwork-card:hover .artwork-card__hover-overlay {
+  opacity: 1;
+}
+
+/* ─── Corner brackets (on image) ──────────────── */
+.artwork-card__corners {
+  position: absolute;
+  inset: 8px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.artwork-card__corners::before,
+.artwork-card__corners::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.artwork-card__corners::before {
+  top: 0;
+  left: 0;
+  border-top: 1px solid var(--gold-border);
+  border-left: 1px solid var(--gold-border);
+}
+
+.artwork-card__corners::after {
+  bottom: 0;
+  right: 0;
+  border-bottom: 1px solid var(--gold-border);
+  border-right: 1px solid var(--gold-border);
+}
+
+.artwork-card:hover .artwork-card__corners::before,
+.artwork-card:hover .artwork-card__corners::after {
+  opacity: 1;
+}
+
+/* ─── Wishlist button overlay (top-right) ─────── */
+.artwork-card__wishlist {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 5;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: all 0.3s ease;
+}
+
+.artwork-card:hover .artwork-card__wishlist {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Keep visible if already wishlisted */
+.artwork-card__wishlist--active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Edition badge overlay (bottom) ──────────── */
+.artwork-card__edition-overlay {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 3;
+}
+
+/* ─── Sold-out overlay ────────────────────────── */
+.artwork-card__soldout-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.artwork-card__soldout-text {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--error);
+  transform: rotate(-15deg);
+  border: 2px solid var(--error);
+  padding: 6px 20px;
+  background: rgba(10, 10, 10, 0.8);
+}
+
+/* ─── Info area below image ───────────────────── */
+.artwork-card__info {
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.artwork-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.artwork-card__artist-link {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  display: inline-block;
+  max-width: fit-content;
+}
+
+.artwork-card__artist-link:hover {
+  color: var(--gold);
+}
+
+.artwork-card__price-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+/* ─── Responsive ──────────────────────────────── */
+@media (max-width: 640px) {
+  .artwork-card__info {
+    padding: 10px 12px 14px;
+  }
+
+  .artwork-card__title {
+    font-size: 1rem;
+  }
+
+  .artwork-card__soldout-text {
+    font-size: 1rem;
+    padding: 4px 14px;
+  }
+}

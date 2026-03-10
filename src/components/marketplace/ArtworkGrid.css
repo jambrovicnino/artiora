@@ -1,0 +1,25 @@
+/* ═══════════════════════════════════════════════
+   ArtworkGrid — CSS Columns Masonry Layout
+   ═══════════════════════════════════════════════ */
+
+.artwork-grid {
+  column-count: 3;
+  column-gap: 1.5rem;
+}
+
+.artwork-grid-item {
+  break-inside: avoid;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .artwork-grid {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .artwork-grid {
+    column-count: 1;
+  }
+}

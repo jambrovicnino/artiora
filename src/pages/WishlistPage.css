@@ -1,0 +1,119 @@
+/* ═══════════════════════════════════════════════
+   ARTIORA — Wishlist Page (Priljubljene)
+   Minimal dark luxury styling
+   ═══════════════════════════════════════════════ */
+
+/* ─── Hero ───────────────────────────────────── */
+.wishlist-page__hero {
+  text-align: center;
+  padding: 6rem 0 3.5rem;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--gold-border);
+}
+
+.wishlist-page__label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+
+.wishlist-page__heading {
+  font-family: var(--font-heading);
+  font-size: 2.8rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: var(--text-primary);
+  margin: 0 0 1.25rem;
+}
+
+.wishlist-page__subtitle {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-top: 1.25rem;
+  letter-spacing: 0.02em;
+}
+
+/* ─── Content ────────────────────────────────── */
+.wishlist-page__content {
+  padding: 2.5rem 0 5rem;
+  background: var(--bg-primary);
+}
+
+.wishlist-page__count {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--gold-border);
+}
+
+/* ─── Empty state ────────────────────────────── */
+.wishlist-page__empty {
+  text-align: center;
+  padding: 5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.wishlist-page__empty-icon {
+  margin-bottom: 0.5rem;
+  color: var(--text-muted);
+}
+
+.wishlist-page__empty-title {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.wishlist-page__empty-text {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  max-width: 420px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ─── Responsive ─────────────────────────────── */
+@media (max-width: 768px) {
+  .wishlist-page__hero {
+    padding: 4rem 0 2.5rem;
+  }
+
+  .wishlist-page__heading {
+    font-size: 2.2rem;
+  }
+
+  .wishlist-page__content {
+    padding: 1.5rem 0 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .wishlist-page__heading {
+    font-size: 1.8rem;
+    letter-spacing: 0.08em;
+  }
+
+  .wishlist-page__empty {
+    padding: 3rem 1rem;
+  }
+
+  .wishlist-page__empty-title {
+    font-size: 1.3rem;
+  }
+}
