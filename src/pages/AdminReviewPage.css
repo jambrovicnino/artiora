@@ -1,0 +1,395 @@
+/* ═══════════════════════════════════════════════
+   ARTIORA — Admin Review Page
+   Review queue with action buttons, rejection form
+   ═══════════════════════════════════════════════ */
+
+/* ─── Header ─── */
+.review-header {
+  margin-bottom: 28px;
+}
+
+.review-title {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-primary, #f0ece4);
+  margin: 0 0 6px 0;
+}
+
+.review-subtitle {
+  color: var(--text-secondary, #a09888);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* ─── Feedback Banner ─── */
+.review-feedback {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  margin-bottom: 24px;
+  font-size: 0.88rem;
+  animation: feedbackSlideIn 0.3s ease;
+}
+
+@keyframes feedbackSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.review-feedback-approve {
+  background: rgba(74, 124, 89, 0.15);
+  border: 1px solid rgba(74, 124, 89, 0.3);
+  color: #6ee7b7;
+}
+
+.review-feedback-reject {
+  background: rgba(201, 68, 68, 0.15);
+  border: 1px solid rgba(201, 68, 68, 0.3);
+  color: #fca5a1;
+}
+
+/* ─── Empty State ─── */
+.review-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.review-empty svg {
+  color: var(--vivid-emerald, #10b981);
+  opacity: 0.4;
+}
+
+.review-empty h3 {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: 1.4rem;
+  color: var(--text-primary, #f0ece4);
+  margin: 0;
+}
+
+.review-empty p {
+  color: var(--text-muted, #5a5248);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* ─── Review Queue ─── */
+.review-queue {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.review-card {
+  display: grid;
+  grid-template-columns: 240px 1fr 200px;
+  gap: 24px;
+  background: var(--bg-card, #141414);
+  border: 1px solid var(--border, rgba(201, 168, 76, 0.15));
+  padding: 24px;
+  transition: border-color 0.2s ease;
+}
+
+.review-card:hover {
+  border-color: var(--gold-border, rgba(201, 168, 76, 0.25));
+}
+
+/* ─── Card Image ─── */
+.review-card-image {
+  position: relative;
+  width: 240px;
+  height: 200px;
+  overflow: hidden;
+}
+
+.review-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.review-ai-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 3px 8px;
+  background: var(--vivid-violet, #8b5cf6);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ─── Card Details ─── */
+.review-card-details {
+  min-width: 0;
+}
+
+.review-card-title {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary, #f0ece4);
+  margin: 0 0 16px 0;
+}
+
+.review-card-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 20px;
+  margin-bottom: 16px;
+}
+
+.review-meta-row {
+  display: flex;
+  gap: 6px;
+  font-size: 0.82rem;
+}
+
+.review-meta-label {
+  color: var(--text-muted, #5a5248);
+  white-space: nowrap;
+}
+
+.review-meta-value {
+  color: var(--text-primary, #f0ece4);
+}
+
+.review-price {
+  color: var(--gold, #c9a84c) !important;
+  font-weight: 600;
+}
+
+.review-card-desc {
+  color: var(--text-secondary, #a09888);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  margin: 0 0 12px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ─── AI Prompt ─── */
+.review-ai-prompt {
+  background: var(--vivid-violet-muted, rgba(139, 92, 246, 0.12));
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  font-size: 0.78rem;
+}
+
+.review-ai-prompt-label {
+  color: var(--vivid-violet-light, #a78bfa);
+  font-weight: 600;
+  margin-right: 6px;
+}
+
+.review-ai-prompt-text {
+  color: var(--text-secondary, #a09888);
+  font-style: italic;
+}
+
+/* ─── Tags ─── */
+.review-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.review-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  background: var(--bg-elevated, #1a1a1a);
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.06));
+  color: var(--text-secondary, #a09888);
+  font-size: 0.72rem;
+}
+
+/* ─── Actions ─── */
+.review-card-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-approve {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: rgba(74, 124, 89, 0.2);
+  border: 1px solid rgba(74, 124, 89, 0.4);
+  color: #6ee7b7;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-approve:hover {
+  background: rgba(74, 124, 89, 0.35);
+  border-color: rgba(74, 124, 89, 0.6);
+  transform: translateY(-1px);
+}
+
+.btn-reject {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: rgba(201, 68, 68, 0.15);
+  border: 1px solid rgba(201, 68, 68, 0.3);
+  color: #fca5a1;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-reject:hover {
+  background: rgba(201, 68, 68, 0.3);
+  border-color: rgba(201, 68, 68, 0.5);
+  transform: translateY(-1px);
+}
+
+/* ─── Reject Form ─── */
+.reject-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reject-label {
+  color: var(--text-secondary, #a09888);
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.reject-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--bg-input, #0f0f0f);
+  border: 1px solid rgba(201, 68, 68, 0.3);
+  color: var(--text-primary, #f0ece4);
+  font-size: 0.82rem;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  resize: vertical;
+  min-height: 72px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.reject-textarea:focus {
+  border-color: var(--error, #c94444);
+  box-shadow: 0 0 0 2px rgba(201, 68, 68, 0.15);
+}
+
+.reject-textarea::placeholder {
+  color: var(--text-muted, #5a5248);
+}
+
+.reject-form-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-reject-confirm {
+  flex: 1;
+  padding: 10px 16px;
+  background: rgba(201, 68, 68, 0.25);
+  border: 1px solid rgba(201, 68, 68, 0.4);
+  color: #fca5a1;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-reject-confirm:hover:not(:disabled) {
+  background: rgba(201, 68, 68, 0.4);
+}
+
+.btn-reject-confirm:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-reject-cancel {
+  padding: 10px 16px;
+  background: transparent;
+  border: 1px solid var(--border, rgba(201, 168, 76, 0.15));
+  color: var(--text-secondary, #a09888);
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-reject-cancel:hover {
+  border-color: var(--gold-border, rgba(201, 168, 76, 0.25));
+  color: var(--text-primary, #f0ece4);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 1100px) {
+  .review-card {
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .review-card-actions {
+    grid-column: 1 / -1;
+    flex-direction: row;
+  }
+
+  .action-buttons {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .btn-approve,
+  .btn-reject {
+    flex: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .review-card {
+    grid-template-columns: 1fr;
+  }
+
+  .review-card-image {
+    width: 100%;
+    height: 220px;
+  }
+
+  .review-card-meta {
+    grid-template-columns: 1fr;
+  }
+}

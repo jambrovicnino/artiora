@@ -1,0 +1,245 @@
+/* ═══════════════════════════════════════════════
+   ARTIORA — My Artworks Page
+   Table/list with dark rows, gold accents, badges
+   ═══════════════════════════════════════════════ */
+
+/* ─── Header ─── */
+.my-artworks-header {
+  margin-bottom: 24px;
+}
+
+.my-artworks-title {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-primary, #f0ece4);
+  margin: 0 0 6px 0;
+}
+
+.my-artworks-subtitle {
+  color: var(--text-secondary, #a09888);
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+/* ─── Filter Tabs ─── */
+.artworks-filter-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 24px;
+  padding-bottom: 1px;
+  border-bottom: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.06));
+  overflow-x: auto;
+}
+
+.filter-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-secondary, #a09888);
+  font-size: 0.85rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.filter-tab:hover {
+  color: var(--text-primary, #f0ece4);
+}
+
+.filter-tab-active {
+  color: var(--gold, #c9a84c);
+  border-bottom-color: var(--gold, #c9a84c);
+}
+
+.filter-tab-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  background: var(--bg-elevated, #1a1a1a);
+  border-radius: 11px;
+  font-size: 0.72rem;
+  color: var(--text-muted, #5a5248);
+}
+
+.filter-tab-active .filter-tab-count {
+  background: var(--gold-muted, rgba(201, 168, 76, 0.12));
+  color: var(--gold, #c9a84c);
+}
+
+/* ─── Empty State ─── */
+.artworks-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 64px 24px;
+  color: var(--text-muted, #5a5248);
+  text-align: center;
+}
+
+.artworks-empty svg {
+  opacity: 0.4;
+}
+
+.artworks-empty p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* ─── Table ─── */
+.artworks-table-wrapper {
+  overflow-x: auto;
+}
+
+.artworks-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.artworks-table thead th {
+  text-align: left;
+  padding: 12px 16px;
+  color: var(--text-muted, #5a5248);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border, rgba(201, 168, 76, 0.15));
+}
+
+.th-image {
+  width: 64px;
+}
+
+.artwork-row {
+  transition: background 0.2s ease;
+}
+
+.artwork-row:hover {
+  background: var(--gold-glow, rgba(201, 168, 76, 0.08));
+}
+
+.artwork-row td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.06));
+  vertical-align: middle;
+}
+
+/* ─── Thumbnail ─── */
+.artwork-thumb {
+  width: 52px;
+  height: 52px;
+  overflow: hidden;
+  border: 1px solid var(--border, rgba(201, 168, 76, 0.15));
+}
+
+.artwork-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ─── Title Cell ─── */
+.artwork-title-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.artwork-name {
+  color: var(--text-primary, #f0ece4);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.artwork-category {
+  color: var(--text-muted, #5a5248);
+  font-size: 0.75rem;
+  text-transform: capitalize;
+}
+
+/* ─── Status Badge ─── */
+.status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  white-space: nowrap;
+}
+
+.rejection-reason {
+  display: block;
+  color: var(--error, #c94444);
+  font-size: 0.72rem;
+  margin-top: 4px;
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ─── Edition Info ─── */
+.edition-info {
+  color: var(--text-secondary, #a09888);
+  font-size: 0.82rem;
+}
+
+/* ─── Price ─── */
+.artwork-price {
+  color: var(--gold, #c9a84c);
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+/* ─── Date ─── */
+.artwork-date {
+  color: var(--text-muted, #5a5248);
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 900px) {
+  .artworks-table thead {
+    display: none;
+  }
+
+  .artworks-table,
+  .artworks-table tbody,
+  .artworks-table tr,
+  .artworks-table td {
+    display: block;
+  }
+
+  .artwork-row {
+    padding: 16px;
+    margin-bottom: 8px;
+    background: var(--bg-card, #141414);
+    border: 1px solid var(--border, rgba(201, 168, 76, 0.15));
+  }
+
+  .artwork-row td {
+    padding: 4px 0;
+    border-bottom: none;
+  }
+
+  .td-image {
+    margin-bottom: 8px;
+  }
+
+  .artwork-thumb {
+    width: 100%;
+    height: 160px;
+  }
+}

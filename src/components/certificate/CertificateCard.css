@@ -1,0 +1,273 @@
+/* ═══════════════════════════════════════════════
+   ARTIORA — Certificate Card Styles
+   Premium certificate document feel.
+   Dark card, gold borders, corner brackets.
+   ═══════════════════════════════════════════════ */
+
+/* ─── Card Container ─────────────────────────── */
+.cert-card {
+  position: relative;
+  max-width: 520px;
+  width: 100%;
+  background: #141414;
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  border-radius: var(--radius-sm, 2px);
+  padding: 40px 36px;
+  box-shadow:
+    0 4px 32px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(201, 168, 76, 0.04);
+  overflow: hidden;
+}
+
+/* ─── Corner Bracket Decorations ─────────────── */
+.cert-card::before,
+.cert-card::after {
+  content: '';
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-color: rgba(201, 168, 76, 0.4);
+  border-style: solid;
+  pointer-events: none;
+}
+
+.cert-card::before {
+  top: 10px;
+  left: 10px;
+  border-width: 2px 0 0 2px;
+}
+
+.cert-card::after {
+  top: 10px;
+  right: 10px;
+  border-width: 2px 2px 0 0;
+}
+
+.cert-card__inner::before,
+.cert-card__inner::after {
+  content: '';
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-color: rgba(201, 168, 76, 0.4);
+  border-style: solid;
+  pointer-events: none;
+}
+
+.cert-card__inner::before {
+  bottom: 10px;
+  left: 10px;
+  border-width: 0 0 2px 2px;
+}
+
+.cert-card__inner::after {
+  bottom: 10px;
+  right: 10px;
+  border-width: 0 2px 2px 0;
+}
+
+.cert-card__inner {
+  position: relative;
+}
+
+/* ─── Header ─────────────────────────────────── */
+.cert-card__header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.cert-card__logo-text {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: 1.5rem;
+  font-weight: 300;
+  letter-spacing: 0.35em;
+  color: #c9a84c;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.cert-card__heading {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(201, 168, 76, 0.6);
+}
+
+/* ─── Gold Divider ───────────────────────────── */
+.cert-card__divider {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(201, 168, 76, 0.4),
+    transparent
+  );
+  margin: 20px 0;
+}
+
+/* ─── Artwork Title + Artist ─────────────────── */
+.cert-card__title {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #f0ece4;
+  text-align: center;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+.cert-card__artist {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.85rem;
+  color: #a09888;
+  text-align: center;
+  letter-spacing: 0.06em;
+}
+
+/* ─── Details Grid ───────────────────────────── */
+.cert-card__details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 24px;
+  margin: 16px 0;
+}
+
+.cert-card__detail {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cert-card__detail-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(201, 168, 76, 0.5);
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+.cert-card__detail-value {
+  font-size: 0.85rem;
+  color: #f0ece4;
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+/* ─── Certificate Number ─────────────────────── */
+.cert-card__number {
+  text-align: center;
+  font-family: 'Courier New', 'Consolas', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: #c9a84c;
+  background: rgba(201, 168, 76, 0.06);
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm, 2px);
+  margin: 16px 0;
+}
+
+/* ─── QR Code Section ────────────────────────── */
+.cert-card__qr-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.cert-card__qr-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(201, 168, 76, 0.5);
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+/* ─── Provenance Section ─────────────────────── */
+.cert-card__provenance-section {
+  margin-top: 16px;
+}
+
+.cert-card__provenance-heading {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(201, 168, 76, 0.5);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  margin-bottom: 14px;
+}
+
+/* ─── Verification URL ───────────────────────── */
+.cert-card__verification {
+  text-align: center;
+  margin-top: 12px;
+}
+
+.cert-card__verification-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(201, 168, 76, 0.5);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  margin-bottom: 4px;
+}
+
+.cert-card__verification-url {
+  font-family: 'Courier New', 'Consolas', monospace;
+  font-size: 0.7rem;
+  color: #a09888;
+  word-break: break-all;
+}
+
+/* ─── Status Badge ───────────────────────────── */
+.cert-card__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  border-radius: var(--radius-sm, 2px);
+  margin-top: 8px;
+}
+
+.cert-card__status--active {
+  color: #4a7c59;
+  background: rgba(74, 124, 89, 0.1);
+  border: 1px solid rgba(74, 124, 89, 0.3);
+}
+
+.cert-card__status--revoked {
+  color: #c94444;
+  background: rgba(201, 68, 68, 0.1);
+  border: 1px solid rgba(201, 68, 68, 0.3);
+}
+
+/* ─── Responsive ─────────────────────────────── */
+@media (max-width: 560px) {
+  .cert-card {
+    padding: 28px 20px;
+  }
+
+  .cert-card__details {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .cert-card__title {
+    font-size: 1.3rem;
+  }
+
+  .cert-card__logo-text {
+    font-size: 1.2rem;
+  }
+}

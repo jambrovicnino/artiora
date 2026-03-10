@@ -34,6 +34,15 @@ import ArtistProfilePage from './pages/ArtistProfilePage';
 // ─── Wishlist ───
 import WishlistPage from './pages/WishlistPage';
 
+// ─── Certificate ───
+import CertificatePage from './pages/CertificatePage';
+
+// ─── Dashboard & Admin ───
+import DashboardPage from './pages/DashboardPage';
+import UploadArtworkPage from './pages/UploadArtworkPage';
+import MyArtworksPage from './pages/MyArtworksPage';
+import AdminReviewPage from './pages/AdminReviewPage';
+
 import './App.css';
 
 export default function App() {
@@ -71,6 +80,18 @@ export default function App() {
 
           {/* ─── Wishlist ─── */}
           <Route path="/priljubljene" element={<WishlistPage />} />
+
+          {/* ─── Certificate ─── */}
+          <Route path="/potrdilo/:certificateId" element={<CertificatePage />} />
+
+          {/* ─── Dashboard (Protected) ─── */}
+          <Route path="/nadzorna-plosca" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
+          <Route path="/nadzorna-plosca/nalozi" element={<ProtectedRoute><UploadArtworkPage /></ProtectedRoute>} />
+          <Route path="/nadzorna-plosca/umetnine" element={<ProtectedRoute><MyArtworksPage /></ProtectedRoute>} />
+          <Route path="/nadzorna-plosca/narocila" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
+
+          {/* ─── Admin (Protected, role='admin') ─── */}
+          <Route path="/admin/pregled" element={<ProtectedRoute role="admin"><AdminReviewPage /></ProtectedRoute>} />
 
           {/* ─── 404 ─── */}
           <Route path="*" element={<NotFoundPage />} />
