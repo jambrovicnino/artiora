@@ -10,7 +10,7 @@ export const businessPlanSections = [
     titleSl: 'Vizija in Poslanstvo',
     titleEn: 'Vision & Mission',
     icon: '◆',
-    contentSl: `ARTIORA si prizadeva postati vodilna certificirana tržnica za umetnost v Srednji Evropi, kjer se srečata tehnologija in kreativnost. Naša vizija je demokratizacija umetniškega trga — omogočiti vsakemu umetniku, da svoja dela predstavi globalnemu občinstvu, hkrati pa kupcem zagotoviti avtentičnost in kakovost vsakega nakupa.
+    contentSl: `ARTIORA si prizadeva postati vodilni certificiran artmarket za umetnost v Srednji Evropi, kjer se srečata tehnologija in kreativnost. Naša vizija je demokratizacija umetniškega trga — omogočiti vsakemu umetniku, da svoja dela predstavi globalnemu občinstvu, hkrati pa kupcem zagotoviti avtentičnost in kakovost vsakega nakupa.
 
 Naše poslanstvo temelji na treh stebrih: dostopnost, avtentičnost in inovacija. Z integracijo umetne inteligence v ustvarjalni proces ne nadomeščamo umetnikov, temveč jim ponujamo novo orodje za izražanje. Vsako delo na platformi ARTIORA je opremljeno z digitalnim QR certifikatom, ki zagotavlja sledljivost in izvor umetnine.
 
@@ -28,7 +28,7 @@ We believe art should not be reserved for the elite. With a transparent commissi
     titleSl: 'Produkt in Storitev',
     titleEn: 'Product & Service',
     icon: '◇',
-    contentSl: `ARTIORA ponuja celovit produkt, ki združuje tri ključne komponente: AI-podprto ustvarjanje umetnosti, tržnico za prodajo del in sistem certificiranja avtentičnosti. Umetniki lahko naložijo svoje digitalne ali fizične umetnine, uporabijo naše AI orodja za stilizacijo ali pa naročniku ustvarijo delo po meri.
+    contentSl: `ARTIORA ponuja celovit produkt, ki združuje tri ključne komponente: AI-podprto ustvarjanje umetnosti, artmarket za prodajo del in sistem certificiranja avtentičnosti. Umetniki lahko naložijo svoje digitalne ali fizične umetnine, uporabijo naše AI orodja za stilizacijo ali pa naročniku ustvarijo delo po meri.
 
 Naša platforma vključuje interaktivni studio, kjer uporabniki naložijo referenčno sliko ali opišejo svojo vizijo. Sistem AI generira umetniške interpretacije v različnih stilih — od impresionizma do pop arta. Končni izdelek je natisnjen na premium muzejsko platno z Impasto gel medijem, ki doda teksturo in globino primerljivo z oljnim slikarstvom.
 
@@ -66,7 +66,7 @@ For buyers, we offer an intuitive experience: browsing by category, filtering by
     icon: '◈',
     contentSl: `Globalni trg spletne prodaje umetnosti je v letu 2024 dosegel vrednost 11,8 milijarde EUR, z letno rastjo 12-15 %. Pandemija je trajno spremenila nakupovalne navade — delež spletnih nakupov umetnosti se je s 5 % povzpel na skoraj 25 % celotnega umetniškega trga. Ta trend je še posebej izrazit v segmentu del pod 5.000 EUR, ki predstavlja jedro ponudbe ARTIORA.
 
-Slovenski umetniški trg je nišen, a rastočo. Z 2,1 milijona prebivalcev in rastočim srednjim razredom je povpraševanje po dostopni umetnosti za dom v porastu. Trenutno v Sloveniji ni specializirane spletne tržnice za umetnost, ki bi ponujala celovito izkušnjo — od odkrivanja do certificirane dostave. ARTIORA zapolnjuje to vrzel.
+Slovenski umetniški trg je nišen, a rastočo. Z 2,1 milijona prebivalcev in rastočim srednjim razredom je povpraševanje po dostopni umetnosti za dom v porastu. Trenutno v Sloveniji ni specializirane spletnega artmarketa za umetnost, ki bi ponujala celovito izkušnjo — od odkrivanja do certificirane dostave. ARTIORA zapolnjuje to vrzel.
 
 Naš naslovljivi trg v prvi fazi (Slovenija) obsega približno 150.000 gospodinjstev z nadpovprečnimi dohodki, ki redno kupujejo dekorativne izdelke. V drugi fazi širimo na trge DACH regije (Avstrija, Nemčija, Švica) in Hrvaško, kjer je skupni naslovljivi trg več kot 5 milijonov gospodinjstev. Srednja vrednost nakupa na platformi ocenjujemo na 180-350 EUR.`,
     contentEn: `The global online art sales market reached a value of EUR 11.8 billion in 2024, with annual growth of 12-15%. The pandemic permanently changed purchasing habits — the share of online art purchases rose from 5% to nearly 25% of the total art market. This trend is especially pronounced in the sub-EUR 5,000 segment, which represents the core of ARTIORA's offering.
@@ -250,7 +250,7 @@ By year three, with 800-1,200 annual sales and expansion to regional markets, we
 
 Postopek naročila poteka v šestih korakih: zahteva stranke, ponudba umetnika, sprejem in plačilo, izdelava dela (z vmesnimi posodobitvami), dostava in končna potrditev. Platforma deluje kot zaupanja vreden posrednik — sredstva drži v hrambi, dokler stranka ne potrdi zadovoljstva z delom. V primeru spora posreduje ARTIORA ekipa.
 
-Provizija za naročila po meri znaša 10 % od končne cene, kar je nižje od standardnih provizij za tržnico, saj umetnik opravi večji del dela. Umetniki od nivoja "Potrjen" naprej imajo možnost sprejemanja naročil. Sistem vključuje interno sporočanje, nalaganje skic in posodobitev statusa v realnem času — vse znotraj platforme, brez potrebe po zunanjih komunikacijskih kanalih.`,
+Provizija za naročila po meri znaša 10 % od končne cene, kar je nižje od standardnih provizij za artmarket, saj umetnik opravi večji del dela. Umetniki od nivoja "Potrjen" naprej imajo možnost sprejemanja naročil. Sistem vključuje interno sporočanje, nalaganje skic in posodobitev statusa v realnem času — vse znotraj platforme, brez potrebe po zunanjih komunikacijskih kanalih.`,
     contentEn: `The custom commission system is one of ARTIORA's key platform features, enabling artists to create personalized works for clients. A buyer submits a request with details: a reference image or vision description, desired dimensions, style, color palette, and budget. The artist then prepares a quote with price, timeline, and a preliminary sketch.
 
 The commission process follows six steps: client request, artist quote, acceptance and payment, creation (with progress updates), delivery, and final confirmation. The platform acts as a trusted intermediary — funds are held in escrow until the client confirms satisfaction with the work. In case of disputes, the ARTIORA team mediates.

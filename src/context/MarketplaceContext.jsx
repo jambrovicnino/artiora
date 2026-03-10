@@ -4,7 +4,7 @@ import { mockArtworks } from '../data/mockArtworks';
 const MarketplaceContext = createContext();
 
 const STORAGE_KEY = 'artiora_marketplace';
-const DATA_VERSION = 2; // Povečaj ob spremembi mockArtworks
+const DATA_VERSION = 3; // Povečaj ob spremembi mockArtworks
 
 function loadData() {
   try {

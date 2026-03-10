@@ -98,7 +98,7 @@ export default function BusinessPlanPage() {
           </h1>
           <p className="bp-hero-subtitle">
             {language === 'sl'
-              ? 'Certificirana tržnica umetnosti z AI integracijo'
+              ? 'Certificiran artmarket z AI integracijo'
               : 'Certified Art Marketplace with AI Integration'}
           </p>
           <div className="bp-hero-meta">
