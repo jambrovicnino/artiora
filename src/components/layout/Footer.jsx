@@ -45,7 +45,7 @@ export default function Footer() {
           <div className="footer-links-col">
             <h4 className="footer-col-title">Platforma</h4>
             <nav className="footer-nav">
-              <Link to="/tržnica" className="footer-link">Tržnica</Link>
+              <Link to="/artmarket" className="footer-link">Artmarket</Link>
               <Link to="/umetniki" className="footer-link">Umetniki</Link>
               <Link to="/studio" className="footer-link">Studio</Link>
               <Link to="/galerija" className="footer-link">Galerija</Link>

@@ -31,11 +31,11 @@ export default function Navbar() {
 
         <div className={`nav-links${menuOpen ? ' open' : ''}`}>
           <NavLink
-            to="/tržnica"
+            to="/artmarket"
             className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
             onClick={closeMenu}
           >
-            TRŽNICA
+            ARTMARKET
           </NavLink>
           <NavLink
             to="/umetniki"

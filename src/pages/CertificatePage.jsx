@@ -147,8 +147,8 @@ export default function CertificatePage() {
             Certifikat z oznako <strong>{certificateId}</strong> ne obstaja
             ali je bil preklican.
           </p>
-          <Link to="/tržnica" className="btn-gold">
-            Nazaj na tržnico
+          <Link to="/artmarket" className="btn-gold">
+            Nazaj na Artmarket
           </Link>
         </div>
       </div>

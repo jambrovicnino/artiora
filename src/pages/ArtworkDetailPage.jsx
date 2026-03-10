@@ -63,8 +63,8 @@ export default function ArtworkDetailPage() {
           <div className="container">
             <h1>Umetnina ni najdena</h1>
             <p>Žal te umetnine ne najdemo. Morda je bila odstranjena.</p>
-            <Link to="/tržnica" className="btn-outline">
-              Nazaj na tržnico
+            <Link to="/artmarket" className="btn-outline">
+              Nazaj na Artmarket
             </Link>
           </div>
         </div>

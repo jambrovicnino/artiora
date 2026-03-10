@@ -232,7 +232,7 @@ export default function DashboardPage() {
               <p className="dashboard-empty">
                 {isArtist
                   ? 'Se ni aktivnosti. Zacnite z nalaganjem umetnine!'
-                  : 'Se nimate narocil. Raziščite tržnico!'}
+                  : 'Se nimate narocil. Raziščite Artmarket!'}
               </p>
             ) : (
               <div className="activity-list">
@@ -289,14 +289,14 @@ export default function DashboardPage() {
                     <span className="quick-link-label">Nalozi umetnino</span>
                   </Link>
 
-                  <Link to="/trznica" className="quick-link-item">
+                  <Link to="/artmarket" className="quick-link-item">
                     <div className="quick-link-icon">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
                         <polyline points="9 22 9 12 15 12 15 22" />
                       </svg>
                     </div>
-                    <span className="quick-link-label">Oglej si trznico</span>
+                    <span className="quick-link-label">Oglej si Artmarket</span>
                   </Link>
 
                   <Link to={`/umetnik/${artistId}`} className="quick-link-item">
@@ -322,14 +322,14 @@ export default function DashboardPage() {
                 </>
               ) : (
                 <>
-                  <Link to="/trznica" className="quick-link-item">
+                  <Link to="/artmarket" className="quick-link-item">
                     <div className="quick-link-icon">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
                         <polyline points="9 22 9 12 15 12 15 22" />
                       </svg>
                     </div>
-                    <span className="quick-link-label">Trznica</span>
+                    <span className="quick-link-label">Artmarket</span>
                   </Link>
 
                   <Link to="/umetniki" className="quick-link-item">

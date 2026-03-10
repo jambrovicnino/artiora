@@ -58,10 +58,10 @@ export default function WishlistPage() {
                 Vaša lista priljubljenih je prazna
               </h2>
               <p className="wishlist-page__empty-text">
-                Brskajte po tržnici in dodajte umetnine med priljubljene s klikom na ikono srca.
+                Brskajte po Artmarketu in dodajte umetnine med priljubljene s klikom na ikono srca.
               </p>
-              <Link to="/tržnica" className="btn-gold">
-                Razišči tržnico
+              <Link to="/artmarket" className="btn-gold">
+                Razišči Artmarket
               </Link>
             </div>
           )}

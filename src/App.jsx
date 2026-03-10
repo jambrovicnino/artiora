@@ -79,8 +79,8 @@ export default function App() {
           <Route path="/registracija" element={<RegisterPage />} />
 
           {/* ─── Marketplace ─── */}
-          <Route path="/tržnica" element={<MarketplacePage />} />
-          <Route path="/tržnica/:artworkId" element={<ArtworkDetailPage />} />
+          <Route path="/artmarket" element={<MarketplacePage />} />
+          <Route path="/artmarket/:artworkId" element={<ArtworkDetailPage />} />
 
           {/* ─── Artists ─── */}
           <Route path="/umetniki" element={<ArtistsPage />} />

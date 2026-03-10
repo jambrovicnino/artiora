@@ -130,7 +130,7 @@ export default function MarketplacePage() {
         <div className="marketplace-page__hero">
           <div className="container">
             <span className="marketplace-page__label">ARTIORA</span>
-            <h1 className="marketplace-page__heading">TRŽNICA</h1>
+            <h1 className="marketplace-page__heading">ARTMARKET</h1>
             <div className="gold-divider" />
             <p className="marketplace-page__subtitle">
               Odkrijte edinstvena umetniška dela certificiranih umetnikov
