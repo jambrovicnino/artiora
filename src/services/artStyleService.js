@@ -1,11 +1,11 @@
 // ═══════════════════════════════════════════════
-// ETERNA Artisan — Artistic Style Transformations
+// ARTIORA — Artistic Style Transformations
 //
 // 7 unikatnih umetniških slogov za preobrazbo
 // fotografij v umetniška dela. Vse canvas-based
 // (hitro, brez API stroškov, dela offline).
 //
-// Popolnoma drugačno od ETERNA Spomini
+// Popolnoma drugačno od ARTIORA Spomini
 // (ki je za restavracijo/ohranjanje fotografij).
 // ═══════════════════════════════════════════════
 

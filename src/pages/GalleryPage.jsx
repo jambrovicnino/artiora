@@ -55,7 +55,7 @@ export default function GalleryPage() {
       <ScrollReveal variant="fade-in">
         <div className="page-hero">
           <div className="container">
-            <span className="page-hero-label">ETERNA ARTISAN</span>
+            <span className="page-hero-label">ARTIORA</span>
             <h1 className="page-hero-heading">Galerija Umetnin</h1>
             <p className="page-hero-subtitle">
               Unikatna umetniška dela na premium platnu

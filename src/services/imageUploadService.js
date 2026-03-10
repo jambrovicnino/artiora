@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// ETERNA Artisan — Image Upload Service (client-side)
+// ARTIORA — Image Upload Service (client-side)
 //
 // Naloži sliko v Vercel Blob pred shranjevanjem
 // v košarico. V localStorage se shrani samo URL
@@ -17,7 +17,7 @@
 
 const API_BASE =
   typeof window !== 'undefined' && window.location.hostname === 'localhost'
-    ? 'https://eterna-artisan.vercel.app'
+    ? 'https://artiora.vercel.app'
     : '';
 
 /**
@@ -101,7 +101,7 @@ export async function uploadFullResImage(dataUrl, filename = 'image.jpg') {
 
   // Pretvori v binary blob (brez 33% base64 overheada)
   const binaryBlob = dataUrlToBlob(compressed);
-  console.log(`[ETERNA] Upload binary: ${Math.round(binaryBlob.size / 1024)} KB (${binaryBlob.type})`);
+  console.log(`[ARTIORA] Upload binary: ${Math.round(binaryBlob.size / 1024)} KB (${binaryBlob.type})`);
 
   const safeName = `fullres-${Date.now()}-${filename.replace(/\s+/g, '-')}`;
 
@@ -132,6 +132,6 @@ export async function uploadFullResImage(dataUrl, filename = 'image.jpg') {
     throw new Error('Upload je uspel, ampak URL ni bil vrnjen');
   }
 
-  console.log(`[ETERNA] Full-res upload: ${data.url} (${data.size} bytes)`);
+  console.log(`[ARTIORA] Full-res upload: ${data.url} (${data.size} bytes)`);
   return data.url;
 }

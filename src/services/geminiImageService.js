@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// ETERNA Artisan — AI Image Generation
+// ARTIORA — AI Image Generation
 // Kliče Vercel serverless proxy (/api/generate-image)
 // ki posreduje zahtevo Gemini API iz ZDA strežnika
 // in tako obide EU geografsko blokado.
@@ -16,7 +16,7 @@ function getApiBaseUrl() {
     return '';
   }
   // V razvoju — kliči Vercel production za proxy
-  return 'https://eterna-artisan.vercel.app';
+  return 'https://artiora.vercel.app';
 }
 
 /**
@@ -37,7 +37,7 @@ export async function generateImageFromKeywords(keywords) {
   const baseUrl = getApiBaseUrl();
   const url = `${baseUrl}/api/generate-image`;
 
-  console.log(`[ETERNA] Pošiljam ${filtered.length} ključnih besed na ${url}`);
+  console.log(`[ARTIORA] Pošiljam ${filtered.length} ključnih besed na ${url}`);
 
   const response = await fetch(url, {
     method: 'POST',
@@ -65,7 +65,7 @@ export async function generateImageFromKeywords(keywords) {
     throw new Error('Strežnik ni vrnil slike.');
   }
 
-  console.log(`[ETERNA] Uspeh! Model: ${data.model || 'unknown'}`);
+  console.log(`[ARTIORA] Uspeh! Model: ${data.model || 'unknown'}`);
 
   return {
     imageDataUrl: data.imageDataUrl,

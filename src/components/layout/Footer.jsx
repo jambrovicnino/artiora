@@ -17,7 +17,7 @@ export default function Footer() {
                 </span>
               </span>
               <div className="logo-text">
-                <span className="logo-brand">ETERNA</span>
+                <span className="logo-brand">ARTIORA</span>
                 <span className="logo-tagline">ARTISAN</span>
               </div>
             </div>
@@ -62,7 +62,7 @@ export default function Footer() {
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                   <polyline points="22,6 12,13 2,6" />
                 </svg>
-                info@eterna.si
+                info@artiora.si
               </p>
               <p className="footer-contact-item">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -78,7 +78,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="footer-bottom">
           <p className="footer-copy">
-            &copy; {new Date().getFullYear()} Eterna. Vse pravice pridržane.
+            &copy; {new Date().getFullYear()} Artiora. Vse pravice pridržane.
           </p>
         </div>
       </div>

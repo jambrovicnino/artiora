@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// ETERNA — Storitev za izboljšavo slik
+// ARTIORA — Storitev za izboljšavo slik
 // Ponudnik: demo (canvas) | huggingface | nanobanana
 // ═══════════════════════════════════════════════
 
@@ -71,7 +71,7 @@ async function callHuggingFaceAPI(imageBase64, enhancement) {
 
   if (!response.ok) {
     const errorText = await response.text().catch(() => 'Neznana napaka');
-    console.warn('[ETERNA] HF API napaka:', response.status, errorText);
+    console.warn('[ARTIORA] HF API napaka:', response.status, errorText);
     throw new Error(`HF API napaka: ${response.status}`);
   }
 
@@ -274,11 +274,11 @@ export async function enhanceImage(imageBase64, enhancement) {
     // Izberi ponudnika
     if (AI_PROVIDER === 'huggingface' && HF_TOKEN) {
       try {
-        console.log('[ETERNA] Uporaba Hugging Face API...');
+        console.log('[ARTIORA] Uporaba Hugging Face API...');
         processedImage = await callHuggingFaceAPI(imageBase64, enhancement);
         model = `hf/${HF_MODELS[enhancement]}`;
       } catch (hfError) {
-        console.warn('[ETERNA] HF API ni na voljo, uporaba demo obdelave:', hfError.message);
+        console.warn('[ARTIORA] HF API ni na voljo, uporaba demo obdelave:', hfError.message);
         const processingTime = 3000 + Math.random() * 2000;
         await simulateProcessing(processingTime);
         processedImage = await demoCanvasEnhance(imageBase64, enhancement);
@@ -304,7 +304,7 @@ export async function enhanceImage(imageBase64, enhancement) {
       },
     };
   } catch (error) {
-    console.error('[ETERNA] Napaka pri izboljšavi:', error);
+    console.error('[ARTIORA] Napaka pri izboljšavi:', error);
     throw new Error('Izboljšava slike ni uspela. Prosimo, poskusite znova.');
   }
 }

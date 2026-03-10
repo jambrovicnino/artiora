@@ -55,7 +55,7 @@ export default function CreateStep({ generatedImage, onImageGenerated, onContinu
 
       onImageGenerated(imageUrl);
     } catch (err) {
-      console.error('[ETERNA] Gemini napaka:', err);
+      console.error('[ARTIORA] Gemini napaka:', err);
       setError(
         err.message || 'Generiranje slike ni uspelo. Poskusite znova ali spremenite ključne besede.'
       );

@@ -3,7 +3,7 @@ import { frameStyles } from '../../data/frameOptions';
 import './FramePreview.css';
 
 // ═══════════════════════════════════════════════
-// ETERNA — Canvas-Based Frame Preview
+// ARTIORA — Canvas-Based Frame Preview
 //
 // Renderira realistične okvirje z dejanskimi
 // strip teksturami iz Vidal kataloga.

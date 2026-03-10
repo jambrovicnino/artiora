@@ -22,7 +22,7 @@ export default function Navbar() {
             </span>
           </span>
           <div className="logo-text">
-            <span className="logo-brand">ETERNA</span>
+            <span className="logo-brand">ARTIORA</span>
             <span className="logo-tagline">ARTISAN</span>
           </div>
         </Link>

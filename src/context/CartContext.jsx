@@ -4,7 +4,7 @@ const CartContext = createContext();
 
 function loadCart() {
   try {
-    const data = localStorage.getItem('eterna_artisan_cart');
+    const data = localStorage.getItem('artiora_cart');
     return data ? JSON.parse(data) : [];
   } catch {
     return [];
@@ -37,10 +37,10 @@ export function CartProvider({ children }) {
 
   useEffect(() => {
     try {
-      localStorage.setItem('eterna_artisan_cart', JSON.stringify(cart));
+      localStorage.setItem('artiora_cart', JSON.stringify(cart));
     } catch (e) {
       // localStorage poln (quota exceeded) — poskusi shraniti brez slik
-      console.warn('[ETERNA] localStorage poln, shranjujem brez slik:', e.message);
+      console.warn('[ARTIORA] localStorage poln, shranjujem brez slik:', e.message);
       try {
         const lightCart = cart.map((item) => ({
           ...item,
@@ -48,9 +48,9 @@ export function CartProvider({ children }) {
           originalImage: null,
           processedImage: null,
         }));
-        localStorage.setItem('eterna_artisan_cart', JSON.stringify(lightCart));
+        localStorage.setItem('artiora_cart', JSON.stringify(lightCart));
       } catch {
-        console.error('[ETERNA] localStorage poln — ne morem shraniti košarice');
+        console.error('[ARTIORA] localStorage poln — ne morem shraniti košarice');
       }
     }
   }, [cart]);

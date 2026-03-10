@@ -3,7 +3,7 @@ import './AdminNotifyPage.css';
 
 const API_BASE =
   typeof window !== 'undefined' && window.location.hostname === 'localhost'
-    ? 'https://eterna-artisan.vercel.app'
+    ? 'https://artiora.vercel.app'
     : '';
 
 export default function AdminNotifyPage() {
@@ -133,7 +133,7 @@ export default function AdminNotifyPage() {
       <div className="admin-notify-page container">
         <div className="admin-login-card">
           <div className="admin-header">
-            <h1>ETERNA</h1>
+            <h1>ARTIORA</h1>
             <span>ARTISAN — ADMIN</span>
           </div>
           <form onSubmit={handleLogin} className="admin-login-form">
@@ -158,7 +158,7 @@ export default function AdminNotifyPage() {
     <div className="admin-notify-page container">
       <div className="admin-notify-card">
         <div className="admin-header">
-          <h1>ETERNA</h1>
+          <h1>ARTIORA</h1>
           <span>OBVESTILO STRANKI</span>
         </div>
 

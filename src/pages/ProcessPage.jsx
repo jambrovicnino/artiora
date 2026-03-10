@@ -62,7 +62,7 @@ export default function ProcessPage() {
       <ScrollReveal variant="fade-in">
         <div className="page-hero">
           <div className="container">
-            <span className="page-hero-label">ETERNA</span>
+            <span className="page-hero-label">ARTIORA</span>
             <h1 className="page-hero-heading">Kako Deluje</h1>
             <p className="page-hero-subtitle">Od vaše ideje do umetnine v štirih preprostih korakih</p>
           </div>

@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// ETERNA Artisan — Image Quality Validation
+// ARTIORA — Image Quality Validation
 // Zagotovi, da ima slika dovolj resolucije za tisk
 // ═══════════════════════════════════════════════
 

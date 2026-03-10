@@ -4,7 +4,7 @@ import './AdjustmentPage.css';
 
 const API_BASE =
   typeof window !== 'undefined' && window.location.hostname === 'localhost'
-    ? 'https://eterna-artisan.vercel.app'
+    ? 'https://artiora.vercel.app'
     : '';
 
 export default function AdjustmentPage() {

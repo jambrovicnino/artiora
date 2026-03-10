@@ -4,7 +4,7 @@ export default function ServiceCard({ service }) {
   const { romanNumeral, name, description } = service;
 
   return (
-    <div className="eterna-card">
+    <div className="artiora-card">
       {/* Corner decorations */}
       <div className="card-corner card-corner-tl" />
       <div className="card-corner card-corner-tr" />

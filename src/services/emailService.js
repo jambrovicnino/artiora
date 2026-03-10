@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// ETERNA — Email storitev za obvestila o naročilih
+// ARTIORA — Email storitev za obvestila o naročilih
 // Uporablja EmailJS (brezplačni nivo: 200 mailov/mesec)
 // Kasnejša nadgradnja: Resend za transakcijske maile
 // ═══════════════════════════════════════════════
@@ -93,8 +93,8 @@ function formatOrderDetails(orderData) {
 export async function sendOrderEmail(orderData) {
   // Preveri konfiguracijo
   if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
-    console.warn('[ETERNA] EmailJS ni konfiguriran. Naročilo zabeleženo samo v konzoli.');
-    console.log('[ETERNA] Podrobnosti naročila:', formatOrderDetails(orderData));
+    console.warn('[ARTIORA] EmailJS ni konfiguriran. Naročilo zabeleženo samo v konzoli.');
+    console.log('[ARTIORA] Podrobnosti naročila:', formatOrderDetails(orderData));
 
     // V demo načinu: izpiši v konzolo in simuliraj uspeh
     return {
@@ -118,14 +118,14 @@ export async function sendOrderEmail(orderData) {
       templateParams
     );
 
-    console.log('[ETERNA] Email poslan:', response.status);
+    console.log('[ARTIORA] Email poslan:', response.status);
 
     return {
       success: true,
       message: 'Obvestilo o naročilu uspešno poslano',
     };
   } catch (error) {
-    console.error('[ETERNA] Napaka pri pošiljanju emaila:', error);
+    console.error('[ARTIORA] Napaka pri pošiljanju emaila:', error);
 
     // Ne ustavi naročila če email ne uspe
     return {
@@ -155,7 +155,7 @@ export async function sendTestEmail() {
     total: 289,
     customerInfo: {
       name: 'Test Uporabnik',
-      email: 'test@eterna.si',
+      email: 'test@artiora.si',
     },
     orderId: 'TEST-' + Date.now(),
   });

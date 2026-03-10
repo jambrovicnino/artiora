@@ -52,7 +52,7 @@ export default function CameraModal({ isOpen, onClose, onCapture }) {
       })
       .catch((err) => {
         if (!cancelled) {
-          console.warn('[ETERNA] Camera error:', err);
+          console.warn('[ARTIORA] Camera error:', err);
           setError('Dostop do kamere ni mogoč. Preverite dovoljenja brskalnika.');
         }
       });

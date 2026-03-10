@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// ETERNA ARTISAN — Pričevanja strank
+// ARTIORA — Pričevanja strank
 // ═══════════════════════════════════════════════
 
 export const testimonials = [

@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// ETERNA ARTISAN — Galerija umetnin
+// ARTIORA — Galerija umetnin
 //
 // Kategorije in umetnine. Slike dodaj v public/gallery/
 // in posodobi vnose spodaj.

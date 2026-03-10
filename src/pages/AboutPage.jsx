@@ -9,7 +9,7 @@ export default function AboutPage() {
       <ScrollReveal variant="fade-in">
         <div className="page-hero">
           <div className="container">
-            <span className="page-hero-label">ETERNA</span>
+            <span className="page-hero-label">ARTIORA</span>
             <h1 className="page-hero-heading">O Nas</h1>
             <p className="page-hero-subtitle">Spoznajte zgodbo za ustvarjanjem edinstvene umetnosti</p>
           </div>
@@ -26,7 +26,7 @@ export default function AboutPage() {
           <ScrollReveal variant="fade-up">
             <div className="about-mission">
               <h2 className="section-heading">Naše Poslanstvo</h2>
-              <p className="about-text">Vsaka ideja si zasluži, da postane umetnost. Pri Eterna združujemo najnovejšo tehnologijo umetne inteligence z umetniškim občutkom, da vaše vizije pretvorimo v edinstvena umetniška dela, ki bodo krasila vaš dom za generacije.</p>
+              <p className="about-text">Vsaka ideja si zasluži, da postane umetnost. Pri Artiora združujemo najnovejšo tehnologijo umetne inteligence z umetniškim občutkom, da vaše vizije pretvorimo v edinstvena umetniška dela, ki bodo krasila vaš dom za generacije.</p>
               <p className="about-text">Naš postopek je preprost — vi naložite referenco ali opišete svojo vizijo, mi pa poskrbimo za vse ostalo. Od AI stilizacije in ustvarjanja do premium tiska na muzejsko kakovostno platno z Impasto gel medijem.</p>
             </div>
           </ScrollReveal>

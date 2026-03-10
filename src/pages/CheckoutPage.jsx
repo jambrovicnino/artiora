@@ -53,13 +53,13 @@ export default function CheckoutPage() {
       });
 
       if (result.success) {
-        console.log('[ETERNA] Naročilo obdelano:', result);
+        console.log('[ARTIORA] Naročilo obdelano:', result);
         setProcessingStatus('Naročilo uspešno obdelano!');
       } else {
-        console.warn('[ETERNA] Naročilo delno obdelano:', result.error);
+        console.warn('[ARTIORA] Naročilo delno obdelano:', result.error);
       }
     } catch (err) {
-      console.warn('[ETERNA] Obdelava naročila ni uspela:', err);
+      console.warn('[ARTIORA] Obdelava naročila ni uspela:', err);
     }
 
     clearCart();

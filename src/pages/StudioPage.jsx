@@ -89,7 +89,7 @@ export default function StudioPage() {
     try {
       const result = await applyArtStyle(initialImage, styleId);
       setProcessedImage(result.processedImage);
-      console.log(`[ETERNA] Art style "${result.styleName}" uspešno apliciran`);
+      console.log(`[ARTIORA] Art style "${result.styleName}" uspešno apliciran`);
     } catch (error) {
       console.error('Napaka pri umetniški preobrazbi:', error);
       alert('Preobrazba ni uspela. Prosimo, poskusite znova.');
@@ -118,7 +118,7 @@ export default function StudioPage() {
     setUpscaleInfo(null);
 
     try {
-      console.log(`[ETERNA] Upscale začetek — image type: ${typeof currentImage}, length: ${currentImage?.length || 0}, starts: ${currentImage?.substring(0, 30)}`);
+      console.log(`[ARTIORA] Upscale začetek — image type: ${typeof currentImage}, length: ${currentImage?.length || 0}, starts: ${currentImage?.substring(0, 30)}`);
       const result = await upscaleImage(currentImage, 3);
 
       // Shrani upscaled sliko v ustrezno stanje
@@ -136,9 +136,9 @@ export default function StudioPage() {
         warning: result.warning || null,
       });
 
-      console.log(`[ETERNA] Upscale uspešen: ${result.model} (${result.method}), ${result.dimensions?.width}×${result.dimensions?.height}`);
+      console.log(`[ARTIORA] Upscale uspešen: ${result.model} (${result.method}), ${result.dimensions?.width}×${result.dimensions?.height}`);
     } catch (error) {
-      console.error('[ETERNA] Upscale napaka:', error.message, error);
+      console.error('[ARTIORA] Upscale napaka:', error.message, error);
       alert(`Povečava resolucije ni uspela: ${error.message}. Poskusite znova ali izberite manjšo velikost.`);
     } finally {
       setIsUpscaling(false);
@@ -184,13 +184,13 @@ export default function StudioPage() {
           finalImage,
           mode === 'create' ? 'ai-umetnina.jpg' : fileName
         );
-        console.log('[ETERNA] Upload uspešen:', fullResUrl);
+        console.log('[ARTIORA] Upload uspešen:', fullResUrl);
       } catch (uploadError) {
-        console.warn('[ETERNA] Upload ni uspel, uporabim fallback:', uploadError.message);
+        console.warn('[ARTIORA] Upload ni uspel, uporabim fallback:', uploadError.message);
         setUploadProgress('Pripravljam sliko...');
         // Fallback: shrani stisnjeno sliko (2000px JPEG) v localStorage
         fallbackImage = await createOrderImage(finalImage);
-        console.log('[ETERNA] Fallback slika pripravljena:', Math.round(fallbackImage.length / 1024), 'KB');
+        console.log('[ARTIORA] Fallback slika pripravljena:', Math.round(fallbackImage.length / 1024), 'KB');
       }
 
       // 3. Dodaj v košarico
@@ -218,7 +218,7 @@ export default function StudioPage() {
 
       navigate('/cart');
     } catch (error) {
-      console.error('[ETERNA] Add to cart failed:', error);
+      console.error('[ARTIORA] Add to cart failed:', error);
       alert('Napaka pri dodajanju v košarico. Prosimo, poskusite znova.');
     } finally {
       setIsAddingToCart(false);

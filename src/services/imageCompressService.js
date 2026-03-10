@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// ETERNA Artisan — Image Compression for Cart
+// ARTIORA — Image Compression for Cart
 //
 // Stisne base64 slike pred shranjevanjem v localStorage.
 // localStorage ima limit ~5MB, zato ne moremo shraniti

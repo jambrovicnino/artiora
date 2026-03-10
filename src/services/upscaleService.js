@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// ETERNA Artisan — Upscale Service (client-side)
+// ARTIORA — Upscale Service (client-side)
 // Poveča resolucijo slike lokalno v brskalniku
 // z uporabo Canvas + imageSmoothingQuality: 'high'
 //
@@ -34,11 +34,11 @@ function loadImage(dataUrl) {
  * @returns {Promise<{ imageDataUrl, model, factor, method, dimensions, warning }>}
  */
 export async function upscaleImage(imageDataUrl, factor = 3) {
-  console.log(`[ETERNA] Upscale: nalagam sliko, factor=${factor}`);
+  console.log(`[ARTIORA] Upscale: nalagam sliko, factor=${factor}`);
   const img = await loadImage(imageDataUrl);
   const origW = img.naturalWidth;
   const origH = img.naturalHeight;
-  console.log(`[ETERNA] Upscale: original ${origW}×${origH}`);
+  console.log(`[ARTIORA] Upscale: original ${origW}×${origH}`);
 
   // Ciljne dimenzije
   const targetW = Math.round(origW * factor);
@@ -111,7 +111,7 @@ export async function upscaleImage(imageDataUrl, factor = 3) {
   // Izvozi kot JPEG (manjši od PNG, dovolj kvaliteten za tisk)
   const resultDataUrl = sharpCanvas.toDataURL('image/jpeg', 0.95);
 
-  console.log(`[ETERNA] Upscale: ${origW}×${origH} → ${finalW}×${finalH} (${actualFactor}×)`);
+  console.log(`[ARTIORA] Upscale: ${origW}×${origH} → ${finalW}×${finalH} (${actualFactor}×)`);
 
   return {
     imageDataUrl: resultDataUrl,

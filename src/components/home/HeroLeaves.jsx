@@ -28,7 +28,7 @@ const GEM_COUNT = 18;
 
 /**
  * Aurora Background + Floating Gemstones.
- * Gemstones drift slowly like the leaves in ETERNA Spomini,
+ * Gemstones drift slowly like the leaves in ARTIORA Spomini,
  * but with vivid gem shapes and colors.
  */
 export default function HeroLeaves() {

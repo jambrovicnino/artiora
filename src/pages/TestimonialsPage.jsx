@@ -10,7 +10,7 @@ const EXTENDED_TESTIMONIALS = [
     initials: 'PM',
     rating: 5,
     quote:
-      'Našla sem staro fotografijo mojega dedka v uniformi iz leta 1940. Eterna jo je obnovila do potankosti — vsak gumb, vsaka senca. Ko sem videla rezultat na platnu, sem jokala od sreče. Hvala vam!',
+      'Našla sem staro fotografijo mojega dedka v uniformi iz leta 1940. Artiora jo je obnovila do potankosti — vsak gumb, vsaka senca. Ko sem videla rezultat na platnu, sem jokala od sreče. Hvala vam!',
     service: 'Restavracija + Premium platno',
   },
   {
@@ -67,7 +67,7 @@ export default function TestimonialsPage() {
       <ScrollReveal variant="fade-in">
         <div className="page-hero">
           <div className="container">
-            <span className="page-hero-label">ETERNA</span>
+            <span className="page-hero-label">ARTIORA</span>
             <h1 className="page-hero-heading">Mnenja Strank</h1>
             <p className="page-hero-subtitle">Kaj pravijo naši zadovoljni naročniki</p>
           </div>

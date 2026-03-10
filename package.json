@@ -1,7 +1,8 @@
 {
-  "name": "eterna-artisan",
+  "name": "artiora",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "ARTIORA — Certificirana Umetniška Platforma (Certified Art Platform)",
   "type": "module",
   "scripts": {
     "dev": "vite",

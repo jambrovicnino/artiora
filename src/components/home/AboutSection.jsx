@@ -23,7 +23,7 @@ export default function AboutSection() {
               <blockquote className="about-quote-text">
                 Vsaka vizija si zasluži umetnino.
               </blockquote>
-              <p className="about-quote-established">&#9670; ETERNA ARTISAN</p>
+              <p className="about-quote-established">&#9670; ARTIORA</p>
             </div>
           </div>
 
@@ -33,7 +33,7 @@ export default function AboutSection() {
             <h2 className="about-heading">Naša Zgodba</h2>
 
             <p className="about-paragraph">
-              Pri Eterna verjamemo, da je ustvarjalnost univerzalna. Naše
+              Pri Artiora verjamemo, da je ustvarjalnost univerzalna. Naše
               poslanstvo je preprosto — dati vsakomur moč, da ustvari, razstavi
               in okvirji unikatno umetnino.
             </p>

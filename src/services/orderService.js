@@ -1,10 +1,10 @@
 // ═══════════════════════════════════════════════
-// ETERNA Artisan — Order Service (client-side)
+// ARTIORA — Order Service (client-side)
 // Pošlje naročilo na /api/create-order
 // ═══════════════════════════════════════════════
 
 const API_BASE = typeof window !== 'undefined' && window.location.hostname === 'localhost'
-  ? 'https://eterna-artisan.vercel.app'
+  ? 'https://artiora.vercel.app'
   : '';
 
 /**
@@ -68,10 +68,10 @@ export async function processOrder({ customer, items, total, orderId }) {
 
     return await response.json();
   } catch (error) {
-    console.error('[ETERNA] processOrder failed:', error);
+    console.error('[ARTIORA] processOrder failed:', error);
 
     // Fallback: logiraj v konzolo, ne ustavi celotnega naročila
-    console.log('[ETERNA] Fallback — naročilo:', {
+    console.log('[ARTIORA] Fallback — naročilo:', {
       customer,
       items: cleanItems,
       total,

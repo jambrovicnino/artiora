@@ -15,7 +15,7 @@ export default function PayPalCheckout({ onSuccess, onBeforePayment, isProcessin
     return actions.order.create({
       purchase_units: [
         {
-          description: 'Eterna Artisan Naročilo',
+          description: 'Artiora Naročilo',
           amount: {
             value: subtotal.toFixed(2),
           },
@@ -48,7 +48,7 @@ export default function PayPalCheckout({ onSuccess, onBeforePayment, isProcessin
           onApprove={onApprove}
           onError={(err) => {
             // PayPal bo tukaj ujel napako iz createOrder
-            console.log('[ETERNA] PayPal prekinjeno — izpolnite obrazec');
+            console.log('[ARTIORA] PayPal prekinjeno — izpolnite obrazec');
           }}
         />
       )}

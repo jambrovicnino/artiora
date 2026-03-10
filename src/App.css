@@ -1,75 +1,68 @@
 /* ═══════════════════════════════════════════════
-   ETERNA ARTISAN — AI Art Studio
-   Global Design System v2 — Vibrant Creative
+   ARTIORA — Certificirana Umetniška Platforma
+   Global Design System — Dark Luxury × Art Studio
+   Fused: Prebujeni Spomini (gold/dark) + Artisan (creative/rainbow)
    ═══════════════════════════════════════════════ */
 
 :root {
-  /* ─── Light creative base ──────────────────── */
-  --bg-primary: #fafafa;
-  --bg-secondary: #f0f0f5;
-  --bg-card: #ffffff;
-  --bg-elevated: #f8f7ff;
-  --bg-input: #f5f5fa;
+  /* ─── Dark luxury base ───────────────────────── */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-card: #141414;
+  --bg-elevated: #1a1a1a;
+  --bg-input: #0f0f0f;
 
-  /* ─── Primary accent — Violet ──────────────── */
-  --primary: #8b5cf6;
-  --primary-light: #a78bfa;
-  --primary-dark: #7c3aed;
-  --primary-muted: rgba(139, 92, 246, 0.10);
-  --primary-border: rgba(139, 92, 246, 0.25);
-  --primary-glow: rgba(139, 92, 246, 0.08);
+  /* ─── Gold accent system ─────────────────────── */
+  --gold: #c9a84c;
+  --gold-light: #d4b96a;
+  --gold-dark: #a88a3a;
+  --gold-muted: rgba(201, 168, 76, 0.12);
+  --gold-border: rgba(201, 168, 76, 0.25);
+  --gold-glow: rgba(201, 168, 76, 0.08);
 
-  /* ─── Legacy gold alias (for frameOptions.js compat) ─── */
-  --gold: var(--primary);
-  --gold-light: var(--primary-light);
-  --gold-dark: var(--primary-dark);
-  --gold-muted: var(--primary-muted);
-  --gold-border: var(--primary-border);
-  --gold-glow: var(--primary-glow);
+  /* ─── Primary alias → Gold (component compat) ── */
+  --primary: var(--gold);
+  --primary-light: var(--gold-light);
+  --primary-dark: var(--gold-dark);
+  --primary-muted: var(--gold-muted);
+  --primary-border: var(--gold-border);
+  --primary-glow: var(--gold-glow);
 
-  /* ─── Rainbow Spectrum ─────────────────────── */
-  /* Electric Blue — technology, AI */
+  /* ─── Rainbow Spectrum (for Studio/AI features) ── */
   --vivid-blue: #3b82f6;
   --vivid-blue-light: #60a5fa;
   --vivid-blue-muted: rgba(59, 130, 246, 0.12);
   --vivid-blue-glow: rgba(59, 130, 246, 0.08);
 
-  /* Violet — creativity, imagination */
   --vivid-violet: #8b5cf6;
   --vivid-violet-light: #a78bfa;
   --vivid-violet-muted: rgba(139, 92, 246, 0.12);
 
-  /* Magenta/Pink — art, passion */
   --vivid-magenta: #ec4899;
   --vivid-magenta-light: #f472b6;
   --vivid-magenta-muted: rgba(236, 72, 153, 0.12);
 
-  /* Emerald — growth, nature */
   --vivid-emerald: #10b981;
   --vivid-emerald-light: #6ee7b7;
   --vivid-emerald-muted: rgba(16, 185, 129, 0.12);
 
-  /* Yellow — sunshine, creativity, warmth */
   --vivid-yellow: #eab308;
   --vivid-yellow-light: #facc15;
   --vivid-yellow-muted: rgba(234, 179, 8, 0.12);
   --vivid-yellow-glow: rgba(234, 179, 8, 0.08);
 
-  /* Orange — energy, warmth */
   --vivid-orange: #f97316;
   --vivid-orange-light: #fb923c;
   --vivid-orange-muted: rgba(249, 115, 22, 0.12);
 
-  /* Amber — radiance, light */
   --vivid-amber: #f59e0b;
   --vivid-amber-muted: rgba(245, 158, 11, 0.12);
 
-  /* Coral — warmth, vibrancy */
   --vivid-coral: #f97066;
   --vivid-coral-light: #fca5a1;
   --vivid-coral-muted: rgba(249, 112, 102, 0.12);
 
-  /* ─── Gradient System ──────────────────────── */
+  /* ─── Gradient System (for Studio/AI accents) ── */
   --gradient-rainbow: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899, #eab308, #f97316);
   --gradient-aurora: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
   --gradient-art: linear-gradient(135deg, #8b5cf6, #ec4899);
@@ -77,41 +70,43 @@
   --gradient-nature: linear-gradient(135deg, #10b981, #3b82f6);
   --gradient-creative: linear-gradient(135deg, #ec4899, #eab308, #f97316);
   --gradient-full: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899, #eab308, #f97316, #f59e0b);
+  --gradient-gold: linear-gradient(135deg, #a88a3a, #c9a84c, #d4b96a, #c9a84c);
 
-  /* ─── Text hierarchy (dark on light) ───────── */
-  --text-primary: #1a1a2e;
-  --text-secondary: #4a4a6a;
-  --text-muted: #8888a8;
-  --text-inverse: #ffffff;
+  /* ─── Text hierarchy (warm cream on dark) ────── */
+  --text-primary: #f0ece4;
+  --text-secondary: #a09888;
+  --text-muted: #5a5248;
+  --text-inverse: #0a0a0a;
 
-  /* ─── Functional ───────────────────────────── */
-  --success: #10b981;
-  --error: #ef4444;
-  --border: rgba(139, 92, 246, 0.15);
-  --border-subtle: rgba(0, 0, 0, 0.06);
+  /* ─── Functional ─────────────────────────────── */
+  --success: #4a7c59;
+  --error: #c94444;
+  --border: rgba(201, 168, 76, 0.15);
+  --border-subtle: rgba(255, 255, 255, 0.06);
 
-  /* ─── Typography ───────────────────────────── */
+  /* ─── Typography (3-font strategy) ───────────── */
   --font-heading: 'Cormorant Garamond', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
   --font-body: 'Inter', 'Segoe UI', -apple-system, sans-serif;
   --font-script: 'Playfair Display', 'Georgia', serif;
 
-  /* ─── Spacing & shapes (softer, friendlier) ── */
-  --card-radius: 16px;
-  --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-  --card-shadow-hover: 0 8px 32px rgba(139, 92, 246, 0.12);
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
+  /* ─── Spacing & shapes (sharp luxury) ────────── */
+  --card-radius: 2px;
+  --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+  --card-shadow-hover: 0 8px 32px rgba(201, 168, 76, 0.12);
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 4px;
 }
 
-/* ─── Custom Cursor System ─────────────────── */
-/* Yellow arrow — for violet/purple surfaces */
+/* ─── Custom Cursor System (gold on dark) ─────── */
 :root {
-  --cursor-yellow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='22'%3E%3Cpath d='M3 1L3 18L7 13.5L10.5 20L13 18.5L9.5 12L15 12Z' fill='%23eab308' stroke='%231a1a2e' stroke-width='0.8' stroke-linejoin='round'/%3E%3C/svg%3E") 3 1;
-  --cursor-yellow-pointer: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='24'%3E%3Cpath d='M9 0C9 0 9 5 9 8L5 8C3.5 8 3 9 4 10L8 14V17C8 17.5 6 18 5 19C4 20 4.5 21 6 21H13C14 21 15 20 15 19V12L16 10C17 9 16.5 8 15 8H12V3C12 1 11 0 9 0Z' fill='%23eab308' stroke='%231a1a2e' stroke-width='0.8' stroke-linejoin='round'/%3E%3C/svg%3E") 7 0;
-  /* White arrow — for dark surfaces */
-  --cursor-white: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='22'%3E%3Cpath d='M3 1L3 18L7 13.5L10.5 20L13 18.5L9.5 12L15 12Z' fill='%23ffffff' stroke='%231a1a2e' stroke-width='0.8' stroke-linejoin='round'/%3E%3C/svg%3E") 3 1;
-  --cursor-white-pointer: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='24'%3E%3Cpath d='M9 0C9 0 9 5 9 8L5 8C3.5 8 3 9 4 10L8 14V17C8 17.5 6 18 5 19C4 20 4.5 21 6 21H13C14 21 15 20 15 19V12L16 10C17 9 16.5 8 15 8H12V3C12 1 11 0 9 0Z' fill='%23ffffff' stroke='%231a1a2e' stroke-width='0.8' stroke-linejoin='round'/%3E%3C/svg%3E") 7 0;
+  --cursor-gold: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='22'%3E%3Cpath d='M3 1L3 18L7 13.5L10.5 20L13 18.5L9.5 12L15 12Z' fill='%23c9a84c' stroke='%230a0a0a' stroke-width='0.8' stroke-linejoin='round'/%3E%3C/svg%3E") 3 1;
+  --cursor-gold-pointer: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='24'%3E%3Cpath d='M9 0C9 0 9 5 9 8L5 8C3.5 8 3 9 4 10L8 14V17C8 17.5 6 18 5 19C4 20 4.5 21 6 21H13C14 21 15 20 15 19V12L16 10C17 9 16.5 8 15 8H12V3C12 1 11 0 9 0Z' fill='%23c9a84c' stroke='%230a0a0a' stroke-width='0.8' stroke-linejoin='round'/%3E%3C/svg%3E") 7 0;
+  /* Legacy aliases for existing component compat */
+  --cursor-yellow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='22'%3E%3Cpath d='M3 1L3 18L7 13.5L10.5 20L13 18.5L9.5 12L15 12Z' fill='%23c9a84c' stroke='%230a0a0a' stroke-width='0.8' stroke-linejoin='round'/%3E%3C/svg%3E") 3 1;
+  --cursor-yellow-pointer: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='24'%3E%3Cpath d='M9 0C9 0 9 5 9 8L5 8C3.5 8 3 9 4 10L8 14V17C8 17.5 6 18 5 19C4 20 4.5 21 6 21H13C14 21 15 20 15 19V12L16 10C17 9 16.5 8 15 8H12V3C12 1 11 0 9 0Z' fill='%23c9a84c' stroke='%230a0a0a' stroke-width='0.8' stroke-linejoin='round'/%3E%3C/svg%3E") 7 0;
+  --cursor-white: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='22'%3E%3Cpath d='M3 1L3 18L7 13.5L10.5 20L13 18.5L9.5 12L15 12Z' fill='%23f0ece4' stroke='%230a0a0a' stroke-width='0.8' stroke-linejoin='round'/%3E%3C/svg%3E") 3 1;
+  --cursor-white-pointer: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='24'%3E%3Cpath d='M9 0C9 0 9 5 9 8L5 8C3.5 8 3 9 4 10L8 14V17C8 17.5 6 18 5 19C4 20 4.5 21 6 21H13C14 21 15 20 15 19V12L16 10C17 9 16.5 8 15 8H12V3C12 1 11 0 9 0Z' fill='%23f0ece4' stroke='%230a0a0a' stroke-width='0.8' stroke-linejoin='round'/%3E%3C/svg%3E") 7 0;
 }
 
 /* ─── Reset ─────────────────────────────────── */
@@ -123,7 +118,7 @@
 
 body {
   font-family: var(--font-body);
-  font-weight: 450;
+  font-weight: 400;
   line-height: 1.6;
   color: var(--text-primary);
   overflow-x: hidden;
@@ -147,14 +142,14 @@ button {
   font-family: var(--font-body);
 }
 
-/* ─── Button System ─────────────────────────── */
+/* ─── Button System (Gold Luxury) ──────────── */
 .btn-gold {
   display: inline-block;
   padding: 14px 36px;
-  background: var(--primary);
+  background: var(--gold);
   color: var(--text-inverse);
-  border: 1px solid var(--primary);
-  border-radius: var(--radius-sm);
+  border: 1px solid var(--gold);
+  border-radius: 0;
   font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 600;
@@ -164,18 +159,17 @@ button {
   transition: all 0.3s ease;
 }
 .btn-gold:hover {
-  background: var(--primary-light);
-  border-color: var(--primary-light);
-  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.3);
+  background: var(--gold-light);
+  border-color: var(--gold-light);
 }
 
 .btn-outline {
   display: inline-block;
   padding: 14px 36px;
   background: transparent;
-  color: var(--primary);
-  border: 1px solid var(--primary-border);
-  border-radius: var(--radius-sm);
+  color: var(--gold);
+  border: 1px solid var(--gold-border);
+  border-radius: 0;
   font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 600;
@@ -185,8 +179,8 @@ button {
   transition: all 0.3s ease;
 }
 .btn-outline:hover {
-  background: var(--primary-muted);
-  border-color: var(--primary);
+  background: var(--gold-muted);
+  border-color: var(--gold);
 }
 
 .btn-gold-large {
@@ -196,10 +190,10 @@ button {
   gap: 8px;
   width: 100%;
   padding: 16px 40px;
-  background: var(--gradient-rainbow);
+  background: var(--gold);
   color: var(--text-inverse);
-  border: none;
-  border-radius: var(--radius-sm);
+  border: 1px solid var(--gold);
+  border-radius: 0;
   font-family: var(--font-body);
   font-size: 0.8rem;
   font-weight: 600;
@@ -207,9 +201,33 @@ button {
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s ease;
-  background-size: 200% 200%;
 }
 .btn-gold-large:hover {
+  background: var(--gold-light);
+  border-color: var(--gold-light);
+}
+
+/* Studio/AI variant — rainbow gradient button */
+.btn-studio {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 36px;
+  background: var(--gradient-rainbow);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-size: 200% 200%;
+}
+.btn-studio:hover {
   box-shadow: 0 6px 24px rgba(139, 92, 246, 0.35);
   background-position: right center;
 }
@@ -218,25 +236,24 @@ button {
 .btn-primary {
   padding: 12px 30px;
   border: none;
-  border-radius: var(--radius-sm);
+  border-radius: 0;
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s;
-  background: var(--primary);
+  background: var(--gold);
   color: var(--text-inverse);
 }
 .btn-primary:hover {
-  background: var(--primary-light);
-  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.3);
+  background: var(--gold-light);
 }
 
 .btn-secondary {
   padding: 12px 30px;
-  border: 1px solid var(--primary-border);
-  border-radius: var(--radius-sm);
+  border: 1px solid var(--gold-border);
+  border-radius: 0;
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.15em;
@@ -244,10 +261,10 @@ button {
   cursor: pointer;
   transition: all 0.3s;
   background: transparent;
-  color: var(--primary);
+  color: var(--gold);
 }
 .btn-secondary:hover {
-  background: var(--primary-muted);
+  background: var(--gold-muted);
 }
 
 /* ─── Typography ────────────────────────────── */
@@ -282,6 +299,10 @@ button {
   from { transform: translateY(20px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
+@keyframes logoGlow {
+  0%, 100% { filter: drop-shadow(0 0 6px var(--gold-glow)); }
+  50% { filter: drop-shadow(0 0 18px rgba(201, 168, 76, 0.25)); }
+}
 
 /* ─── Scroll Reveal System ─────────────────── */
 .sr {
@@ -290,41 +311,24 @@ button {
               transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Variants — initial hidden state */
-.sr-fade-up {
-  opacity: 0;
-  transform: translateY(36px);
-}
-.sr-fade-in {
-  opacity: 0;
-  transform: none;
-}
-.sr-fade-left {
-  opacity: 0;
-  transform: translateX(-36px);
-}
-.sr-fade-right {
-  opacity: 0;
-  transform: translateX(36px);
-}
+.sr-fade-up { opacity: 0; transform: translateY(36px); }
+.sr-fade-in { opacity: 0; transform: none; }
+.sr-fade-left { opacity: 0; transform: translateX(-36px); }
+.sr-fade-right { opacity: 0; transform: translateX(36px); }
 
-/* Revealed — final visible state (shared for all variants) */
 .sr-visible {
   opacity: 1 !important;
   transform: none !important;
 }
 
-/* Stagger children — each direct child gets incremental delay */
+/* Stagger children */
 .sr-stagger > * {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.sr-stagger.sr-visible > * {
-  opacity: 1;
-  transform: none;
-}
+.sr-stagger.sr-visible > * { opacity: 1; transform: none; }
 .sr-stagger.sr-visible > *:nth-child(1) { transition-delay: 0ms; }
 .sr-stagger.sr-visible > *:nth-child(2) { transition-delay: 80ms; }
 .sr-stagger.sr-visible > *:nth-child(3) { transition-delay: 160ms; }
@@ -333,48 +337,51 @@ button {
 .sr-stagger.sr-visible > *:nth-child(6) { transition-delay: 400ms; }
 .sr-stagger.sr-visible > *:nth-child(7) { transition-delay: 480ms; }
 
-/* Respect reduced motion preference */
+/* Legacy reveal support */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .sr, .sr-stagger > * {
+  .sr, .sr-stagger > *, .reveal {
     transition: none !important;
     opacity: 1 !important;
     transform: none !important;
   }
 }
 
-/* ─── Scrollbar ─────────────────────────────── */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg-secondary);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--primary-border);
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--primary);
-}
+/* ─── Scrollbar (gold themed) ──────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--gold-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 
 /* ─── Button Ripple Effect ─────────────────── */
 .btn-gold,
 .btn-outline,
-.btn-gold-large {
+.btn-gold-large,
+.btn-studio {
   position: relative;
   overflow: hidden;
 }
 
 .btn-gold::after,
 .btn-outline::after,
-.btn-gold-large::after {
+.btn-gold-large::after,
+.btn-studio::after {
   content: '';
   position: absolute;
   top: 50%;
   left: 50%;
   width: 0;
   height: 0;
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;
@@ -382,27 +389,83 @@ button {
 
 .btn-gold:active::after,
 .btn-outline:active::after,
-.btn-gold-large:active::after {
+.btn-gold-large:active::after,
+.btn-studio:active::after {
   animation: btn-ripple 0.6s ease-out;
 }
 
 @keyframes btn-ripple {
-  0% {
-    width: 0;
-    height: 0;
-    opacity: 0.4;
-  }
-  100% {
-    width: 300px;
-    height: 300px;
-    opacity: 0;
-  }
+  0% { width: 0; height: 0; opacity: 0.4; }
+  100% { width: 300px; height: 300px; opacity: 0; }
 }
 
-/* ─── Utility: Rainbow gradient text ─────────── */
+/* ─── Utility: Gradient text ───────────────── */
 .gradient-text {
   background: var(--gradient-rainbow);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.gold-text {
+  color: var(--gold);
+}
+
+/* ─── Utility: Art-Deco Corner Decorations ─── */
+.corner-brackets {
+  position: relative;
+}
+.corner-brackets::before,
+.corner-brackets::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+}
+.corner-brackets::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1px solid var(--gold-border);
+  border-left: 1px solid var(--gold-border);
+}
+.corner-brackets::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1px solid var(--gold-border);
+  border-right: 1px solid var(--gold-border);
+}
+
+/* ─── Utility: Gold divider line ───────────── */
+.gold-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--gold);
+  margin: 0 auto;
+}
+
+/* ─── Utility: Noise texture overlay ───────── */
+.noise-overlay {
+  position: relative;
+}
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* ─── Utility: Luxury card ─────────────────── */
+.luxury-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s ease;
+}
+.luxury-card:hover {
+  border-color: var(--gold-border);
+  box-shadow: var(--card-shadow-hover);
 }

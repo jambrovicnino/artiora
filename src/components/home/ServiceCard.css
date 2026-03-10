@@ -1,5 +1,5 @@
-/* ─── Eterna Service Card ────────────────────── */
-.eterna-card {
+/* ─── Artiora Service Card ────────────────────── */
+.artiora-card {
   position: relative;
   background: var(--bg-card);
   padding: 40px 28px 32px;
@@ -10,7 +10,7 @@
   border: 1px solid var(--border-subtle);
 }
 
-.eterna-card:hover {
+.artiora-card:hover {
   box-shadow: var(--card-shadow-hover);
   transform: translateY(-4px);
 }
@@ -62,7 +62,7 @@
 
 /* ─── Mobile ────────────────────────────────── */
 @media (max-width: 768px) {
-  .eterna-card {
+  .artiora-card {
     padding: 32px 24px 28px;
   }
 
