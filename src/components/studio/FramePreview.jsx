@@ -42,8 +42,16 @@ function loadImage(src) {
 }
 
 /**
- * Analizira strip sliko in vrne barvo obraza + kontrast z backing-om.
- * NE modificira slike — samo vzorči barve za kasnejšo kotno korekcijo.
+ * Analizira strip sliko in vrne:
+ *   - barvo obraza (faceR/G/B)
+ *   - kontrast med backing-om in obrazom
+ *   - faceStartPct: adaptivno zaznano mesto, kjer se backing konča
+ *
+ * Za visoko-kontrastne okvirje (contrast > 80) skenira vrstice
+ * od vrha navzdol in poišče prehod backing → obraz. Za nizko-
+ * kontrastne (ornamentne) okvirje vrne faceStartPct = 0 (brez cropa).
+ *
+ * NE modificira slike — samo vzorči barve.
  */
 function analyzeStrip(stripImg) {
   const sc = document.createElement('canvas');
@@ -54,29 +62,56 @@ function analyzeStrip(stripImg) {
 
   const w = stripImg.width, h = stripImg.height;
 
-  // Vzorči barvo na vrhu (backing) in sredini (obraz)
-  function sampleRow(pct) {
-    const row = Math.min(Math.round(h * pct), h - 1);
-    const data = sctx.getImageData(0, row, w, 1).data;
+  function sampleRow(yPx) {
+    const y = Math.max(0, Math.min(Math.round(yPx), h - 1));
+    const data = sctx.getImageData(0, y, w, 1).data;
     let r = 0, g = 0, b = 0, n = 0;
     for (let i = 0; i < data.length; i += 4) {
       r += data[i]; g += data[i + 1]; b += data[i + 2]; n++;
     }
-    return { r: Math.round(r / n), g: Math.round(g / n), b: Math.round(b / n) };
+    return { r: r / n, g: g / n, b: b / n };
   }
 
-  const topColor = sampleRow(0.03);
-  const face1 = sampleRow(0.50);
-  const face2 = sampleRow(0.65);
-  const fR = Math.round((face1.r + face2.r) / 2);
-  const fG = Math.round((face1.g + face2.g) / 2);
-  const fB = Math.round((face1.b + face2.b) / 2);
+  function colorDist(a, b) {
+    return Math.sqrt((a.r - b.r) ** 2 + (a.g - b.g) ** 2 + (a.b - b.b) ** 2);
+  }
 
-  const contrast = Math.sqrt(
-    (topColor.r - fR) ** 2 + (topColor.g - fG) ** 2 + (topColor.b - fB) ** 2
-  );
+  // Barva obraza iz stabilne sredine strip-a
+  const face1 = sampleRow(h * 0.50);
+  const face2 = sampleRow(h * 0.65);
+  const face = {
+    r: (face1.r + face2.r) / 2,
+    g: (face1.g + face2.g) / 2,
+    b: (face1.b + face2.b) / 2,
+  };
+  const fR = Math.round(face.r);
+  const fG = Math.round(face.g);
+  const fB = Math.round(face.b);
 
-  return { faceR: fR, faceG: fG, faceB: fB, contrast };
+  // Barva backing-a (vrh strip-a)
+  const topColor = sampleRow(h * 0.03);
+  const contrast = colorDist(topColor, face);
+
+  // ─── Adaptivno zaznavanje konca backing zone ───
+  // Skeniramo vrstice od vrha (5%) do 45% in iščemo prvo,
+  // ki je dovolj blizu barvi obraza.
+  let faceStartPct = 0;
+  if (contrast > 80) {
+    const threshold = Math.max(25, contrast * 0.25);
+    const step = Math.max(1, Math.round(h * 0.01));
+    for (let y = Math.round(h * 0.05); y < Math.round(h * 0.45); y += step) {
+      const row = sampleRow(y);
+      if (colorDist(row, face) < threshold) {
+        faceStartPct = y / h;
+        break;
+      }
+    }
+    // Varnostna rezerva + minimalni crop
+    faceStartPct = Math.max(faceStartPct + 0.03, 0.05);
+    faceStartPct = Math.min(faceStartPct, 0.40); // Max 40% crop
+  }
+
+  return { faceR: fR, faceG: fG, faceB: fB, contrast, faceStartPct };
 }
 
 /**
@@ -88,9 +123,10 @@ function analyzeStrip(stripImg) {
  *
  * Za visoko-kontrastne okvirje (budget, contrast > 80):
  *   drawImage() preskoči backing zono — source rect se začne
- *   pri 18% višine namesto 0%. Tekstura se minimalno raztegne
- *   (~1.3×), kar je na ravnih/enostavnih budget teksturah
- *   popolnoma neopazno.
+ *   pri adaptivno zaznanem mestu (15–37% odvisno od stripa).
+ *   Vsak strip dobi natanko pravi crop avtomatsko.
+ *   Tekstura se minimalno raztegne, kar je na ravnih/
+ *   enostavnih budget teksturah popolnoma neopazno.
  *
  * Za nizko-kontrastne okvirje (ornamentni, contrast ≤ 80):
  *   BREZ kakršnekoli modifikacije — polna originalna tekstura.
@@ -106,15 +142,16 @@ function drawFrame(ctx, photoImg, stripImg, cW, cH, fW, tintColor) {
   const photoH = cH - 2 * fW;
 
   // ─── 0. Analiza strip za adaptivno kotno korekcijo ───
-  const { faceR, faceG, faceB, contrast } = analyzeStrip(stripImg);
+  const { faceR, faceG, faceB, contrast, faceStartPct } = analyzeStrip(stripImg);
 
-  // Visok kontrast → source-crop preskoči backing zono
+  // Visok kontrast → adaptivni source-crop preskoči backing zono
   // Nizek kontrast → polna originalna tekstura (0% crop)
+  // faceStartPct je adaptivno zaznan iz dejanskega strip-a
   const needsCrop = contrast > 80;
   const sW = stripImg.width;
   const sH = stripImg.height;
-  const skipTopPx = needsCrop ? Math.round(sH * 0.18) : 0;
-  const skipBotPx = needsCrop ? Math.round(sH * 0.05) : 0;
+  const skipTopPx = needsCrop ? Math.round(sH * faceStartPct) : 0;
+  const skipBotPx = needsCrop ? Math.round(sH * 0.02) : 0;
   const srcH = sH - skipTopPx - skipBotPx;
 
   // ─── 1. Ozadje ───
