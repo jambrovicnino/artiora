@@ -6,23 +6,34 @@ import './MarketplaceHighlight.css';
 export default function MarketplaceHighlight() {
   const { artworks } = useMarketplace();
 
-  // Get first 4 approved (odobrena) artworks
-  const featured = artworks
-    .filter((a) => a.status === 'odobrena')
+  // Get first 4 approved (odobrena) artworks for purchase
+  const available = artworks
+    .filter((a) => a.status === 'odobrena' && !a.soldOut)
     .slice(0, 4);
 
+  // Fallback: show sold-out portfolio if nothing available
+  const featured = available.length > 0
+    ? available
+    : artworks
+        .filter((a) => a.status === 'razprodana' || a.status === 'odobrena')
+        .slice(0, 4);
+
   if (featured.length === 0) return null;
+
+  const isPortfolioMode = available.length === 0;
 
   return (
     <section className="marketplace-highlight">
       <div className="container">
         <div className="marketplace-highlight__header">
           <h2 className="marketplace-highlight__title">
-            Odkrijte tr&zcaron;nico
+            {isPortfolioMode ? 'Naš Portfolio' : 'Odkrijte Artmarket'}
           </h2>
           <div className="marketplace-highlight__divider" />
           <p className="marketplace-highlight__subtitle">
-            Izbirajte med edinstvenimi umetni&scaron;kimi deli na&scaron;ih ustvarjalcev
+            {isPortfolioMode
+              ? 'Oglejte si naša dosedanja dela — nova kolekcija kmalu na voljo'
+              : 'Izbirajte med edinstvenimi umetniškimi deli naših ustvarjalcev'}
           </p>
         </div>
 
@@ -33,8 +44,8 @@ export default function MarketplaceHighlight() {
         </div>
 
         <div className="marketplace-highlight__cta">
-          <Link to="/tr&#382;nica" className="marketplace-highlight__link">
-            Vsi izdelki &rarr;
+          <Link to="/artmarket" className="marketplace-highlight__link">
+            {isPortfolioMode ? 'Celoten portfolio →' : 'Vsi izdelki →'}
           </Link>
         </div>
       </div>

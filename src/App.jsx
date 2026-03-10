@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import ScrollToTop from './components/common/ScrollToTop';
+import ErrorBoundary from './components/common/ErrorBoundary';
 import CursorEffect from './components/CursorEffect';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
@@ -59,6 +60,7 @@ export default function App() {
       <CursorEffect />
       <ScrollToTop />
       <Navbar />
+      <ErrorBoundary>
       <main>
         <Routes>
           {/* ─── Public ─── */}
@@ -114,6 +116,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      </ErrorBoundary>
     </>
   );
 }

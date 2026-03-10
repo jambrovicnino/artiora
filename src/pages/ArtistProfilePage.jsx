@@ -280,7 +280,7 @@ export default function ArtistProfilePage() {
             {/* Commission button */}
             {artist.commissionOpen && (
               <Link
-                to={`/naroči-delo/${artist.id}`}
+                to={`/naroci-delo/${artist.id}`}
                 className="btn-gold"
               >
                 Naroči Delo

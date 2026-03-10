@@ -38,6 +38,49 @@
   letter-spacing: 0.02em;
 }
 
+/* ─── Coming Soon Banner ────────────────────── */
+.marketplace-page__coming-soon {
+  padding: 2.5rem 0;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--gold-border);
+}
+
+.coming-soon-banner {
+  text-align: center;
+  padding: 2.5rem 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--gold-rgb, 184, 156, 80), 0.04),
+    rgba(var(--gold-rgb, 184, 156, 80), 0.08)
+  );
+  border: 1px solid var(--gold-border);
+  border-radius: 4px;
+}
+
+.coming-soon-banner__icon {
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+.coming-soon-banner__title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  margin: 0 0 0.75rem;
+}
+
+.coming-soon-banner__text {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0 0 1.5rem;
+  max-width: 480px;
+  margin-inline: auto;
+  line-height: 1.6;
+}
+
 /* ─── Mobile filter toggle ───────────────────── */
 .marketplace-page__mobile-toggle {
   display: none;

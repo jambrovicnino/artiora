@@ -8,8 +8,11 @@ import OrderSummary from '../components/checkout/OrderSummary';
 import PayPalCheckout from '../components/checkout/PayPalCheckout';
 import './CheckoutPage.css';
 
+const PAYPAL_CLIENT_ID = import.meta.env.VITE_PAYPAL_CLIENT_ID || '';
+const IS_PAYPAL_LIVE = PAYPAL_CLIENT_ID && PAYPAL_CLIENT_ID !== 'test';
+
 const PAYPAL_OPTIONS = {
-  'client-id': 'test',
+  'client-id': PAYPAL_CLIENT_ID || 'test',
   currency: 'EUR',
 };
 
@@ -137,7 +140,8 @@ export default function CheckoutPage() {
                   isProcessing={isProcessing}
                 />
 
-                {/* ─── Demo naročilo ─── */}
+                {/* ─── Demo naročilo (skrij ko je PayPal live) ─── */}
+                {!IS_PAYPAL_LIVE && (
                 <div className="demo-order-section">
                   <div className="demo-divider">
                     <span>ali</span>
@@ -153,6 +157,7 @@ export default function CheckoutPage() {
                     Preskoči plačilo — sproži email + pripravo print datoteke
                   </p>
                 </div>
+                )}
               </>
             )}
           </div>

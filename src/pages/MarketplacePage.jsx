@@ -123,6 +123,11 @@ export default function MarketplacePage() {
     return results;
   }, [artworks, filters, sort, getArtist]);
 
+  // Check if there are any available (non-sold-out) artworks
+  const hasAvailableArtworks = artworks.some(
+    (a) => a.status === 'odobrena' && !a.soldOut
+  );
+
   return (
     <div className="marketplace-page">
       {/* Hero */}
@@ -138,6 +143,37 @@ export default function MarketplacePage() {
           </div>
         </div>
       </ScrollReveal>
+
+      {/* "Kmalu na voljo" banner — prikaži ko ni na voljo nobenih umetnin */}
+      {!hasAvailableArtworks && (
+        <ScrollReveal variant="fade-up">
+          <div className="marketplace-page__coming-soon">
+            <div className="container">
+              <div className="coming-soon-banner">
+                <div className="coming-soon-banner__icon">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                    <path d="M2 17l10 5 10-5" />
+                    <path d="M2 12l10 5 10-5" />
+                  </svg>
+                </div>
+                <h2 className="coming-soon-banner__title">Prva kolekcija v pripravi</h2>
+                <p className="coming-soon-banner__text">
+                  Nove umetnine bodo kmalu na voljo. Spodaj si oglejte naš dosedanji portfolio razprodanih del.
+                </p>
+                <a
+                  href="https://eterna-artisan.vercel.app"
+                  className="btn-gold"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  USTVARITE SVOJO UMETNINO
+                </a>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+      )}
 
       {/* Mobile filter toggle */}
       <div className="marketplace-page__mobile-toggle">

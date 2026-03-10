@@ -17,7 +17,7 @@ export default function ArtworkCard({ artwork }) {
   const active = isWishlisted(artwork.id);
 
   const handleCardClick = () => {
-    navigate(`/tr\u017Enica/${artwork.id}`);
+    navigate(`/artmarket/${artwork.id}`);
   };
 
   const handleArtistClick = (e) => {

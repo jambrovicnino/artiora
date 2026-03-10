@@ -197,7 +197,7 @@ export default function ArtworkDetailPage() {
                   <div className="artwork-detail-page__actions">
                     {!artwork.soldOut && (
                       <Link
-                        to={`/košarica?add=${artwork.id}`}
+                        to={`/cart?add=${artwork.id}`}
                         className="btn-gold-large"
                       >
                         Dodaj v Košarico
@@ -206,7 +206,7 @@ export default function ArtworkDetailPage() {
 
                     {artist?.commissionOpen && (
                       <Link
-                        to={`/naroči-delo/${artist.id}`}
+                        to={`/naroci-delo/${artist.id}`}
                         className="btn-outline artwork-detail-page__commission-btn"
                       >
                         Naroči Podobno

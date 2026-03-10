@@ -4,17 +4,23 @@ import { mockArtworks } from '../data/mockArtworks';
 const MarketplaceContext = createContext();
 
 const STORAGE_KEY = 'artiora_marketplace';
+const DATA_VERSION = 2; // Povečaj ob spremembi mockArtworks
 
 function loadData() {
   try {
     const data = localStorage.getItem(STORAGE_KEY);
     if (data) {
       const parsed = JSON.parse(data);
+      // Če verzija ne ustreza, resetiraj na nove podatke
+      if (parsed.version !== DATA_VERSION) {
+        localStorage.removeItem(STORAGE_KEY);
+        return { artworks: mockArtworks, editions: [], version: DATA_VERSION };
+      }
       if (parsed.artworks && parsed.artworks.length > 0) return parsed;
     }
-    return { artworks: mockArtworks, editions: [] };
+    return { artworks: mockArtworks, editions: [], version: DATA_VERSION };
   } catch {
-    return { artworks: mockArtworks, editions: [] };
+    return { artworks: mockArtworks, editions: [], version: DATA_VERSION };
   }
 }
 
@@ -29,7 +35,7 @@ function marketplaceReducer(state, action) {
       const artwork = {
         ...action.payload,
         id,
-        status: 'pending',
+        status: 'v_pregledu',
         createdAt: new Date().toISOString(),
       };
       return { ...state, artworks: [...state.artworks, artwork] };
@@ -50,7 +56,7 @@ function marketplaceReducer(state, action) {
           a.id === action.payload.id
             ? {
                 ...a,
-                status: 'approved',
+                status: 'odobrena',
                 certificateId: action.payload.certificateId,
                 approvedAt: new Date().toISOString(),
               }
@@ -65,7 +71,7 @@ function marketplaceReducer(state, action) {
           a.id === action.payload.id
             ? {
                 ...a,
-                status: 'rejected',
+                status: 'zavrnjena',
                 rejectionReason: action.payload.reason,
                 rejectedAt: new Date().toISOString(),
               }
