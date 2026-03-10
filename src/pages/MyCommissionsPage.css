@@ -1,0 +1,299 @@
+/* =============================================
+   ARTIORA — My Commissions Page
+   Dark luxury commission list with gold accents
+   ============================================= */
+
+/* --- Header --- */
+.commissions-header {
+  margin-bottom: 28px;
+}
+
+.commissions-title {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-primary, #f0ece4);
+  margin: 0 0 6px 0;
+}
+
+.commissions-subtitle {
+  color: var(--text-secondary, #a09888);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* --- Tabs --- */
+.commissions-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.06));
+}
+
+.commissions-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-secondary, #a09888);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.commissions-tab:hover {
+  color: var(--text-primary, #f0ece4);
+}
+
+.commissions-tab-active {
+  color: var(--gold, #c9a84c);
+  border-bottom-color: var(--gold, #c9a84c);
+}
+
+.commissions-tab-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 11px;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.commissions-tab-active .commissions-tab-count {
+  background: var(--gold-muted, rgba(201, 168, 76, 0.15));
+  color: var(--gold, #c9a84c);
+}
+
+.commissions-tab:not(.commissions-tab-active) .commissions-tab-count {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-muted, #5a5248);
+}
+
+/* --- Status Filters --- */
+.commissions-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.commissions-filter-btn {
+  padding: 6px 14px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  background: transparent;
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.06));
+  color: var(--text-secondary, #a09888);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.commissions-filter-btn:hover {
+  border-color: var(--gold-border, rgba(201, 168, 76, 0.25));
+  color: var(--text-primary, #f0ece4);
+}
+
+.commissions-filter-active {
+  background: var(--gold-muted, rgba(201, 168, 76, 0.12));
+  border-color: var(--gold, #c9a84c);
+  color: var(--gold, #c9a84c);
+}
+
+/* --- Empty State --- */
+.commissions-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 64px 24px;
+}
+
+.commissions-empty svg {
+  color: var(--text-muted, #5a5248);
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.commissions-empty h3 {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-primary, #f0ece4);
+  margin: 0 0 8px 0;
+}
+
+.commissions-empty p {
+  color: var(--text-secondary, #a09888);
+  font-size: 0.88rem;
+  margin: 0;
+  max-width: 360px;
+}
+
+/* --- Commission List --- */
+.commissions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* --- Commission Card --- */
+.commission-card {
+  background: var(--bg-card, #141414);
+  border: 1px solid var(--border, rgba(201, 168, 76, 0.15));
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.commission-card:hover {
+  border-color: var(--gold-border, rgba(201, 168, 76, 0.3));
+  background: rgba(201, 168, 76, 0.04);
+  transform: translateY(-1px);
+}
+
+.commission-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.commission-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.commission-card-title {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary, #f0ece4);
+  margin: 0 0 4px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.commission-card-party {
+  font-size: 0.82rem;
+  color: var(--text-secondary, #a09888);
+}
+
+.commission-card-party strong {
+  color: var(--text-primary, #f0ece4);
+}
+
+/* --- Card Details --- */
+.commission-card-details {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.commission-card-budget {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.82rem;
+  color: var(--text-secondary, #a09888);
+}
+
+.commission-card-budget svg {
+  color: var(--gold, #c9a84c);
+  opacity: 0.6;
+}
+
+.commission-card-quoted {
+  font-size: 0.82rem;
+  color: var(--gold, #c9a84c);
+  font-weight: 600;
+}
+
+/* --- Message Preview --- */
+.commission-card-preview {
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 2px solid var(--border-subtle, rgba(255, 255, 255, 0.06));
+  margin-bottom: 12px;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.commission-card-preview-sender {
+  color: var(--text-secondary, #a09888);
+  font-weight: 500;
+}
+
+.commission-card-preview-text {
+  color: var(--text-muted, #5a5248);
+}
+
+/* --- Card Footer --- */
+.commission-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.commission-card-date {
+  font-size: 0.75rem;
+  color: var(--text-muted, #5a5248);
+}
+
+.commission-card-arrow {
+  color: var(--text-muted, #5a5248);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.commission-card:hover .commission-card-arrow {
+  color: var(--gold, #c9a84c);
+  transform: translateX(2px);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .commissions-tabs {
+    gap: 0;
+  }
+
+  .commissions-tab {
+    flex: 1;
+    justify-content: center;
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+
+  .commissions-filters {
+    gap: 6px;
+  }
+
+  .commissions-filter-btn {
+    padding: 5px 10px;
+    font-size: 0.72rem;
+  }
+
+  .commission-card {
+    padding: 16px;
+  }
+
+  .commission-card-title {
+    font-size: 1rem;
+  }
+
+  .commission-card-top {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

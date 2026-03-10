@@ -1,0 +1,37 @@
+/* ═══════════════════════════════════════════════
+   LanguageToggle — SL / EN Switcher
+   ═══════════════════════════════════════════════ */
+
+.lang-toggle {
+  display: inline-flex;
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.lang-toggle-btn {
+  padding: 6px 14px;
+  background: transparent;
+  border: none;
+  color: #8a8a8a;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.lang-toggle-btn:first-child {
+  border-right: 1px solid rgba(201, 168, 76, 0.3);
+}
+
+.lang-toggle-btn:hover {
+  color: #f0ece4;
+  background: rgba(201, 168, 76, 0.08);
+}
+
+.lang-toggle-btn.active {
+  color: #0a0a0a;
+  background: #c9a84c;
+}

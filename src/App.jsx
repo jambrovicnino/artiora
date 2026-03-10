@@ -43,6 +43,14 @@ import UploadArtworkPage from './pages/UploadArtworkPage';
 import MyArtworksPage from './pages/MyArtworksPage';
 import AdminReviewPage from './pages/AdminReviewPage';
 
+// ─── Business Plan ───
+import BusinessPlanPage from './pages/BusinessPlanPage';
+
+// ─── Commissions ───
+import CommissionRequestPage from './pages/CommissionRequestPage';
+import CommissionChatPage from './pages/CommissionChatPage';
+import MyCommissionsPage from './pages/MyCommissionsPage';
+
 import './App.css';
 
 export default function App() {
@@ -84,11 +92,19 @@ export default function App() {
           {/* ─── Certificate ─── */}
           <Route path="/potrdilo/:certificateId" element={<CertificatePage />} />
 
+          {/* ─── Business Plan ─── */}
+          <Route path="/poslovni-načrt" element={<BusinessPlanPage />} />
+          <Route path="/poslovni-načrt/:section" element={<BusinessPlanPage />} />
+
+          {/* ─── Commissions ─── */}
+          <Route path="/naroci-delo/:artistId" element={<CommissionRequestPage />} />
+          <Route path="/naroci-delo/pogovor/:commissionId" element={<CommissionChatPage />} />
+
           {/* ─── Dashboard (Protected) ─── */}
           <Route path="/nadzorna-plosca" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
           <Route path="/nadzorna-plosca/nalozi" element={<ProtectedRoute><UploadArtworkPage /></ProtectedRoute>} />
           <Route path="/nadzorna-plosca/umetnine" element={<ProtectedRoute><MyArtworksPage /></ProtectedRoute>} />
-          <Route path="/nadzorna-plosca/narocila" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
+          <Route path="/nadzorna-plosca/narocila" element={<ProtectedRoute><MyCommissionsPage /></ProtectedRoute>} />
 
           {/* ─── Admin (Protected, role='admin') ─── */}
           <Route path="/admin/pregled" element={<ProtectedRoute role="admin"><AdminReviewPage /></ProtectedRoute>} />

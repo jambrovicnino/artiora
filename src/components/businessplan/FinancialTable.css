@@ -1,0 +1,87 @@
+/* ═══════════════════════════════════════════════
+   FinancialTable — Dark Luxury Table
+   ═══════════════════════════════════════════════ */
+
+.fin-table-wrapper {
+  margin: 2rem 0;
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.fin-table-scroll {
+  overflow-x: auto;
+}
+
+.fin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.fin-table thead tr {
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.15), rgba(201, 168, 76, 0.08));
+}
+
+.fin-table th {
+  padding: 14px 18px;
+  color: #c9a84c;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: left;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+  white-space: nowrap;
+}
+.fin-table th:not(:first-child) {
+  text-align: right;
+}
+
+.fin-table td {
+  padding: 12px 18px;
+  color: #f0ece4;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.fin-table-label {
+  color: #b0a890;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.fin-table-value {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+
+.fin-table tbody tr.even {
+  background: rgba(255, 255, 255, 0.015);
+}
+.fin-table tbody tr.odd {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.fin-table tbody tr:hover {
+  background: rgba(201, 168, 76, 0.05);
+}
+
+/* Last row highlight (net result) */
+.fin-table tbody tr:last-child {
+  border-top: 1px solid rgba(201, 168, 76, 0.2);
+  font-weight: 600;
+}
+.fin-table tbody tr:last-child td {
+  color: #c9a84c;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+@media (max-width: 600px) {
+  .fin-table th,
+  .fin-table td {
+    padding: 10px 12px;
+    font-size: 0.82rem;
+  }
+}
