@@ -13,16 +13,16 @@ export default function Footer() {
                 <span className="logo-glass-block" />
                 <span className="logo-diamond">
                   <span className="diamond-frame" />
-                  <span className="diamond-inner">E</span>
+                  <span className="diamond-inner">A</span>
                 </span>
               </span>
               <div className="logo-text">
                 <span className="logo-brand">ARTIORA</span>
-                <span className="logo-tagline">ARTISAN</span>
+                <span className="logo-tagline">CERTIFIED ART PLATFORM</span>
               </div>
             </div>
             <p className="footer-brand-desc">
-              Ustvarjamo unikatne umetnine s tehnologijo in mojstrstvom.
+              Certificirana umetniška platforma za ustvarjalce in zbiralce.
             </p>
             {/* Social icons */}
             <div className="footer-social">
@@ -41,14 +41,25 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Links column */}
+          {/* Platform column */}
           <div className="footer-links-col">
-            <h4 className="footer-col-title">Povezave</h4>
+            <h4 className="footer-col-title">Platforma</h4>
+            <nav className="footer-nav">
+              <Link to="/tržnica" className="footer-link">Tržnica</Link>
+              <Link to="/umetniki" className="footer-link">Umetniki</Link>
+              <Link to="/studio" className="footer-link">Studio</Link>
+              <Link to="/galerija" className="footer-link">Galerija</Link>
+              <Link to="/poslovni-načrt" className="footer-link">Poslovni načrt</Link>
+            </nav>
+          </div>
+
+          {/* Info column */}
+          <div className="footer-links-col">
+            <h4 className="footer-col-title">Informacije</h4>
             <nav className="footer-nav">
               <Link to="/" className="footer-link">Domov</Link>
               <Link to="/o-nas" className="footer-link">O nas</Link>
               <Link to="/kako-deluje" className="footer-link">Kako deluje</Link>
-              <Link to="/galerija" className="footer-link">Galerija</Link>
               <Link to="/mnenja" className="footer-link">Mnenja</Link>
             </nav>
           </div>
