@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
+import { useAuth } from '../../context/AuthContext';
+import AuthDropdown from '../auth/AuthDropdown';
 import './Navbar.css';
 
 export default function Navbar() {
@@ -18,29 +20,29 @@ export default function Navbar() {
             <span className="logo-glass-block" />
             <span className="logo-diamond">
               <span className="diamond-frame" />
-              <span className="diamond-inner">E</span>
+              <span className="diamond-inner">A</span>
             </span>
           </span>
           <div className="logo-text">
             <span className="logo-brand">ARTIORA</span>
-            <span className="logo-tagline">ARTISAN</span>
+            <span className="logo-tagline">CERTIFIED ART PLATFORM</span>
           </div>
         </Link>
 
         <div className={`nav-links${menuOpen ? ' open' : ''}`}>
           <NavLink
-            to="/o-nas"
+            to="/tržnica"
             className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
             onClick={closeMenu}
           >
-            O NAS
+            TRŽNICA
           </NavLink>
           <NavLink
-            to="/kako-deluje"
+            to="/umetniki"
             className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
             onClick={closeMenu}
           >
-            KAKO DELUJE
+            UMETNIKI
           </NavLink>
           <NavLink
             to="/galerija"
@@ -50,15 +52,23 @@ export default function Navbar() {
             GALERIJA
           </NavLink>
           <NavLink
-            to="/mnenja"
+            to="/studio"
+            className={({ isActive }) => isActive ? 'nav-link nav-link-studio active' : 'nav-link nav-link-studio'}
+            onClick={closeMenu}
+          >
+            STUDIO
+          </NavLink>
+          <NavLink
+            to="/o-nas"
             className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
             onClick={closeMenu}
           >
-            MNENJA
+            O NAS
           </NavLink>
         </div>
 
         <div className="navbar-right">
+          <AuthDropdown />
           <Link to="/cart" className="cart-icon-link" aria-label="Košarica">
             <svg
               className="cart-icon-svg"

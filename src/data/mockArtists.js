@@ -1,0 +1,143 @@
+// ═══════════════════════════════════════════════
+// ARTIORA — Umetniki
+//
+// 5 umetniskih profilov z biografijami,
+// specialnostmi, statistiko in nastavitvami
+// za narocila po meri.
+//
+// Tier sistem:
+//   mojster      — najvišji nivo, ustanovitelj
+//   priporocen   — priporočen, izkušen umetnik
+//   potrjen      — potrjen umetnik
+//   nov          — nov na platformi
+// ═══════════════════════════════════════════════
+
+export const mockArtists = [
+  {
+    id: 'artist-001',
+    userId: 'user-001',
+    name: 'Nino P.',
+    slug: 'nino-p',
+    bio: 'Ustanovitelj platforme ARTIORA in digitalni umetnik, ki ustvarja edinstvena dela s pomočjo AI promptinga in lastne umetniške vizije. Specializiran za abstrakt, generativno umetnost in eksperimentalne digitalne kompozicije. Vsako delo nastane skozi skrbno oblikovane AI napotke, ki jih nato ročno dodelam in prilagodim do končne podobe.',
+    avatar: '/artists/nino-avatar.jpg',
+    coverImage: '/artists/nino-cover.jpg',
+    location: 'Ljubljana, Slovenija',
+    tier: 'mojster',
+    specialties: ['AI Art', 'Digitalna umetnost', 'Abstrakt'],
+    rating: 4.9,
+    reviewCount: 42,
+    totalSales: 156,
+    joinedDate: '2024-01-15T00:00:00.000Z',
+    commissionOpen: true,
+    commissionMinBudget: 50,
+    socialLinks: {
+      website: 'https://artiora.si',
+      instagram: '@artiora.si',
+      twitter: null,
+    },
+    featured: true,
+    isOwner: true,
+  },
+  {
+    id: 'artist-002',
+    userId: 'user-002',
+    name: 'Maja Kovač',
+    slug: 'maja-kovac',
+    bio: 'Akademska slikarka iz Maribora z več kot 15-letnimi izkušnjami v oljnem slikarstvu. Navdih črpam iz slovenskih pokrajin, ki jih ujamem v impresionističnem slogu z bogatimi barvnimi prehodi. Moja dela so bila razstavljena v galerijah po vsej Sloveniji in so del številnih zasebnih zbirk.',
+    avatar: '/artists/maja-avatar.jpg',
+    coverImage: '/artists/maja-cover.jpg',
+    location: 'Maribor, Slovenija',
+    tier: 'priporocen',
+    specialties: ['Oljno slikarstvo', 'Impresionizem', 'Pokrajine'],
+    rating: 4.7,
+    reviewCount: 28,
+    totalSales: 89,
+    joinedDate: '2024-03-20T00:00:00.000Z',
+    commissionOpen: true,
+    commissionMinBudget: 200,
+    socialLinks: {
+      website: null,
+      instagram: '@maja.kovac.art',
+      twitter: null,
+    },
+    featured: true,
+    isOwner: false,
+  },
+  {
+    id: 'artist-003',
+    userId: 'user-003',
+    name: 'Ana Vidmar',
+    slug: 'ana-vidmar',
+    bio: 'Specialistka za akvarelne portrete z občutkom za nežne barvne odtenke in čustveno globino. Vsak portret ustvarjam z namenom, da ujamem osebnost in zgodbo posameznika. Delujem na presečišču klasične akvarelne tehnike in sodobnega minimalizma.',
+    avatar: '/artists/ana-avatar.jpg',
+    coverImage: '/artists/ana-cover.jpg',
+    location: 'Celje, Slovenija',
+    tier: 'potrjen',
+    specialties: ['Akvarel', 'Portreti', 'Minimalizem'],
+    rating: 4.5,
+    reviewCount: 12,
+    totalSales: 34,
+    joinedDate: '2024-06-10T00:00:00.000Z',
+    commissionOpen: true,
+    commissionMinBudget: 100,
+    socialLinks: {
+      website: 'https://anavidmar.art',
+      instagram: '@ana.vidmar.art',
+      twitter: null,
+    },
+    featured: false,
+    isOwner: false,
+  },
+  {
+    id: 'artist-004',
+    userId: 'user-005',
+    name: 'Petra Novak',
+    slug: 'petra-novak',
+    bio: 'Nova digitalna umetnica, ki raziskuje meje med tehnologijo in umetnostjo. Ustvarjam moderna digitalna dela z drznimi barvnimi kombinacijami in geometrijskimi vzorci. Na platformi ARTIORA sem se pridružila pred kratkim in z veseljem odkrivam nove umetniške možnosti.',
+    avatar: '/artists/petra-avatar.jpg',
+    coverImage: '/artists/petra-cover.jpg',
+    location: 'Kranj, Slovenija',
+    tier: 'nov',
+    specialties: ['Moderna', 'Digitalna umetnost'],
+    rating: 4.2,
+    reviewCount: 4,
+    totalSales: 8,
+    joinedDate: '2025-08-01T00:00:00.000Z',
+    commissionOpen: true,
+    commissionMinBudget: 80,
+    socialLinks: {
+      website: null,
+      instagram: '@petra.creates',
+      twitter: null,
+    },
+    featured: false,
+    isOwner: false,
+  },
+  {
+    id: 'artist-005',
+    userId: null,
+    name: 'Marko Dolenc',
+    slug: 'marko-dolenc',
+    bio: 'Ulični fotograf in vizualni umetnik iz Kopra, ki zajema urbano energijo skozi objektiv in jo pretvarja v abstraktne vizualne zgodbe. Fotografiram življenje na ulicah, stare fasade in pozabljene kotičke mest. Moja dela so mešanica dokumentarne fotografije in umetniške reinterpretacije.',
+    avatar: '/artists/marko-avatar.jpg',
+    coverImage: '/artists/marko-cover.jpg',
+    location: 'Koper, Slovenija',
+    tier: 'potrjen',
+    specialties: ['Fotografija', 'Abstrakt', 'Ulična umetnost'],
+    rating: 4.6,
+    reviewCount: 16,
+    totalSales: 45,
+    joinedDate: '2024-09-05T00:00:00.000Z',
+    commissionOpen: false,
+    commissionMinBudget: 100,
+    socialLinks: {
+      website: 'https://markodolenc.si',
+      instagram: '@marko.dolenc.photo',
+      twitter: '@markodolenc',
+    },
+    featured: true,
+    isOwner: false,
+  },
+];
+
+export default mockArtists;

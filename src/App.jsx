@@ -3,6 +3,9 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import ScrollToTop from './components/common/ScrollToTop';
 import CursorEffect from './components/CursorEffect';
+import ProtectedRoute from './components/auth/ProtectedRoute';
+
+// ─── Existing Pages ───
 import HomePage from './pages/HomePage';
 import StudioPage from './pages/StudioPage';
 import CartPage from './pages/CartPage';
@@ -15,6 +18,11 @@ import GalleryPage from './pages/GalleryPage';
 import TestimonialsPage from './pages/TestimonialsPage';
 import AdminNotifyPage from './pages/AdminNotifyPage';
 import AdjustmentPage from './pages/AdjustmentPage';
+
+// ─── Auth Pages ───
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+
 import './App.css';
 
 export default function App() {
@@ -25,6 +33,7 @@ export default function App() {
       <Navbar />
       <main>
         <Routes>
+          {/* ─── Public ─── */}
           <Route path="/" element={<HomePage />} />
           <Route path="/studio" element={<StudioPage />} />
           <Route path="/cart" element={<CartPage />} />
@@ -36,6 +45,12 @@ export default function App() {
           <Route path="/mnenja" element={<TestimonialsPage />} />
           <Route path="/admin/notify" element={<AdminNotifyPage />} />
           <Route path="/prilagoditev" element={<AdjustmentPage />} />
+
+          {/* ─── Auth ─── */}
+          <Route path="/prijava" element={<LoginPage />} />
+          <Route path="/registracija" element={<RegisterPage />} />
+
+          {/* ─── 404 ─── */}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

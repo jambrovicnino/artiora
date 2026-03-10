@@ -1,0 +1,235 @@
+/* ═══════════════════════════════════════════════
+   RegisterPage — Dark Luxury Registration
+   ═══════════════════════════════════════════════ */
+
+.register-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 80px);
+  padding: 40px 24px;
+  background: var(--bg-primary);
+}
+
+/* ─── Card ───────────────────────────────────── */
+.register-card {
+  width: 100%;
+  max-width: 440px;
+  padding: 48px 40px;
+  background: var(--bg-card);
+  border: 1px solid var(--gold-border);
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(201, 168, 76, 0.06);
+}
+
+/* ─── Header ─────────────────────────────────── */
+.register-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.register-header .gold-divider {
+  margin-bottom: 20px;
+}
+
+.register-title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.register-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+}
+
+/* ─── Error message ──────────────────────────── */
+.register-error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  background: rgba(201, 68, 68, 0.1);
+  border: 1px solid rgba(201, 68, 68, 0.3);
+  color: #e05555;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  animation: shakeError 0.4s ease;
+}
+
+.register-error svg {
+  flex-shrink: 0;
+  color: #e05555;
+}
+
+/* ─── Form ───────────────────────────────────── */
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Reuse .form-group, .form-label, .form-input from LoginPage.css */
+
+/* ─── Role toggle ────────────────────────────── */
+.role-toggle {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--gold-border);
+}
+
+.role-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.role-btn svg {
+  color: var(--text-muted);
+  transition: color 0.3s ease;
+}
+
+.role-btn + .role-btn {
+  border-left: 1px solid var(--gold-border);
+}
+
+.role-btn:hover {
+  background: var(--gold-muted);
+  color: var(--text-primary);
+}
+
+.role-btn:hover svg {
+  color: var(--gold);
+}
+
+.role-btn.active {
+  background: var(--gold-muted);
+  color: var(--gold);
+  box-shadow: inset 0 -2px 0 var(--gold);
+}
+
+.role-btn.active svg {
+  color: var(--gold);
+}
+
+/* ─── Submit button ──────────────────────────── */
+.register-submit {
+  width: 100%;
+  margin-top: 8px;
+  text-align: center;
+  justify-content: center;
+}
+
+.register-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ─── Footer ─────────────────────────────────── */
+.register-footer {
+  margin-top: 28px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.register-footer-text {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.register-footer-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--gold);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: color 0.2s ease;
+}
+
+.register-footer-link:hover {
+  color: var(--gold-light);
+}
+
+/* ─── Success state ──────────────────────────── */
+.register-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.register-success-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--gold-muted);
+  border: 1.5px solid var(--gold-border);
+  color: var(--gold);
+  animation: successPulse 1.5s ease infinite;
+}
+
+@keyframes successPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(201, 168, 76, 0);
+  }
+}
+
+.register-success-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+}
+
+.register-success-text {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* ─── Responsive ─────────────────────────────── */
+@media (max-width: 480px) {
+  .register-card {
+    padding: 36px 24px;
+  }
+
+  .register-title {
+    font-size: 1.6rem;
+  }
+
+  .role-btn {
+    font-size: 0.7rem;
+    padding: 10px 12px;
+  }
+}

@@ -1,0 +1,324 @@
+/* ═══════════════════════════════════════════════
+   AuthDropdown — Dark Luxury Dropdown
+   ═══════════════════════════════════════════════ */
+
+.auth-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* ─── Logged-out inline buttons ──────────────── */
+.auth-buttons-inline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.auth-btn-login {
+  padding: 7px 20px;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold-border);
+  background: transparent;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.auth-btn-login:hover {
+  background: var(--gold-muted);
+  border-color: var(--gold);
+  color: var(--gold-light);
+}
+
+.auth-btn-register {
+  padding: 7px 20px;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-inverse);
+  background: var(--gold);
+  border: 1px solid var(--gold);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.auth-btn-register:hover {
+  background: var(--gold-light);
+  border-color: var(--gold-light);
+}
+
+/* ─── Trigger button (logged in) ─────────────── */
+.auth-trigger {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px 5px 5px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: var(--radius-sm);
+}
+
+.auth-trigger:hover {
+  border-color: var(--gold-border);
+  background: var(--gold-muted);
+}
+
+.auth-avatar-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--gold-border);
+}
+
+.auth-avatar-initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--gold-muted);
+  border: 1.5px solid var(--gold);
+  color: var(--gold);
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.auth-trigger-name {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--text-primary);
+}
+
+.auth-chevron {
+  color: var(--text-secondary);
+  transition: transform 0.3s ease;
+}
+
+.auth-chevron.open {
+  transform: rotate(180deg);
+}
+
+/* ─── Dropdown card ──────────────────────────── */
+.auth-dropdown-card {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 240px;
+  background: var(--bg-card);
+  border: 1px solid var(--gold-border);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(201, 168, 76, 0.08);
+  z-index: 1000;
+  animation: authDropdownIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Corner bracket decorations (uses global .corner-brackets) */
+.auth-dropdown-card.corner-brackets::before {
+  width: 20px;
+  height: 20px;
+}
+
+.auth-dropdown-card.corner-brackets::after {
+  width: 20px;
+  height: 20px;
+}
+
+@keyframes authDropdownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Dropdown header ────────────────────────── */
+.auth-dropdown-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+}
+
+.auth-dropdown-avatar-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--gold-border);
+}
+
+.auth-dropdown-avatar-initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--gold-muted);
+  border: 1.5px solid var(--gold);
+  color: var(--gold);
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.auth-dropdown-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.auth-dropdown-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.auth-dropdown-role {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ─── Divider ────────────────────────────────── */
+.auth-dropdown-divider {
+  height: 1px;
+  background: var(--gold-border);
+  margin: 0 16px;
+}
+
+/* ─── Navigation links ───────────────────────── */
+.auth-dropdown-nav {
+  padding: 8px 0;
+}
+
+.auth-dropdown-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  letter-spacing: 0.02em;
+}
+
+.auth-dropdown-link svg {
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+}
+
+.auth-dropdown-link:hover {
+  color: var(--text-primary);
+  background: var(--gold-muted);
+}
+
+.auth-dropdown-link:hover svg {
+  color: var(--gold);
+}
+
+/* Admin link accent */
+.auth-dropdown-link--admin {
+  color: var(--gold);
+}
+
+.auth-dropdown-link--admin svg {
+  color: var(--gold);
+  opacity: 0.7;
+}
+
+.auth-dropdown-link--admin:hover {
+  color: var(--gold-light);
+  background: var(--gold-muted);
+}
+
+.auth-dropdown-link--admin:hover svg {
+  color: var(--gold-light);
+  opacity: 1;
+}
+
+/* ─── Logout button ──────────────────────────── */
+.auth-dropdown-logout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 16px;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.02em;
+}
+
+.auth-dropdown-logout svg {
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+}
+
+.auth-dropdown-logout:hover {
+  color: var(--error);
+  background: rgba(201, 68, 68, 0.08);
+}
+
+.auth-dropdown-logout:hover svg {
+  color: var(--error);
+}
+
+/* ─── Responsive ─────────────────────────────── */
+@media (max-width: 768px) {
+  .auth-trigger-name {
+    display: none;
+  }
+
+  .auth-dropdown-card {
+    min-width: 220px;
+    right: -8px;
+  }
+
+  .auth-buttons-inline {
+    gap: 8px;
+  }
+
+  .auth-btn-login,
+  .auth-btn-register {
+    padding: 6px 14px;
+    font-size: 0.65rem;
+  }
+}

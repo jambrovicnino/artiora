@@ -1,0 +1,227 @@
+/* ═══════════════════════════════════════════════
+   LoginPage — Dark Luxury Authentication
+   ═══════════════════════════════════════════════ */
+
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 80px);
+  padding: 40px 24px;
+  background: var(--bg-primary);
+}
+
+/* ─── Card ───────────────────────────────────── */
+.login-card {
+  width: 100%;
+  max-width: 440px;
+  padding: 48px 40px;
+  background: var(--bg-card);
+  border: 1px solid var(--gold-border);
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(201, 168, 76, 0.06);
+}
+
+/* ─── Header ─────────────────────────────────── */
+.login-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.login-header .gold-divider {
+  margin-bottom: 20px;
+}
+
+.login-title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.login-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+}
+
+/* ─── Demo accounts ──────────────────────────── */
+.demo-accounts {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.demo-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.demo-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.demo-btn {
+  padding: 5px 14px;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--gold);
+  background: transparent;
+  border: 1px solid var(--gold-border);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.demo-btn:hover {
+  background: var(--gold-muted);
+  border-color: var(--gold);
+  color: var(--gold-light);
+}
+
+/* ─── Error message ──────────────────────────── */
+.login-error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  background: rgba(201, 68, 68, 0.1);
+  border: 1px solid rgba(201, 68, 68, 0.3);
+  color: #e05555;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  animation: shakeError 0.4s ease;
+}
+
+.login-error svg {
+  flex-shrink: 0;
+  color: #e05555;
+}
+
+@keyframes shakeError {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+/* ─── Form ───────────────────────────────────── */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.form-input {
+  padding: 14px 16px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  background: #111111;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0;
+  outline: none;
+  transition: all 0.3s ease;
+  letter-spacing: 0.02em;
+}
+
+.form-input::placeholder {
+  color: var(--text-muted);
+}
+
+.form-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 1px var(--gold-border);
+  background: #0f0f0f;
+}
+
+/* ─── Submit button ──────────────────────────── */
+.login-submit {
+  width: 100%;
+  margin-top: 8px;
+  text-align: center;
+  justify-content: center;
+}
+
+.login-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ─── Footer ─────────────────────────────────── */
+.login-footer {
+  margin-top: 28px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.login-footer-text {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.login-footer-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--gold);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: color 0.2s ease;
+}
+
+.login-footer-link:hover {
+  color: var(--gold-light);
+}
+
+/* ─── Responsive ─────────────────────────────── */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 36px 24px;
+  }
+
+  .login-title {
+    font-size: 1.6rem;
+  }
+
+  .demo-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .demo-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+}
