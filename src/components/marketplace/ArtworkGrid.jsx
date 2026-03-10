@@ -19,12 +19,8 @@ export default function ArtworkGrid({ artworks = [], columns = 3 }) {
     );
   }
 
-  const gridStyle = {
-    columnCount: columns,
-  };
-
   return (
-    <div className="artwork-grid" style={gridStyle}>
+    <div className="artwork-grid">
       {artworks.map((artwork) => (
         <div key={artwork.id} className="artwork-grid-item">
           <ArtworkCard artwork={artwork} />

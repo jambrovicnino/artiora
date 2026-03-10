@@ -49,10 +49,11 @@ const statConfig = [
   },
 ];
 
-export default function DashboardStats({ stats = {} }) {
+export default function DashboardStats({ stats = {}, config }) {
+  const items = config || statConfig;
   return (
     <div className="dashboard-stats">
-      {statConfig.map((cfg) => (
+      {items.map((cfg) => (
         <div key={cfg.key} className="stat-card">
           <div className="stat-icon">{cfg.icon}</div>
           <div className="stat-content">

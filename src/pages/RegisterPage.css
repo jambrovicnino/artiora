@@ -218,6 +218,64 @@
   color: var(--text-secondary);
 }
 
+/* ─── Verification step ─────────────────────── */
+.verify-email-display {
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  margin-top: 8px;
+}
+
+.verify-code-input {
+  font-size: 1.8rem;
+  letter-spacing: 0.5em;
+  text-align: center;
+  font-weight: 600;
+  padding: 14px 16px;
+}
+
+.verify-actions {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.verify-resend-btn,
+.verify-back-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  transition: color 0.2s ease;
+}
+
+.verify-resend-btn {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.verify-resend-btn:hover:not(:disabled) {
+  color: var(--gold-light);
+}
+
+.verify-resend-btn:disabled {
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+.verify-back-btn {
+  color: var(--text-secondary);
+}
+
+.verify-back-btn:hover {
+  color: var(--text-primary);
+}
+
 /* ─── Responsive ─────────────────────────────── */
 @media (max-width: 480px) {
   .register-card {

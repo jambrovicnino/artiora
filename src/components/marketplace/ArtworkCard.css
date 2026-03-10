@@ -23,13 +23,13 @@
   position: relative;
   overflow: hidden;
   width: 100%;
-  aspect-ratio: auto;
+  aspect-ratio: 4 / 5;
   cursor: pointer;
 }
 
 .artwork-card__image {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
   object-fit: cover;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);

@@ -4,9 +4,8 @@ import { useAuth } from '../context/AuthContext';
 import './LoginPage.css';
 
 const DEMO_ACCOUNTS = [
-  { label: 'Nino (Admin)', email: 'nino@artiora.si', password: 'demo123' },
-  { label: 'Maja (Umetnik)', email: 'maja@artiora.si', password: 'demo123' },
-  { label: 'Luka (Kupec)', email: 'luka@test.si', password: 'demo123' },
+  { label: 'Nino (Umetnik)', email: 'psn.nino4@gmail.com', password: 'demo123' },
+  { label: 'Nino J. (Kupec)', email: 'jambrovic.nino@gmail.com', password: 'demo123' },
 ];
 
 export default function LoginPage() {

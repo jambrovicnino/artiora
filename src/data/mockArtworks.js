@@ -222,7 +222,7 @@ export const mockArtworks = [
   // ─────────────────────────────────────────────
   {
     id: 'aw-008',
-    artistId: 'artist-002',
+    artistId: 'artist-001',
     title: 'Bled s Cerkvijo',
     description: 'Klasična oljnata upodobitev Blejskega jezera s cerkvijo na otoku. Impresionistični potiski ustvarjajo občutek mirne jutranje svetlobe.',
     image: '/gallery/bled-cerkvija.png',
@@ -250,7 +250,7 @@ export const mockArtworks = [
   },
   {
     id: 'aw-009',
-    artistId: 'artist-002',
+    artistId: 'artist-001',
     title: 'Gorski Sončni Zahod',
     description: 'Dramatičen sončni zahod nad slovenskimi gorami. Topli odtenki oranžne, rdeče in vijolične barve se prepletajo na platnu.',
     image: '/gallery/gorski-zahod.png',
@@ -278,7 +278,7 @@ export const mockArtworks = [
   },
   {
     id: 'aw-010',
-    artistId: 'artist-002',
+    artistId: 'artist-001',
     title: 'Jesenski Gozd',
     description: 'Jesenski gozd v toplih barvah zlata, oranžne in rdeče. Svetloba prodira skozi krošnje in ustvarja magično vzdušje.',
     image: '/gallery/jesenski-gozd.png',
@@ -306,7 +306,7 @@ export const mockArtworks = [
   },
   {
     id: 'aw-011',
-    artistId: 'artist-002',
+    artistId: 'artist-001',
     title: 'Morski Valovi',
     description: 'Razburkano morje ob slovenski obali. Oljni nanosi ustvarjajo občutek gibanja in moči valovanja.',
     image: '/gallery/morski-valovi.png',
@@ -334,7 +334,7 @@ export const mockArtworks = [
   },
   {
     id: 'aw-012',
-    artistId: 'artist-002',
+    artistId: 'artist-001',
     title: 'Cvetlična Livada',
     description: 'Poletna livada polna divjih cvetlic. Impresionistični potezi čopiča ujamejo radost svetlega poletnega dne.',
     image: '/gallery/cvetlicna-livada.png',
@@ -362,7 +362,7 @@ export const mockArtworks = [
   },
   {
     id: 'aw-013',
-    artistId: 'artist-002',
+    artistId: 'artist-001',
     title: 'Zimska Tišina',
     description: 'Zasnežena pokrajina v mirnih belih in modrih tonih. Tiha zimska scena, ki vabi k premisleku.',
     image: '/gallery/artwork-zimska-tisina.jpg',
@@ -394,7 +394,7 @@ export const mockArtworks = [
   // ─────────────────────────────────────────────
   {
     id: 'aw-014',
-    artistId: 'artist-003',
+    artistId: 'artist-001',
     title: 'Megleno Jutro ob Jezeru',
     description: 'Nežna akvarelna upodobitev megleneg jutra ob jezeru. Mehki barvni prehodi ustvarjajo sanjavo vzdušje.',
     image: '/gallery/megleno-jutro.png',
@@ -422,7 +422,7 @@ export const mockArtworks = [
   },
   {
     id: 'aw-015',
-    artistId: 'artist-003',
+    artistId: 'artist-001',
     title: 'Portret z Rožami',
     description: 'Akvarelni portret mlade ženske z rožami v laseh. Nežni rožnati in zeleni toni ustvarjajo poetično celoto.',
     image: '/gallery/artwork-portret-roze.jpg',
@@ -450,7 +450,7 @@ export const mockArtworks = [
   },
   {
     id: 'aw-016',
-    artistId: 'artist-003',
+    artistId: 'artist-001',
     title: 'Otroški Smeh',
     description: 'Minimalistični akvarelni portret otroka v smehu. Le nekaj potez čopiča ujame čisto veselje.',
     image: '/gallery/artwork-otroski-smeh.jpg',
@@ -478,7 +478,7 @@ export const mockArtworks = [
   },
   {
     id: 'aw-017',
-    artistId: 'artist-003',
+    artistId: 'artist-001',
     title: 'Stari Mož z Violino',
     description: 'Portret starega glasbenika z violino. Akvarelna tehnika poudarja modrost in predanost glasbi.',
     image: '/gallery/artwork-violinist.jpg',
@@ -506,7 +506,7 @@ export const mockArtworks = [
   },
   {
     id: 'aw-018',
-    artistId: 'artist-003',
+    artistId: 'artist-001',
     title: 'Cvetni Minimalizem',
     description: 'Minimalistična akvarelna študija cvetja. Posamezni barvni madeži ustvarjajo vtis nežnosti in preprostosti.',
     image: '/gallery/artwork-cvetni-min.jpg',
@@ -538,7 +538,7 @@ export const mockArtworks = [
   // ─────────────────────────────────────────────
   {
     id: 'aw-019',
-    artistId: 'artist-004',
+    artistId: 'artist-001',
     title: 'Digitalni Valovi',
     description: 'Eksperimentalna digitalna kompozicija z abstraktnimi valovitimi oblikami v živih barvah.',
     image: '/gallery/artwork-digitalni-valovi.jpg',
@@ -566,7 +566,7 @@ export const mockArtworks = [
   },
   {
     id: 'aw-020',
-    artistId: 'artist-004',
+    artistId: 'artist-001',
     title: 'Geometrija Mesta',
     description: 'Mestna krajina, preoblikovana v geometrijske forme. Digitalno delo, ki raziskuje urbano strukturo.',
     image: '/gallery/artwork-geometrija-mesta.jpg',
@@ -594,7 +594,7 @@ export const mockArtworks = [
   },
   {
     id: 'aw-021',
-    artistId: 'artist-004',
+    artistId: 'artist-001',
     title: 'Abstrakcija v Rožnati',
     description: 'Nežna abstraktna kompozicija v rožnatih in belih tonih. Novo delo, ki čaka na odobritev.',
     image: '/gallery/artwork-abstrakcija-roznata.jpg',
@@ -622,7 +622,7 @@ export const mockArtworks = [
   },
   {
     id: 'aw-022',
-    artistId: 'artist-004',
+    artistId: 'artist-001',
     title: 'Digitalni Svet 2.0',
     description: 'Futuristična vizija digitalnega sveta. Delo je v postopku pregleda pred objavo v galeriji.',
     image: '/gallery/artwork-digitalni-svet.jpg',
@@ -654,7 +654,7 @@ export const mockArtworks = [
   // ─────────────────────────────────────────────
   {
     id: 'aw-023',
-    artistId: 'artist-005',
+    artistId: 'artist-001',
     title: 'Urbana Ulica ob Mraku',
     description: 'Fotografija mestne ulice v mraku. Neonske luči se odbijajo od mokrih tlakovcev in ustvarjajo filmsko atmosfero.',
     image: '/gallery/urbana-ulica.png',
@@ -682,7 +682,7 @@ export const mockArtworks = [
   },
   {
     id: 'aw-024',
-    artistId: 'artist-005',
+    artistId: 'artist-001',
     title: 'Grafiti Zgodba',
     description: 'Dokumentarna fotografija uličnih grafitov v starem delu mesta. Zgodbe sten pripovedujejo o kulturi in uporu.',
     image: '/gallery/artwork-grafiti.jpg',
@@ -710,7 +710,7 @@ export const mockArtworks = [
   },
   {
     id: 'aw-025',
-    artistId: 'artist-005',
+    artistId: 'artist-001',
     title: 'Abstraktna Refleksija',
     description: 'Abstraktna fotografija odbojev v lužah na ulici. Razpotegnjena realnost ustvarja nov vizualni svet.',
     image: '/gallery/artwork-refleksija.jpg',
@@ -738,7 +738,7 @@ export const mockArtworks = [
   },
   {
     id: 'aw-026',
-    artistId: 'artist-005',
+    artistId: 'artist-001',
     title: 'Pozabljena Vrata',
     description: 'Fotografija starih, pozabljenih vrat v obmorskem mestecu. Barve se lupijo, a lepota ostaja.',
     image: '/gallery/artwork-pozabljena-vrata.jpg',
@@ -766,7 +766,7 @@ export const mockArtworks = [
   },
   {
     id: 'aw-027',
-    artistId: 'artist-005',
+    artistId: 'artist-001',
     title: 'Stare Fasade Kopra',
     description: 'Serija fotografij starih fasad v Kopru. Teksture, barve in zgodbe, ki jih stene pripovedujejo skozi čas.',
     image: '/gallery/artwork-fasade-koper.jpg',

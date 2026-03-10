@@ -1,11 +1,9 @@
 // ═══════════════════════════════════════════════
 // ARTIORA — Naročila po meri (Commissions)
 //
-// 4 testna narocila v razlicnih fazah:
+// 2 testni narocili:
 //   zakljuceno   — delo koncano in predano
 //   v_delu       — umetnik dela na narocilu
-//   ponudba      — ponudba poslana, caka odobritev
-//   zahteva      — novo narocilo, brez ponudbe
 //
 // Sporocila so v slovenscini za demo prikaz.
 // ═══════════════════════════════════════════════
@@ -21,12 +19,12 @@ export const COMMISSION_STATUSES = {
 };
 
 export const mockCommissions = [
-  // ─── 1. ZAKLJUČENO — Luka → Nino ───
+  // ─── 1. ZAKLJUČENO — Nino J. → Nino P. ───
   {
     id: 'comm-001',
     status: 'zakljuceno',
-    clientId: 'user-004',
-    clientName: 'Luka B.',
+    clientId: 'user-002',
+    clientName: 'Nino J.',
     artistId: 'artist-001',
     artistName: 'Nino P.',
     title: 'AI portret psa v slogu Van Gogha',
@@ -47,8 +45,8 @@ export const mockCommissions = [
     messages: [
       {
         id: 'msg-001-1',
-        senderId: 'user-004',
-        senderName: 'Luka B.',
+        senderId: 'user-002',
+        senderName: 'Nino J.',
         text: 'Pozdravljeni! Zanima me AI portret mojega psa v Van Goghovem slogu. Prilagam fotografijo. Rad bi imel velikost 50x70 cm za v dnevno sobo.',
         timestamp: '2025-05-10T14:30:00.000Z',
         attachments: ['/commissions/ref-dog-photo.jpg'],
@@ -57,14 +55,14 @@ export const mockCommissions = [
         id: 'msg-001-2',
         senderId: 'user-001',
         senderName: 'Nino P.',
-        text: 'Hvala za povpraševanje, Luka! Fotografija je odlična za delo. Predlagam portret v slogu "Zvezdne noči" z barvami, ki se ujemajo z vašo dnevno sobo. Cena bi bila 95 EUR, vključno s tiskom na platno in certifikatom.',
+        text: 'Hvala za povpraševanje! Fotografija je odlična za delo. Predlagam portret v slogu "Zvezdne noči" z barvami, ki se ujemajo z vašo dnevno sobo. Cena bi bila 95 EUR, vključno s tiskom na platno in certifikatom.',
         timestamp: '2025-05-10T18:45:00.000Z',
         attachments: [],
       },
       {
         id: 'msg-001-3',
-        senderId: 'user-004',
-        senderName: 'Luka B.',
+        senderId: 'user-002',
+        senderName: 'Nino J.',
         text: 'Odlično, cena mi ustreza! Prosim, začnite z delom. Edina želja je, da so zvezdice v ozadju v modro-vijolični barvi.',
         timestamp: '2025-05-11T09:15:00.000Z',
         attachments: [],
@@ -79,8 +77,8 @@ export const mockCommissions = [
       },
       {
         id: 'msg-001-5',
-        senderId: 'user-004',
-        senderName: 'Luka B.',
+        senderId: 'user-002',
+        senderName: 'Nino J.',
         text: 'To je fantastično! Morda le malo bolj intenzivna modra v ozadju? Sicer pa sem navdušen!',
         timestamp: '2025-05-26T10:30:00.000Z',
         attachments: [],
@@ -96,170 +94,52 @@ export const mockCommissions = [
     ],
   },
 
-  // ─── 2. V DELU — Luka → Maja ───
+  // ─── 2. V DELU — Nino J. → Nino P. ───
   {
     id: 'comm-002',
     status: 'v_delu',
-    clientId: 'user-004',
-    clientName: 'Luka B.',
-    artistId: 'artist-002',
-    artistName: 'Maja Kovač',
-    title: 'Oljno slika družinske hiše',
-    description: 'Želim oljno sliko naše družinske hiše na Gorenjskem. Hiša je stara 100 let, obdana z vrtom in gorskim ozadjem.',
-    category: 'pokrajine',
-    budgetMin: 300,
-    budgetMax: 500,
-    currency: 'EUR',
-    quotedPrice: 400,
-    finalPrice: null,
-    dimensions: '60x80 cm',
-    deadline: '2026-04-01T00:00:00.000Z',
-    referenceImages: ['/commissions/ref-house-front.jpg', '/commissions/ref-house-garden.jpg'],
-    deliveredImage: null,
-    createdAt: '2025-12-20T10:00:00.000Z',
-    updatedAt: '2026-02-15T17:30:00.000Z',
-    completedAt: null,
-    messages: [
-      {
-        id: 'msg-002-1',
-        senderId: 'user-004',
-        senderName: 'Luka B.',
-        text: 'Pozdravljeni, Maja! Videl sem vaše čudovite pokrajine in bi rad naročil oljno sliko naše družinske hiše na Gorenjskem. Prilagam dve fotografiji — ena od spredaj, ena z vrtom. Želim si velikost 60x80 cm.',
-        timestamp: '2025-12-20T10:00:00.000Z',
-        attachments: ['/commissions/ref-house-front.jpg', '/commissions/ref-house-garden.jpg'],
-      },
-      {
-        id: 'msg-002-2',
-        senderId: 'user-002',
-        senderName: 'Maja Kovač',
-        text: 'Hvala za sporočilo, Luka! Hiša je prelepa, z gorami v ozadju bo slika čarobna. Za velikost 60x80 cm v oljni tehniki bi cena bila 400 EUR. Rok izdelave je približno 6-8 tednov. Vam to ustreza?',
-        timestamp: '2025-12-20T18:15:00.000Z',
-        attachments: [],
-      },
-      {
-        id: 'msg-002-3',
-        senderId: 'user-004',
-        senderName: 'Luka B.',
-        text: 'Odlično, sprejemam! Prosim, začnite kadar vam ustreza. Ali bi bilo mogoče dodati tudi naš stari oreh, ki stoji ob hiši?',
-        timestamp: '2025-12-21T08:30:00.000Z',
-        attachments: [],
-      },
-      {
-        id: 'msg-002-4',
-        senderId: 'user-002',
-        senderName: 'Maja Kovač',
-        text: 'Seveda, oreh bo lep dodatek kompoziciji! Tukaj je skica v svinčniku, preden začnem z oljnimi barvami. Ali vam postavitev elementov ustreza?',
-        timestamp: '2026-01-15T14:00:00.000Z',
-        attachments: ['/commissions/draft-house-sketch.jpg'],
-      },
-      {
-        id: 'msg-002-5',
-        senderId: 'user-004',
-        senderName: 'Luka B.',
-        text: 'Skica je odlična! Zelo mi je všeč, kako ste postavili oreh. Prosim, nadaljujte z barvami.',
-        timestamp: '2026-01-16T09:00:00.000Z',
-        attachments: [],
-      },
-    ],
-  },
-
-  // ─── 3. PONUDBA — Ana → Nino ───
-  {
-    id: 'comm-003',
-    status: 'ponudba',
-    clientId: 'user-003',
-    clientName: 'Ana Vidmar',
+    clientId: 'user-002',
+    clientName: 'Nino J.',
     artistId: 'artist-001',
     artistName: 'Nino P.',
-    title: 'Akvarelni portret iz fotografije',
-    description: 'Želim AI-generiran portret v akvarelnem slogu, na podlagi fotografije mojega dedka. Darilo za 80. rojstni dan.',
-    category: 'portreti',
-    budgetMin: 150,
-    budgetMax: 250,
-    currency: 'EUR',
-    quotedPrice: 180,
-    finalPrice: null,
-    dimensions: '40x50 cm',
-    deadline: '2026-05-20T00:00:00.000Z',
-    referenceImages: ['/commissions/ref-grandfather.jpg'],
-    deliveredImage: null,
-    createdAt: '2026-02-28T16:00:00.000Z',
-    updatedAt: '2026-03-02T11:00:00.000Z',
-    completedAt: null,
-    messages: [
-      {
-        id: 'msg-003-1',
-        senderId: 'user-003',
-        senderName: 'Ana Vidmar',
-        text: 'Živjo, Nino! Čeprav sama delam akvarele, bi za dedkov rojstni dan rada naročila AI-generiran portret v akvarelnem slogu. Prilagam fotografijo. Želim nežne, tople tone.',
-        timestamp: '2026-02-28T16:00:00.000Z',
-        attachments: ['/commissions/ref-grandfather.jpg'],
-      },
-      {
-        id: 'msg-003-2',
-        senderId: 'user-001',
-        senderName: 'Nino P.',
-        text: 'Hvala, Ana! Res lepa ideja za darilo. Fotografija je dovolj kakovostna za kvaliteten portret. Predlagam 40x50 cm na fine art papirju, cena 180 EUR. Lahko dosežem zelo naraven akvarelni videz z AI-orodji. Rok do 20. maja?',
-        timestamp: '2026-03-01T10:30:00.000Z',
-        attachments: [],
-      },
-      {
-        id: 'msg-003-3',
-        senderId: 'user-003',
-        senderName: 'Ana Vidmar',
-        text: 'Hvala za ponudbo! Razmislila bom in vam sporočim v naslednjih dneh.',
-        timestamp: '2026-03-02T11:00:00.000Z',
-        attachments: [],
-      },
-    ],
-  },
-
-  // ─── 4. ZAHTEVA — Luka → Petra ───
-  {
-    id: 'comm-004',
-    status: 'zahteva',
-    clientId: 'user-004',
-    clientName: 'Luka B.',
-    artistId: 'artist-004',
-    artistName: 'Petra Novak',
     title: 'Moderna digitalna umetnina za pisarno',
     description: 'Iščem moderno digitalno delo za steno v pisarni. Velikost približno 80x120 cm, v živahnih barvah, ki dajo prostorom energijo.',
     category: 'moderna',
     budgetMin: 100,
     budgetMax: 200,
     currency: 'EUR',
-    quotedPrice: null,
+    quotedPrice: 160,
     finalPrice: null,
     dimensions: '80x120 cm',
     deadline: '2026-06-01T00:00:00.000Z',
     referenceImages: [],
     deliveredImage: null,
-    createdAt: '2026-03-05T13:45:00.000Z',
-    updatedAt: '2026-03-05T13:45:00.000Z',
+    createdAt: '2026-01-15T10:00:00.000Z',
+    updatedAt: '2026-02-20T14:00:00.000Z',
     completedAt: null,
     messages: [
       {
-        id: 'msg-004-1',
-        senderId: 'user-004',
-        senderName: 'Luka B.',
-        text: 'Pozdravljeni, Petra! Videl sem vaša dela na ARTIORA in mi je všeč vaš slog. Iščem veliko digitalno umetnino za pisarno — velikost približno 80x120 cm. Rad bi živahne barve, ki dajo prostoru energijo. Proračun imam med 100 in 200 EUR.',
-        timestamp: '2026-03-05T13:45:00.000Z',
+        id: 'msg-002-1',
+        senderId: 'user-002',
+        senderName: 'Nino J.',
+        text: 'Pozdravljeni! Iščem veliko digitalno umetnino za pisarno — velikost približno 80x120 cm. Rad bi živahne barve, ki dajo prostoru energijo. Proračun imam med 100 in 200 EUR.',
+        timestamp: '2026-01-15T10:00:00.000Z',
         attachments: [],
       },
       {
-        id: 'msg-004-2',
-        senderId: 'user-005',
-        senderName: 'Petra Novak',
-        text: 'Hvala za sporočilo, Luka! Vesela sem, da vam je všeč moj slog. Pogledala bom vaš opis in vam pripravila ponudbo s skicami v prihodnjih dneh.',
-        timestamp: '2026-03-06T09:20:00.000Z',
+        id: 'msg-002-2',
+        senderId: 'user-001',
+        senderName: 'Nino P.',
+        text: 'Hvala za sporočilo! Za to velikost predlagam AI-generirano abstrakcijo v živahnih barvah. Cena bi bila 160 EUR, vključno s tiskom na platno. Vam to ustreza?',
+        timestamp: '2026-01-16T09:20:00.000Z',
         attachments: [],
       },
       {
-        id: 'msg-004-3',
-        senderId: 'user-004',
-        senderName: 'Luka B.',
-        text: 'Super, se veselim! Če pomaga — pisarna ima bele stene in moderno pohištvo v sivih tonih.',
-        timestamp: '2026-03-06T12:10:00.000Z',
+        id: 'msg-002-3',
+        senderId: 'user-002',
+        senderName: 'Nino J.',
+        text: 'Super, sprejemam! Pisarna ima bele stene in moderno pohištvo v sivih tonih — to bi bilo koristno za barvno paleto.',
+        timestamp: '2026-01-17T12:10:00.000Z',
         attachments: [],
       },
     ],

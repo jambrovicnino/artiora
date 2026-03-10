@@ -102,8 +102,8 @@ export default function App() {
 
           {/* ─── Dashboard (Protected) ─── */}
           <Route path="/nadzorna-plosca" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
-          <Route path="/nadzorna-plosca/nalozi" element={<ProtectedRoute><UploadArtworkPage /></ProtectedRoute>} />
-          <Route path="/nadzorna-plosca/umetnine" element={<ProtectedRoute><MyArtworksPage /></ProtectedRoute>} />
+          <Route path="/nadzorna-plosca/nalozi" element={<ProtectedRoute requireArtist><UploadArtworkPage /></ProtectedRoute>} />
+          <Route path="/nadzorna-plosca/umetnine" element={<ProtectedRoute requireArtist><MyArtworksPage /></ProtectedRoute>} />
           <Route path="/nadzorna-plosca/narocila" element={<ProtectedRoute><MyCommissionsPage /></ProtectedRoute>} />
 
           {/* ─── Admin (Protected, role='admin') ─── */}

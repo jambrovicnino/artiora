@@ -10,10 +10,13 @@ import { mockArtworks } from '../data/mockArtworks';
 import { mockCommissions } from '../data/mockCommissions';
 import { mockReviews } from '../data/mockReviews';
 
-const SEED_KEY = 'artiora_seeded';
+const SEED_KEY = 'artiora_seeded_v2';
 
 export function seedMockData() {
   if (localStorage.getItem(SEED_KEY)) return;
+
+  // Clear stale data from previous version
+  resetMockData();
 
   console.log('[ARTIORA] Seeding mock data...');
 
